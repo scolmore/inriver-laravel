@@ -1,0 +1,41 @@
+{
+    "name": "scolmore/inriver",
+    "description": "A Laravel package for interacting with the inRiver PIM API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Loft",
+            "email": "sam@scolmore.com",
+            "homepage": "https://scolmore.com"
+        }
+    ],
+    "homepage": "https://github.com/scolmore/inriver-laravel",
+    "keywords": ["Laravel", "InRiver"],
+    "require": {
+        "illuminate/support": "~9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Scolmore\\InRiver\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Scolmore\\InRiver\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Scolmore\\InRiver\\InRiverServiceProvider"
+            ],
+            "aliases": {
+                "InRiver": "Scolmore\\InRiver\\Facades\\InRiver"
+            }
+        }
+    }
+}
