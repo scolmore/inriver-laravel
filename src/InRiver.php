@@ -8,7 +8,7 @@ class InRiver
 {
     public string $version = '1.0.0';
     public ?string $url;
-    public ?string $apiKey;
+    private ?string $apiKey;
 
     public function __construct()
     {
