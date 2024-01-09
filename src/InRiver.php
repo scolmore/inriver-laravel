@@ -4,17 +4,47 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver;
 
+use Illuminate\Support\Facades\Http;
+use Scolmore\InRiver\Resources\Entities\Entities;
+
 class InRiver
 {
     public string $version = '1.0.0';
     public ?string $url;
     private ?string $apiKey;
 
+    public Entities $entities;
+
     public function __construct()
     {
-        $url = config('inriver.inriver-url');
+        $url = config('inriver.inriver_url');
 
         $this->url = "{$url}/api/v{$this->version}/";
-        $this->apiKey = config('inriver.inriver-api-key');
+        $this->apiKey = config('inriver.inriver_api_key');
+
+        $this->setupResources();
+    }
+
+    public function request(string $method, string $endpoint, array $data = []): array
+    {
+        $client = Http::timeout(30)
+            ->withHeaders([
+                'X-inRiver-APIKey' => $this->apiKey,
+            ]);
+
+        $response = $client->$method("{$this->url}{$endpoint}", $data);
+
+        return [
+            'method' => $method,
+            'error' => $response->failed(),
+            'status' => $response->status(),
+            'url' => "{$this->url}{$endpoint}",
+            'response' => $response->json(),
+        ];
+    }
+
+    public function setupResources(): void
+    {
+        $this->entities = new Entities($this);
     }
 }
