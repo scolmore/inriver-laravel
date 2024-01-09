@@ -25,4 +25,15 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint((string) $entityId)
         );
     }
+
+    public function new(string $entityTypeId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint(':getempty'),
+            data: [
+                'entityTypeId' => $entityTypeId,
+            ]
+        );
+    }
 }

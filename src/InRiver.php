@@ -41,7 +41,7 @@ class InRiver
         return [
             'error' => $response->failed(),
             'status' => $response->status(),
-            'message' => $response->json()['title'],
+            'message' => $response->json()['title'] ?? $response->json(),
         ];
     }
 
