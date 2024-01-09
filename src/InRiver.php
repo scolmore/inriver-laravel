@@ -25,7 +25,7 @@ class InRiver
         $this->setupResources();
     }
 
-    public function request(string $method, string $endpoint, array $data = []): array
+    public function request(string $method, string $endpoint, array $data = []): array|string
     {
         $client = Http::timeout(30)
             ->withHeaders([
@@ -34,12 +34,14 @@ class InRiver
 
         $response = $client->$method("{$this->url}{$endpoint}", $data);
 
+        if ($response->ok()) {
+            return $response->json();
+        }
+
         return [
-            'method' => $method,
             'error' => $response->failed(),
             'status' => $response->status(),
-            'url' => "{$this->url}{$endpoint}",
-            'response' => $response->json(),
+            'message' => $response->json()['title'],
         ];
     }
 

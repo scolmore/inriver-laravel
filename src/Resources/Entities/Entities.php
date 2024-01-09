@@ -17,4 +17,12 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint("/{$entityId}/summary")
         );
     }
+
+    public function delete(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint((string) $entityId)
+        );
+    }
 }
