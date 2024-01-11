@@ -173,4 +173,26 @@ class Channels extends AbstractResource
             endpoint: $this->endpoint("/queue")
         );
     }
+
+    /**
+     * Get a list of channel entities of the specified entity type.
+     *
+     * @param  string  $entityTypeId
+     * @param  bool  $orphaned True, get ids of entities not included in any channel. False, get ids of entities included in at least one channel.
+     * @param  bool|null  $linkRuleEnabled Null, get all entity ids. True, get ids of entities with configured link rules. False, get ids of entities without configured link rules or disabled link rules.
+     * @return array
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelEntitiesAsync
+     */
+    public function getChannelEntitiesAsync(string $entityTypeId, bool $orphaned = false, ?bool $linkRuleEnabled = null): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/entityIds/{$entityTypeId}"),
+            data: [
+                'orphaned' => $orphaned,
+                'linkRuleEnabled' => $linkRuleEnabled,
+            ]
+        );
+    }
 }
