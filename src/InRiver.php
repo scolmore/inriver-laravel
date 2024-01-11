@@ -10,6 +10,7 @@ use Scolmore\InRiver\Resources\Entities\Entities;
 use Scolmore\InRiver\Resources\Extension\Extensions;
 use Scolmore\InRiver\Resources\Link\Links;
 use Scolmore\InRiver\Resources\LinkRule\LinkRules;
+use Scolmore\InRiver\Resources\Media\Media;
 
 class InRiver
 {
@@ -22,6 +23,7 @@ class InRiver
     public Extensions $extensions;
     public Links $links;
     public LinkRules $linkRules;
+    public Media $media;
 
     public function __construct()
     {
@@ -60,5 +62,6 @@ class InRiver
         $this->extensions = new Extensions($this);
         $this->links = new Links($this);
         $this->linkRules = new LinkRules($this);
+        $this->media = new Media($this);
     }
 }
