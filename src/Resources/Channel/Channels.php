@@ -94,4 +94,35 @@ class Channels extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @param  int  $channelId
+     * @param  int  $entityId
+     * @return array
+     *
+     * Get structure entities for entity.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelStructureEntities
+     */
+    public function getChannelStructureEntities(int $channelId, int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$channelId}/entities/{$entityId}/structureentities")
+        );
+    }
+
+    /**
+     * @param  int  $channelId
+     * @return array
+     *
+     * Channel structure list.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodes
+     */
+    public function getChannelNodes(int $channelId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$channelId}/nodes")
+        );
+    }
 }
