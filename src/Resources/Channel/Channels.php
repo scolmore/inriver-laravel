@@ -140,4 +140,23 @@ class Channels extends AbstractResource
             endpoint: $this->endpoint("/{$channelId}/nodetree")
         );
     }
+
+    /**
+     * @param  string  $path
+     * @param  string  $entityTypeIds optional, filter types using comma separated list
+     * @return array
+     *
+     * Channel path content.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/ChannelContent
+     */
+    public function channelContent(string $path, string $entityTypeIds = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/content/{$path}"),
+            data: [
+                'entityTypeIds' => $entityTypeIds,
+            ]
+        );
+    }
 }
