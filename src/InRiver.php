@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Resources\Channel\Channels;
 use Scolmore\InRiver\Resources\Entities\Entities;
 use Scolmore\InRiver\Resources\Extension\Extensions;
+use Scolmore\InRiver\Resources\Link\Links;
 
 class InRiver
 {
@@ -18,6 +19,7 @@ class InRiver
     public Channels $channels;
     public Entities $entities;
     public Extensions $extensions;
+    public Links $links;
 
     public function __construct()
     {
@@ -54,5 +56,6 @@ class InRiver
         $this->channels = new Channels($this);
         $this->entities = new Entities($this);
         $this->extensions = new Extensions($this);
+        $this->links = new Links($this);
     }
 }
