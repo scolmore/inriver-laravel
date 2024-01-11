@@ -523,4 +523,23 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint("/{$entityId}/comments")
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $text
+     * @return array
+     *
+     * Post entity comment.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
+     */
+    public function createComment(int $entityId, string $text): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$entityId}/comments"),
+            data: [
+                'text' => $text,
+            ]
+        );
+    }
 }
