@@ -159,4 +159,18 @@ class Channels extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @return array
+     *
+     * Get channel queue messages for a customer environment.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelMessagesAsync
+     */
+    public function getChannelMessagesAsync(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/queue")
+        );
+    }
 }
