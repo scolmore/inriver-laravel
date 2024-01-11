@@ -542,4 +542,20 @@ class Entities extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @param  int  $commentId
+     * @return array
+     *
+     * Delete entity comment.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
+     */
+    public function deleteComment(int $entityId, int $commentId): array
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/{$entityId}/comments/{$commentId}")
+        );
+    }
 }
