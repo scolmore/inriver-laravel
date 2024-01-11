@@ -84,7 +84,7 @@ class Entities extends AbstractResource
                 ],
                 'outbound' => [
                     'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
-                ]
+                ],
             ]
         );
     }
@@ -276,6 +276,104 @@ class Entities extends AbstractResource
             data: [
                 'fieldSetId' => $fieldSetId,
                 'wipeOtherFields' => $wipeOtherFields,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $specificationFieldTypeIds
+     * @return array
+     *
+     * Returns a read only list of specification field values.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
+     */
+    public function getSpecificationSummary(int $entityId, string $specificationFieldTypeIds = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/summary/specification"),
+            data: [
+                'specificationFieldTypeIds' => $specificationFieldTypeIds,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $specificationFieldTypeIds
+     * @param  bool  $mandatoryOnly
+     * @return array
+     *
+     * Returns a list of specification field values.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
+     */
+    public function getSpecificationValues(
+        int $entityId,
+        string $specificationFieldTypeIds = '',
+        bool $mandatoryOnly = false
+    ): array {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/specificationvalues"),
+            data: [
+                'specificationFieldTypeIds' => $specificationFieldTypeIds,
+                'mandatoryOnly' => $mandatoryOnly,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  array  $specificationValues
+     * @return array
+     *
+     * Update specification field values.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
+     */
+    public function updateSpecificationValues(int $entityId, array $specificationValues): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$entityId}/specificationvalues"),
+            data: $specificationValues
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  int  $specificationId
+     * @return array
+     *
+     * Set specification template.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
+     */
+    public function setSpecificationTemplate(int $entityId, int $specificationId): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$entityId}/specificationtemplate"),
+            data: [
+                'specificationId' => $specificationId,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  int  $segmentId
+     * @return array
+     *
+     * Set entity segment.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
+     */
+    public function setSegment(int $entityId, int $segmentId): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$entityId}/segment"),
+            data: [
+                'segmentId' => $segmentId,
             ]
         );
     }
