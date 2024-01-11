@@ -572,4 +572,20 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint('/starred')
         );
     }
+
+    /**
+     * @param  array  $entityIds
+     * @return array
+     *
+     * Update list of starred entities.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
+     */
+    public function updateStarredEntities(array $entityIds): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint('/starred'),
+            data: $entityIds
+        );
+    }
 }
