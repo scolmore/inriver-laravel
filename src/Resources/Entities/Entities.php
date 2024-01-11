@@ -487,4 +487,40 @@ class Entities extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $url
+     * @param  string  $overrideUrlFileName
+     * @return array
+     *
+     * Add external media URL.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
+     */
+    public function addExternalUrl(int $entityId, string $url, string $overrideUrlFileName): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$entityId}/media:addexternalurl"),
+            data: [
+                'url' => $url,
+                'overrideUrlFileName' => $overrideUrlFileName,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @return array
+     *
+     * Entity comments.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
+     */
+    public function comments(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/comments")
+        );
+    }
 }
