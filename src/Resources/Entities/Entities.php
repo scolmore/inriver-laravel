@@ -10,19 +10,9 @@ class Entities extends AbstractResource
 {
     protected string $endpoint = 'entities';
 
-    /**
-     * @param  int  $entityId
-     * @return EntityDataObject
-     *
-     * Returns a bundle of the entity and all linked entities.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
-     */
     public function get(int $entityId): EntityDataObject
     {
-        $response = $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint("/{$entityId}/linksandfields")
-        );
+        $response = $this->getEntityBundle($entityId);
 
         $data = $response['summary'];
         $data['fieldValues'] = $response['fields'];
@@ -375,6 +365,69 @@ class Entities extends AbstractResource
             data: [
                 'segmentId' => $segmentId,
             ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $linkDirection
+     * @param  string  $linkTypeId
+     * @return array
+     *
+     * Returns a list of links.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
+     */
+    public function getLinksForEntity(int $entityId, string $linkDirection = '', string $linkTypeId = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/links"),
+            data: [
+                'linkDirection' => $linkDirection,
+                'linkTypeId' => $linkTypeId,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $fieldTypeIds
+     * @param  string  $linkDirection
+     * @param  string  $linkTypeId
+     * @return array
+     *
+     * Returns a bundle of the entity and all linked entities.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
+     */
+    public function getEntityBundle(
+        int $entityId,
+        string $fieldTypeIds = '',
+        string $linkDirection = '',
+        string $linkTypeId = ''
+    ): array {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/linksandfields"),
+            data: [
+                'fieldTypeIds' => $fieldTypeIds,
+                'linkDirection' => $linkDirection,
+                'linkTypeId' => $linkTypeId,
+            ]
+        );
+    }
+
+    /**
+     * @param  int  $entityId
+     * @return array
+     *
+     * Returns a read only list of media resources linked to the entity.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
+     */
+    public function getAllMedia(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/media")
         );
     }
 }
