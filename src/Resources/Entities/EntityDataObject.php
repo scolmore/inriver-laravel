@@ -124,7 +124,7 @@ class EntityDataObject
             'fieldValues' => $this->fieldValues,
         ];
 
-        $response = $inriver->entities->createNew($body);
+        $response = $inriver->entities->create($body);
 
         foreach ($response as $key => $value) {
             if (property_exists($this, $key)) {
@@ -139,7 +139,7 @@ class EntityDataObject
     {
         $inriver = new InRiver();
 
-        $inriver->entities->updateFieldValues($this->id, $this->fieldValues);
+        $inriver->entities->setFieldValues($this->id, $this->fieldValues);
 
         return $this;
     }
