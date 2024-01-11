@@ -10,11 +10,28 @@ class Channels extends AbstractResource
 {
     protected string $endpoint = 'channels';
 
-    public function list(): array
-    {
+    /**
+     * @param  int|null  $forEntityId
+     * @param  bool  $includeChannels
+     * @param  bool  $includePublications
+     * @return array
+     *
+     * Get channel id's for entity id.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
+     */
+    public function GetChannelsForEntityId(
+        ?int $forEntityId,
+        bool $includeChannels = true,
+        bool $includePublications = false
+    ): array {
         return $this->inRiver()->request(
             method: 'GET',
-            endpoint: $this->endpoint
+            endpoint: $this->endpoint,
+            data: [
+                'forEntityId' => $forEntityId,
+                'includeChannels' => $includeChannels,
+                'includePublications' => $includePublications,
+            ]
         );
     }
 

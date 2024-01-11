@@ -46,7 +46,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns various types of entity data.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FetchData
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FetchData
      */
     public function fetchData(array $body): array
     {
@@ -64,7 +64,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Insert or update entities and links.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Upsert
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Upsert
      */
     public function upsert(array $body): array
     {
@@ -80,7 +80,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a read only entity summary.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
      */
     public function getEntitySummary(int $entityId): array
     {
@@ -95,7 +95,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Deletes an entity.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
      */
     public function deleteEntity(int $entityId): array
     {
@@ -110,7 +110,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Creates a new entity.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
      */
     public function createEntity(array $entity): array
     {
@@ -127,7 +127,7 @@ class Entities extends AbstractResource
      * @return EntityDataObject
      *
      * Returns an entity creation model.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
      */
     public function getEmptyEntity(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
     {
@@ -148,7 +148,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a dictionary of unique values and entity id's.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
      */
     public function mapUniqueValues(array $body): array
     {
@@ -164,7 +164,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a completeness details.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CompletenessDetails
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CompletenessDetails
      */
     public function completenessDetails(int $entityId): array
     {
@@ -180,7 +180,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a read only list of field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
      */
     public function getFields(int $entityId, string $fieldTypeIds = ''): array
     {
@@ -199,7 +199,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a list of field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
      */
     public function getFieldValues(int $entityId, string $fieldTypeIds = ''): array
     {
@@ -218,7 +218,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Update field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
      */
     public function setFieldValues(int $entityId, array $fieldValues): array
     {
@@ -235,7 +235,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Field value revisions.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FieldHistory
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FieldHistory
      */
     public function fieldHistory(int $entityId, string $fieldTypeId): array
     {
@@ -252,7 +252,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Set field set (set fieldSetId to null to remove field set).
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldSet
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldSet
      */
     public function setFieldSet(int $entityId, ?string $fieldSetId, bool $wipeOtherFields): array
     {
@@ -272,7 +272,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a read only list of specification field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
      */
     public function getSpecificationSummary(int $entityId, string $specificationFieldTypeIds = ''): array
     {
@@ -292,7 +292,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a list of specification field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
      */
     public function getSpecificationValues(
         int $entityId,
@@ -315,7 +315,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Update specification field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
      */
     public function updateSpecificationValues(int $entityId, array $specificationValues): array
     {
@@ -332,7 +332,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Set specification template.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
      */
     public function setSpecificationTemplate(int $entityId, int $specificationId): array
     {
@@ -351,7 +351,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Set entity segment.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
      */
     public function setSegment(int $entityId, int $segmentId): array
     {
@@ -371,7 +371,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a list of links.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
      */
     public function getLinksForEntity(int $entityId, string $linkDirection = '', string $linkTypeId = ''): array
     {
@@ -393,7 +393,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a bundle of the entity and all linked entities.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
      */
     public function getEntityBundle(
         int $entityId,
@@ -417,7 +417,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a read only list of media resources linked to the entity.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
      */
     public function getAllMedia(int $entityId): array
     {
@@ -432,7 +432,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Returns a read only detailed list of media resources linked to the entity.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
      */
     public function getMediaDetails(int $entityId): array
     {
@@ -449,7 +449,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Add Media.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
      */
     public function uploadBase64File(int $entityId, string $fileName, string $data): array
     {
@@ -470,7 +470,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Add Media from URL.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
      */
     public function uploadMediaFromUrl(int $entityId, string $url, string $overrideUrlFileName): array
     {
@@ -491,7 +491,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Add external media URL.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
      */
     public function addExternalUrl(int $entityId, string $url, string $overrideUrlFileName): array
     {
@@ -510,7 +510,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Entity comments.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
      */
     public function comments(int $entityId): array
     {
@@ -526,7 +526,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Post entity comment.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
      */
     public function createComment(int $entityId, string $text): array
     {
@@ -545,7 +545,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Delete entity comment.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
      */
     public function deleteComment(int $entityId, int $commentId): array
     {
@@ -559,7 +559,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Get list of starred entities.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
      */
     public function starredEntities(): array
     {
@@ -574,7 +574,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Update list of starred entities.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
      */
     public function updateStarredEntities(array $entityIds): array
     {
@@ -589,7 +589,7 @@ class Entities extends AbstractResource
      * @return array
      *
      * Get all segments.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments
      */
     public function getAllSegments(): array
     {
