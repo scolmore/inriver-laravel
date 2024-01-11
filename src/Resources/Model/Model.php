@@ -20,9 +20,36 @@ class Model extends AbstractResource
      */
     public function getAllEntityTypes(string $entityTypeIds = ''): array
     {
+        $this->inRiver()->version = '1.0.1';
+
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint('/entitytypes')
+        );
+    }
+
+    /**
+     * Adds an entity type.
+     *
+     * @param  string  $id
+     * @param  string  $name
+     * @param  bool  $isLinkedEntityType
+     * @return array
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddEntityType
+     */
+    public function addEntityType(string $id, string $name, bool $isLinkedEntityType): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/entitytypes'),
+            data: [
+                'id' => $id,
+                'name' => $name,
+                'isLinkedEntityType' => $isLinkedEntityType,
+            ]
         );
     }
 }
