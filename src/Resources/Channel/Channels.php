@@ -35,19 +35,18 @@ class Channels extends AbstractResource
         );
     }
 
+    /**
+     * @param  int  $channelId
+     * @return array
+     *
+     * Get entity types for channel.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/EntityTypes
+     */
     public function entityTypes(int $channelId): array
     {
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint("/{$channelId}/entitytypes")
-        );
-    }
-
-    public function entityList(int $channelId): array
-    {
-        return $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint("/{$channelId}/entitylist")
         );
     }
 }
