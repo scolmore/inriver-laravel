@@ -109,7 +109,7 @@ class EntityDataObject
     {
         $inriver = new InRiver();
 
-        $inriver->entities->delete($this->id);
+        $inriver->entities->deleteEntity($this->id);
 
         return null;
     }
@@ -124,7 +124,7 @@ class EntityDataObject
             'fieldValues' => $this->fieldValues,
         ];
 
-        $response = $inriver->entities->create($body);
+        $response = $inriver->entities->createEntity($body);
 
         foreach ($response as $key => $value) {
             if (property_exists($this, $key)) {

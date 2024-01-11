@@ -25,6 +25,22 @@ class Entities extends AbstractResource
         return new EntityDataObject($data);
     }
 
+    public function list(array $entityIds): array
+    {
+        $body = [
+            'entityIds' => $entityIds,
+            'objects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+            'inbound' => [
+                'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+            ],
+            'outbound' => [
+                'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+            ],
+        ];
+
+        return $this->fetchData($body);
+    }
+
     /**
      * @param  array  $body
      * @return array
@@ -59,26 +75,6 @@ class Entities extends AbstractResource
         );
     }
 
-    public function list(array $entityIds): array
-    {
-        $this->inRiver()->version = '1.0.1';
-
-        return $this->inRiver()->request(
-            method: 'POST',
-            endpoint: $this->endpoint(':fetchdata'),
-            data: [
-                'entityIds' => $entityIds,
-                'objects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
-                'inbound' => [
-                    'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
-                ],
-                'outbound' => [
-                    'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
-                ],
-            ]
-        );
-    }
-
     /**
      * @param  int  $entityId
      * @return array
@@ -86,7 +82,7 @@ class Entities extends AbstractResource
      * Returns a read only entity summary.
      * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
      */
-    public function summary(int $entityId): array
+    public function getEntitySummary(int $entityId): array
     {
         return $this->inRiver()->request(
             method: 'GET',
@@ -101,11 +97,27 @@ class Entities extends AbstractResource
      * Deletes an entity.
      * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
      */
-    public function delete(int $entityId): array
+    public function deleteEntity(int $entityId): array
     {
         return $this->inRiver()->request(
             method: 'DELETE',
             endpoint: $this->endpoint("/{$entityId}")
+        );
+    }
+
+    /**
+     * @param  array  $entity
+     * @return array
+     *
+     * Creates a new entity.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
+     */
+    public function createEntity(array $entity): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint(':createnew'),
+            data: $entity
         );
     }
 
@@ -117,7 +129,7 @@ class Entities extends AbstractResource
      * Returns an entity creation model.
      * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
      */
-    public function new(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
+    public function getEmptyEntity(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
     {
         $response = $this->inRiver()->request(
             method: 'GET',
@@ -132,35 +144,18 @@ class Entities extends AbstractResource
     }
 
     /**
-     * @param  array  $entity
+     * @param  array  $body
      * @return array
      *
-     * Creates a new entity.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
+     * Returns a dictionary of unique values and entity id's.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
      */
-    public function create(array $entity): array
+    public function mapUniqueValues(array $body): array
     {
         return $this->inRiver()->request(
             method: 'POST',
-            endpoint: $this->endpoint(':createnew'),
-            data: $entity
-        );
-    }
-
-    /**
-     * @param  int  $entityId
-     * @param  array  $fieldValues
-     * @return array
-     *
-     * Update field values.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
-     */
-    public function setFieldValues(int $entityId, array $fieldValues): array
-    {
-        return $this->inRiver()->request(
-            method: 'PUT',
-            endpoint: $this->endpoint("/{$entityId}/fieldvalues"),
-            data: $fieldValues
+            endpoint: $this->endpoint(':mapuniquevalues'),
+            data: $body
         );
     }
 
@@ -187,7 +182,7 @@ class Entities extends AbstractResource
      * Returns a read only list of field values.
      * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
      */
-    public function fieldSummary(int $entityId, string $fieldTypeIds = ''): array
+    public function getFields(int $entityId, string $fieldTypeIds = ''): array
     {
         return $this->inRiver()->request(
             method: 'GET',
@@ -206,7 +201,7 @@ class Entities extends AbstractResource
      * Returns a list of field values.
      * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
      */
-    public function fieldValues(int $entityId, string $fieldTypeIds = ''): array
+    public function getFieldValues(int $entityId, string $fieldTypeIds = ''): array
     {
         return $this->inRiver()->request(
             method: 'GET',
@@ -218,18 +213,19 @@ class Entities extends AbstractResource
     }
 
     /**
-     * @param  array  $body
+     * @param  int  $entityId
+     * @param  array  $fieldValues
      * @return array
      *
-     * Returns a dictionary of unique values and entity id's.
-     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
+     * Update field values.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
      */
-    public function mapUniqueValues(array $body): array
+    public function setFieldValues(int $entityId, array $fieldValues): array
     {
         return $this->inRiver()->request(
-            method: 'POST',
-            endpoint: $this->endpoint(':mapuniquevalues'),
-            data: $body
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$entityId}/fieldvalues"),
+            data: $fieldValues
         );
     }
 
