@@ -430,4 +430,19 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint("/{$entityId}/media")
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @return array
+     *
+     * Returns a read only detailed list of media resources linked to the entity.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
+     */
+    public function getMediaDetails(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/mediadetails")
+        );
+    }
 }
