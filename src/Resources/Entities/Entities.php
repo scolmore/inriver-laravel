@@ -588,4 +588,18 @@ class Entities extends AbstractResource
             data: $entityIds
         );
     }
+
+    /**
+     * @return array
+     *
+     * Get all segments.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments
+     */
+    public function getAllSegments(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/segments')
+        );
+    }
 }
