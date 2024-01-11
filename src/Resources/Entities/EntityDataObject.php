@@ -14,10 +14,26 @@ class EntityDataObject
     public string $displayDescription;
     public ?string $version;
     public ?string $lockedBy;
+    public ?string $createdBy;
+    public ?string $createdDate;
+    public ?string $formattedCreatedDate;
+    public ?string $modifiedBy;
+    public ?string $modifiedDate;
+    public ?string $formattedModifiedDate;
+    public ?string $resourceUrl;
 
     public string $entityTypeId;
+    public ?string $entityTypeDisplayName;
     public ?string $fieldSetId;
+    public ?string $fieldSetName;
     public array $fieldValues;
+    public int $completeness;
+
+    public int $segmentId;
+    public ?string $segmentName;
+
+    public array $specification;
+    public array $links;
 
     public function __construct(array $data)
     {
@@ -26,11 +42,28 @@ class EntityDataObject
         $this->displayDescription = $data['displayDescription'] ?? '';
         $this->version = $data['version'] ?? null;
         $this->lockedBy = $data['lockedBy'] ?? null;
+        $this->createdBy = $data['createdBy'] ?? null;
+        $this->createdDate = $data['createdDate'] ?? null;
+        $this->formattedCreatedDate = $data['formattedCreatedDate'] ?? null;
+        $this->modifiedBy = $data['modifiedBy'] ?? null;
+        $this->modifiedDate = $data['modifiedDate'] ?? null;
+        $this->formattedModifiedDate = $data['formattedModifiedDate'] ?? null;
+        $this->resourceUrl = $data['resourceUrl'] ?? null;
+        $this->completeness = $data['completeness'] ?? 0;
 
         $this->entityTypeId = $data['entityTypeId'];
+        $this->entityTypeDisplayName = $data['entityTypeDisplayName'] ?? null;
         $this->fieldSetId = $data['fieldSetId'];
+        $this->fieldSetName = $data['fieldSetName'] ?? null;
 
         $this->fieldValues = $data['fieldValues'] ?? [];
+
+        $this->segmentId = $data['segmentId'] ?? 0;
+        $this->segmentName = $data['segmentName'] ?? null;
+
+        $this->specification = $data['specification'] ?? [];
+
+        $this->links = $data['links'] ?? [];
     }
 
     /**

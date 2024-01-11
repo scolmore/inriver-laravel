@@ -10,6 +10,24 @@ class Entities extends AbstractResource
 {
     protected string $endpoint = 'entities';
 
+    public function get(int $entityId): EntityDataObject
+    {
+        $response = $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/linksandfields")
+        );
+
+        $data = $response['summary'];
+        $data['fieldValues'] = $response['fields'];
+        $data['specification'] = $response['specification'];
+        $data['links'] = [
+            'inbound' => $response['inbound'],
+            'outbound' => $response['outbound'],
+        ];
+
+        return new EntityDataObject($data);
+    }
+
     public function summary(int $entityId): array
     {
         return $this->inRiver()->request(
@@ -85,14 +103,6 @@ class Entities extends AbstractResource
             data: [
                 'fieldTypeIds' => $fieldTypeIds,
             ]
-        );
-    }
-
-    public function linksAndFields(int $entityId): array
-    {
-        return $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint("/{$entityId}/linksandfields")
         );
     }
 }
