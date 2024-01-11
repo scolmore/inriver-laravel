@@ -28,6 +28,37 @@ class Entities extends AbstractResource
         return new EntityDataObject($data);
     }
 
+    public function fetchData(array $objects): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint(':fetchdata'),
+            data: $objects
+        );
+    }
+
+    public function list(array $entityIds): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint(':fetchdata'),
+            data: [
+                'entityIds' => $entityIds,
+                'objects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+                'inbound' => [
+                    'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+                ],
+                'outbound' => [
+                    'linkEntityObjects' => 'EntitySummary,FieldsSummary,FieldValues,SpecificationSummary,SpecificationValues,Media,MediaDetails',
+                ]
+            ]
+        );
+    }
+
     public function summary(int $entityId): array
     {
         return $this->inRiver()->request(
@@ -46,7 +77,7 @@ class Entities extends AbstractResource
 
     public function new(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
     {
-        $response =  $this->inRiver()->request(
+        $response = $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint(':getempty'),
             data: [
