@@ -125,4 +125,19 @@ class Channels extends AbstractResource
             endpoint: $this->endpoint("/{$channelId}/nodes")
         );
     }
+
+    /**
+     * @param  int  $channelId
+     * @return array
+     *
+     * Channel structure tree.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodeTree
+     */
+    public function getChannelNodeTree(int $channelId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$channelId}/nodetree")
+        );
+    }
 }
