@@ -49,4 +49,23 @@ class Channels extends AbstractResource
             endpoint: $this->endpoint("/{$channelId}/entitytypes")
         );
     }
+
+    /**
+     * @param  int  $channelId
+     * @param  string  $entityTypeId
+     * @return array
+     *
+     * Get a list of entities in a channel.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByLinkEntityType
+     */
+    public function getByLinkEntityType(int $channelId, string $entityTypeId = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$channelId}/entitylist"),
+            data: [
+                'entityTypeId' => $entityTypeId,
+            ]
+        );
+    }
 }
