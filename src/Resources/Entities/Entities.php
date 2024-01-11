@@ -466,4 +466,25 @@ class Entities extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $url
+     * @param  string  $overrideUrlFileName
+     * @return array
+     *
+     * Add Media from URL.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
+     */
+    public function uploadMediaFromUrl(int $entityId, string $url, string $overrideUrlFileName): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$entityId}/media:uploadfromurl"),
+            data: [
+                'url' => $url,
+                'overrideUrlFileName' => $overrideUrlFileName,
+            ]
+        );
+    }
 }
