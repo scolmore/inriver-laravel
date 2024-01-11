@@ -68,4 +68,30 @@ class Channels extends AbstractResource
             ]
         );
     }
+
+    /**
+     * @param  int  $channelId
+     * @param  int  $entityId
+     * @param  string  $linkDescription
+     * @param  string  $linkTypeId
+     * @return array
+     *
+     * Get entity links.
+     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByEntityType
+     */
+    public function getByEntityType(
+        int $channelId,
+        int $entityId,
+        string $linkDescription = '',
+        string $linkTypeId = ''
+    ): array {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$channelId}/entities/{$entityId}/links"),
+            data: [
+                'linkDescription' => $linkDescription,
+                'linkTypeId' => $linkTypeId,
+            ]
+        );
+    }
 }
