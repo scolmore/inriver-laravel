@@ -445,4 +445,25 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint("/{$entityId}/mediadetails")
         );
     }
+
+    /**
+     * @param  int  $entityId
+     * @param  string  $fileName
+     * @param  string  $data
+     * @return array
+     *
+     * Add Media.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
+     */
+    public function uploadBase64File(int $entityId, string $fileName, string $data): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$entityId}/media:uploadbase64"),
+            data: [
+                'fileName' => $fileName,
+                'data' => $data,
+            ]
+        );
+    }
 }
