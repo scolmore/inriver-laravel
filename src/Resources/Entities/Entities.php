@@ -558,4 +558,18 @@ class Entities extends AbstractResource
             endpoint: $this->endpoint("/{$entityId}/comments/{$commentId}")
         );
     }
+
+    /**
+     * @return array
+     *
+     * Get list of starred entities.
+     * Swagger: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
+     */
+    public function starredEntities(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/starred')
+        );
+    }
 }
