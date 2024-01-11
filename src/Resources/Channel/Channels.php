@@ -11,13 +11,14 @@ class Channels extends AbstractResource
     protected string $endpoint = 'channels';
 
     /**
-     * @param  int|null  $forEntityId
-     * @param  bool  $includeChannels
-     * @param  bool  $includePublications
+     * Get channel id's for entity id.
+     *
+     * @param  int|null  $forEntityId optional.
+     * @param  bool  $includeChannels optional, defaults to true.
+     * @param  bool  $includePublications optional, defaults to false.
      * @return array
      *
-     * Get channel id's for entity id.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
      */
     public function GetChannelsForEntityId(
         ?int $forEntityId,
@@ -36,11 +37,12 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Get entity types for channel.
+     *
      * @param  int  $channelId
      * @return array
      *
-     * Get entity types for channel.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/EntityTypes
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/EntityTypes
      */
     public function entityTypes(int $channelId): array
     {
@@ -51,12 +53,13 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Get a list of entities in a channel.
+     *
      * @param  int  $channelId
-     * @param  string  $entityTypeId
+     * @param  string  $entityTypeId optional, filter by entity type id.
      * @return array
      *
-     * Get a list of entities in a channel.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByLinkEntityType
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByLinkEntityType
      */
     public function getByLinkEntityType(int $channelId, string $entityTypeId = ''): array
     {
@@ -70,38 +73,40 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Get entity links.
+     *
      * @param  int  $channelId
      * @param  int  $entityId
-     * @param  string  $linkDescription
-     * @param  string  $linkTypeId
+     * @param  string  $linkDirection optional, "inbound" or "outbound".
+     * @param  string  $linkTypeId optional, filter by link type.
      * @return array
      *
-     * Get entity links.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByEntityType
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByEntityType
      */
     public function getByEntityType(
         int $channelId,
         int $entityId,
-        string $linkDescription = '',
+        string $linkDirection = '',
         string $linkTypeId = ''
     ): array {
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint("/{$channelId}/entities/{$entityId}/links"),
             data: [
-                'linkDescription' => $linkDescription,
+                'linkDirection' => $linkDirection,
                 'linkTypeId' => $linkTypeId,
             ]
         );
     }
 
     /**
+     * Get structure entities for entity.
+     *
      * @param  int  $channelId
      * @param  int  $entityId
      * @return array
      *
-     * Get structure entities for entity.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelStructureEntities
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelStructureEntities
      */
     public function getChannelStructureEntities(int $channelId, int $entityId): array
     {
@@ -112,11 +117,12 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Channel structure list.
+     *
      * @param  int  $channelId
      * @return array
      *
-     * Channel structure list.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodes
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodes
      */
     public function getChannelNodes(int $channelId): array
     {
@@ -127,11 +133,12 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Channel structure tree.
+     *
      * @param  int  $channelId
      * @return array
      *
-     * Channel structure tree.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodeTree
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodeTree
      */
     public function getChannelNodeTree(int $channelId): array
     {
@@ -142,12 +149,13 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Channel path content.
+     *
      * @param  string  $path
-     * @param  string  $entityTypeIds optional, filter types using comma separated list
+     * @param  string  $entityTypeIds optional, filter types using comma separated list.
      * @return array
      *
-     * Channel path content.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/ChannelContent
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/ChannelContent
      */
     public function channelContent(string $path, string $entityTypeIds = ''): array
     {
@@ -161,10 +169,11 @@ class Channels extends AbstractResource
     }
 
     /**
+     * Get channel queue messages for a customer environment.
+     *
      * @return array
      *
-     * Get channel queue messages for a customer environment.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelMessagesAsync
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelMessagesAsync
      */
     public function getChannelMessagesAsync(): array
     {
