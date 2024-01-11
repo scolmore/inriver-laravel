@@ -22,18 +22,77 @@ class Entities extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'DELETE',
-            endpoint: $this->endpoint((string) $entityId)
+            endpoint: $this->endpoint("/{$entityId}")
         );
     }
 
-    public function new(string $entityTypeId): array
+    public function new(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
     {
-        return $this->inRiver()->request(
+        $response =  $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint(':getempty'),
             data: [
                 'entityTypeId' => $entityTypeId,
+                'fieldSetId' => $fieldSet,
             ]
+        );
+
+        return new EntityDataObject($response);
+    }
+
+    public function createNew(array $entity): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint(':createnew'),
+            data: $entity
+        );
+    }
+
+    public function updateFieldValues(int $entityId, array $fieldValues): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$entityId}/fieldvalues"),
+            data: $fieldValues
+        );
+    }
+
+    public function completenessDetails(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/completenessdetails")
+        );
+    }
+
+    public function fieldSummary(int $entityId, string $fieldTypeIds = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/summary/fields"),
+            data: [
+                'fieldTypeIds' => $fieldTypeIds,
+            ]
+        );
+    }
+
+    public function fieldValues(int $entityId, string $fieldTypeIds = ''): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/fieldvalues"),
+            data: [
+                'fieldTypeIds' => $fieldTypeIds,
+            ]
+        );
+    }
+
+    public function linksAndFields(int $entityId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$entityId}/linksandfields")
         );
     }
 }

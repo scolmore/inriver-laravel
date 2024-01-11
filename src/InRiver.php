@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scolmore\InRiver;
 
 use Illuminate\Support\Facades\Http;
+use Scolmore\InRiver\Resources\Channel\Channels;
 use Scolmore\InRiver\Resources\Entities\Entities;
 
 class InRiver
@@ -13,6 +14,7 @@ class InRiver
     public ?string $url;
     private ?string $apiKey;
 
+    public Channels $channels;
     public Entities $entities;
 
     public function __construct()
@@ -47,6 +49,7 @@ class InRiver
 
     public function setupResources(): void
     {
+        $this->channels = new Channels($this);
         $this->entities = new Entities($this);
     }
 }
