@@ -6,11 +6,12 @@ namespace Scolmore\InRiver;
 
 use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Resources\Channel\Channels;
-use Scolmore\InRiver\Resources\Entities\Entities;
+use Scolmore\InRiver\Resources\Entity\Entities;
 use Scolmore\InRiver\Resources\Extension\Extensions;
 use Scolmore\InRiver\Resources\Link\Links;
 use Scolmore\InRiver\Resources\LinkRule\LinkRules;
 use Scolmore\InRiver\Resources\Media\Media;
+use Scolmore\InRiver\Resources\Model\Model;
 
 class InRiver
 {
@@ -24,6 +25,7 @@ class InRiver
     public Links $links;
     public LinkRules $linkRules;
     public Media $media;
+    public Model $model;
 
     public function __construct()
     {
@@ -63,5 +65,6 @@ class InRiver
         $this->links = new Links($this);
         $this->linkRules = new LinkRules($this);
         $this->media = new Media($this);
+        $this->model = new Model($this);
     }
 }

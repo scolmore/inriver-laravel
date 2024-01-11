@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Scolmore\InRiver\Resources\Entities;
+namespace Scolmore\InRiver\Resources\Entity;
 
 use Scolmore\InRiver\Exceptions\FieldDoesNotExistException;
 use Scolmore\InRiver\InRiver;
