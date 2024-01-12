@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Model;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
+
 trait EntityTypes
 {
     /**
      * Returns available entity types.
      *
-     * @param  string  $entityTypeIds optional, filter types using comma separated list.
+     * @param  string  $entityTypeIds  optional, filter types using comma separated list.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllEntityTypesV101
      */
     public function getAllEntityTypes(string $entityTypeIds = ''): array
@@ -32,6 +35,7 @@ trait EntityTypes
      * @param  bool  $isLinkedEntityType
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddEntityType
      */
     public function addEntityType(string $id, string $name, bool $isLinkedEntityType): array
@@ -52,9 +56,10 @@ trait EntityTypes
     /**
      * Gets a single entity type.
      *
-     * @param  string  $entityTypeId ID of the EntityType, such as Product or Item.
+     * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetEntityType
      */
     public function getEntityType(string $entityTypeId): array
@@ -75,6 +80,7 @@ trait EntityTypes
      * @param  bool  $isLinkedEntityType
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateEntityType
      */
     public function updateEntityType(string $entityTypeId, string $name, bool $isLinkedEntityType): array
@@ -94,9 +100,10 @@ trait EntityTypes
     /**
      * Deletes an entity type.
      *
-     * @param  string  $entityTypeId ID of the EntityType, such as Product or Item.
+     * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteEntityType
      */
     public function deleteEntityType(string $entityTypeId): array
@@ -115,6 +122,7 @@ trait EntityTypes
      * @param  string  $entityTypeId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldTypesForEntityType
      */
     public function getAllFieldTypesForEntityType(string $entityTypeId): array
@@ -134,6 +142,7 @@ trait EntityTypes
      * @param  array  $body
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldType
      */
     public function addFieldType(string $entityTypeId, array $body): array
@@ -154,6 +163,7 @@ trait EntityTypes
      * @param  string  $fieldTypeId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetFieldType
      */
     public function getFieldType(string $entityTypeId, string $fieldTypeId): array
@@ -174,6 +184,7 @@ trait EntityTypes
      * @param  array  $body
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldType
      */
     public function updateFieldType(string $entityTypeId, string $fieldTypeId, array $body): array
@@ -194,6 +205,7 @@ trait EntityTypes
      * @param  string  $fieldTypeId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldType
      */
     public function deleteFieldType(string $entityTypeId, string $fieldTypeId): array

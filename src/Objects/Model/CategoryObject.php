@@ -31,7 +31,7 @@ class CategoryObject
 
         $this->name = isset($categoryModel['name'])
             ? new LanguagesObject((array) $categoryModel['name'])
-            : InRiver()->model->listLanguages();
+            : InRiver()->model->languages->list();
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoryObject
      */
     public function create(): self
     {
-        $response = (new InRiver)->model->addCategory(
+        $response = InRiver()->model->addCategory(
             id: $this->id,
             name: $this->name->toArray(),
             index: $this->index
@@ -53,7 +53,7 @@ class CategoryObject
      */
     public function update(): self
     {
-        $response = (new InRiver)->model->updateCategory(
+        $response = InRiver()->model->updateCategory(
             categoryId: $this->id,
             name: $this->name->toArray(),
             index: $this->index
@@ -67,7 +67,7 @@ class CategoryObject
      */
     public function delete(): self
     {
-        (new InRiver)->model->deleteCategory(
+        InRiver()->model->deleteCategory(
             categoryId: $this->id,
         );
 

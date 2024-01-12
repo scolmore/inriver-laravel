@@ -12,9 +12,9 @@ use Scolmore\InRiver\Resources\AbstractResource;
 class Model extends AbstractResource
 {
     use EntityTypes;
-    use Languages;
     use FieldSets;
 
+    public Languages $languages;
     public Category $category;
 
     protected string $endpoint = 'model';
@@ -28,7 +28,61 @@ class Model extends AbstractResource
 
     private function setup(): void
     {
+        $this->languages = new Languages($this);
         $this->category = new Category($this);
+    }
+
+    /**
+     * Return available languages.
+     *
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllLanguages
+     */
+    public function getAllLanguages(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/languages')
+        );
+    }
+
+    /**
+     * Add a language.
+     *
+     * @param  string  $languageISOCode
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddLanguage
+     */
+    public function addLanguage(string $languageISOCode): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/languages'),
+            data: [
+                'name' => $languageISOCode,
+            ]
+        );
+    }
+
+    /**
+     * Remove a language.
+     *
+     * @param  string  $languageISOCode
+     * @return null
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteLanguage
+     */
+    public function deleteLanguage(string $languageISOCode): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/languages/{$languageISOCode}")
+        );
     }
 
     /**
