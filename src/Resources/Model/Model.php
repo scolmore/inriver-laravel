@@ -9,6 +9,8 @@ use Scolmore\InRiver\Resources\AbstractResource;
 class Model extends AbstractResource
 {
     use EntityTypes;
+    use Languages;
+    use FieldSets;
 
     protected string $endpoint = 'model';
 }
