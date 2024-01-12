@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scolmore\InRiver;
 
 use Illuminate\Support\Facades\Http;
+use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\Channel\Channels;
 use Scolmore\InRiver\Resources\Entity\Entities;
 use Scolmore\InRiver\Resources\Extension\Extensions;
@@ -37,7 +38,10 @@ class InRiver
         $this->setupResources();
     }
 
-    public function request(string $method, string $endpoint, array $data = []): array|string
+    /**
+     * @throws InRiverException
+     */
+    public function request(string $method, string $endpoint, array $data = []): array|null
     {
         $client = Http::timeout(30)
             ->withHeaders([
@@ -46,15 +50,15 @@ class InRiver
 
         $response = $client->$method("{$this->url}{$endpoint}", $data);
 
-        if ($response->ok()) {
+        if ($response->successful()) {
             return $response->json();
         }
 
-        return [
-            'error' => $response->failed(),
+        throw new InRiverException([
             'status' => $response->status(),
-            'message' => $response->json()['title'] ?? $response->json(),
-        ];
+            'code' => $response->json()['errorCode'] ?? null,
+            'message' => $response->json()['errorMessage'] ?? null,
+        ]);
     }
 
     public function setupResources(): void

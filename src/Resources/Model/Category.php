@@ -4,93 +4,37 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Model;
 
-trait Category
+use Scolmore\InRiver\Exceptions\InRiverException;
+use Scolmore\InRiver\Objects\Model\CategoryObject;
+
+readonly class Category
 {
-    /**
-     * Get all categories.
-     *
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCategories
-     */
-    public function getAllCategories(): array
-    {
-        return $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint('/category')
-        );
+    public function __construct(
+        private Model $model
+    ) {
     }
 
     /**
-     * Add a category.
-     *
-     * @param  string  $id
-     * @param  string  $name
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCategory
+     * @throws InRiverException
      */
-    public function addCategory(string $id, string $name): array
+    public function new(): CategoryObject
     {
-        return $this->inRiver()->request(
-            method: 'POST',
-            endpoint: $this->endpoint('/category'),
-            data: [
-                'id' => $id,
-                'name' => $name,
-            ]
-        );
+        return new CategoryObject([]);
     }
 
     /**
-     * Get a category.
-     *
-     * @param  string  $categoryId
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCategory
+     * @throws InRiverException
      */
-    public function getCategory(string $categoryId): array
+    public function list(): array
     {
-        return $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint("/category/{$categoryId}")
-        );
+        return $this->model->getAllCategories();
     }
 
     /**
-     * Update a category.
-     *
-     * @param  string  $categoryId
-     * @param  string  $name
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCategory
+     * @throws InRiverException
      */
-    public function updateCategory(string $categoryId, string $name): array
+    public function get(string $id): CategoryObject
     {
-        return $this->inRiver()->request(
-            method: 'PUT',
-            endpoint: $this->endpoint("/category/{$categoryId}"),
-            data: [
-                'name' => $name,
-            ]
-        );
-    }
-
-    /**
-     * Delete a category.
-     *
-     * @param  string  $categoryId
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCategory
-     */
-    public function deleteCategory(string $categoryId): array
-    {
-        return $this->inRiver()->request(
-            method: 'DELETE',
-            endpoint: $this->endpoint("/category/{$categoryId}")
-        );
+        return $this->model->getCategory($id);
     }
 }
