@@ -47,7 +47,7 @@ $category->update();
 
 ```php
 // Retrieve an existing category via the ID (string)
-$category = InRiver()->model->category->get('category-id');
+$category = InRiver()->model->category->get('categoryId');
 
 // Delete the category
 $category->delete();

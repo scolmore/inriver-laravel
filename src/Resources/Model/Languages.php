@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Scolmore\InRiver\Resources\Model;
 
 use Scolmore\InRiver\Exceptions\InRiverException;
-use Scolmore\InRiver\Objects\Model\LanguagesObject;
 
 readonly class Languages
 {
@@ -16,8 +15,8 @@ readonly class Languages
     /**
      * @throws InRiverException
      */
-    public function list(): LanguagesObject
+    public function list(): array
     {
-        return new LanguagesObject($this->model->getAllLanguages());
+        return $this->model->getAllLanguages();
     }
 }
