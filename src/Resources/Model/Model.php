@@ -11,6 +11,7 @@ class Model extends AbstractResource
     use EntityTypes;
     use Languages;
     use FieldSets;
+    use Category;
 
     protected string $endpoint = 'model';
 }
