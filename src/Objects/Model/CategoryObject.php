@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Scolmore\InRiver\Objects\Model;
 
 use Scolmore\InRiver\Exceptions\InRiverException;
-use Scolmore\InRiver\InRiver;
 
 class CategoryObject
 {
@@ -39,7 +38,7 @@ class CategoryObject
      */
     public function create(): self
     {
-        $response = (new InRiver)->model->addCategory(
+        $response = InRiver()->model->addCategory(
             id: $this->id,
             name: $this->name->toArray(),
             index: $this->index
@@ -53,7 +52,7 @@ class CategoryObject
      */
     public function update(): self
     {
-        $response = (new InRiver)->model->updateCategory(
+        $response = InRiver()->model->updateCategory(
             categoryId: $this->id,
             name: $this->name->toArray(),
             index: $this->index
@@ -67,7 +66,7 @@ class CategoryObject
      */
     public function delete(): self
     {
-        (new InRiver)->model->deleteCategory(
+        InRiver()->model->deleteCategory(
             categoryId: $this->id,
         );
 

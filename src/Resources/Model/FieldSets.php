@@ -4,132 +4,44 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Model;
 
-trait FieldSets
+use Scolmore\InRiver\Exceptions\InRiverException;
+use Scolmore\InRiver\Objects\Model\FieldSetObject;
+
+readonly class FieldSets
 {
+    public function __construct(
+        private Model $model
+    ) {}
+
     /**
-     * Returns available field sets.
-     *
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldSets
+     * @throws InRiverException
      */
-    public function getAllFieldSets(): array
+    public function list(): array
     {
-        return $this->inRiver()->request(
-            method: 'GET',
-            endpoint: $this->endpoint('/fieldsets')
-        );
+        return $this->model->getAllFieldSets();
     }
 
     /**
-     * Add a field set.
-     *
-     * @param  string  $fieldSetId
-     * @param  string  $name
-     * @param  string  $description
-     * @param  string  $entityTypeId
-     * @param  array  $fieldTypeIds
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldSet
+     * @throws InRiverException
      */
-    public function addFieldSet(
-        string $fieldSetId,
-        string $name,
-        string $description,
-        string $entityTypeId,
-        array $fieldTypeIds
-    ): array {
-        return $this->inRiver()->request(
-            method: 'POST',
-            endpoint: $this->endpoint('/fieldsets'),
-            data: [
-                'fieldSetId' => $fieldSetId,
-                'name' => $name,
-                'description' => $description,
-                'entityTypeId' => $entityTypeId,
-                'fieldTypeIds' => $fieldTypeIds,
-            ]
-        );
-    }
-
-    /**
-     * Update a field set.
-     *
-     * @param  string  $fieldSetId
-     * @param  string  $name
-     * @param  string  $description
-     * @param  string  $entityTypeId
-     * @param  array  $fieldTypeIds
-     * @return array
-     */
-    public function updateFieldSet(
-        string $fieldSetId,
-        string $name,
-        string $description,
-        string $entityTypeId,
-        array $fieldTypeIds
-    ): array {
-        return $this->inRiver()->request(
-            method: 'PUT',
-            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}"),
-            data: [
-                'fieldSetId' => $fieldSetId,
-                'name' => $name,
-                'description' => $description,
-                'entityTypeId' => $entityTypeId,
-                'fieldTypeIds' => $fieldTypeIds,
-            ]
-        );
-    }
-
-    /**
-     * Add a field type to a field set.
-     *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldTypeToFieldSet
-     */
-    public function addFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    public function new(): FieldSetObject
     {
-        return $this->inRiver()->request(
-            method: 'PUT',
-            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}/{$fieldTypeId}")
-        );
+        return new FieldSetObject([]);
     }
 
     /**
-     * Remove a field type from a field set.
-     *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldTypeToFieldSet
+     * @throws InRiverException
      */
-    public function deleteFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    public function get(string $fieldSetId): FieldSetObject
     {
-        return $this->inRiver()->request(
-            method: 'DELETE',
-            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}/{$fieldTypeId}")
-        );
-    }
+        $fieldSets = $this->list();
 
-    /**
-     * Delete a field set.
-     *
-     * @param  string  $fieldSetId
-     * @return array
-     *
-     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldSet
-     */
-    public function deleteFieldSet(string $fieldSetId): array
-    {
-        return $this->inRiver()->request(
-            method: 'DELETE',
-            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}")
-        );
+        foreach ($fieldSets as $fieldSet) {
+            if ($fieldSet['fieldSetId'] === $fieldSetId) {
+                return new FieldSetObject($fieldSet);
+            }
+        }
+
+        throw new InRiverException(['fieldSetId' => 'Not found']);
     }
 }

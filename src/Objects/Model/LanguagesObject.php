@@ -4,13 +4,25 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Objects\Model;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
+
 class LanguagesObject
 {
     private array $languages;
 
-    public function __construct(array $languages)
+    /**
+     * @throws InRiverException
+     */
+    public function __construct(array|string $languages)
     {
-        if (isset($languages[0]['name'])) {
+        if (is_string($languages)) {
+            $this->languages = collect(InRiver()->model->getAllLanguages())
+                ->keyBy('name')
+                ->map(fn($language) => '')
+                ->toArray();
+
+            $this->languages[array_key_first($this->languages)] = $languages;
+        } elseif (isset($languages[0]['name'])) {
             $this->languages = collect($languages)
                 ->keyBy('name')
                 ->map(fn($language) => '')

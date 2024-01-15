@@ -12,9 +12,9 @@ use Scolmore\InRiver\Resources\AbstractResource;
 class Model extends AbstractResource
 {
     use EntityTypes;
-    use FieldSets;
 
     public Languages $languages;
+    public FieldSets $fieldsets;
     public Category $category;
 
     protected string $endpoint = 'model';
@@ -29,6 +29,7 @@ class Model extends AbstractResource
     private function setup(): void
     {
         $this->languages = new Languages($this);
+        $this->fieldsets = new FieldSets($this);
         $this->category = new Category($this);
     }
 
@@ -86,6 +87,141 @@ class Model extends AbstractResource
     }
 
     /**
+     * Returns available field sets.
+     *
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldSets
+     */
+    public function getAllFieldSets(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/fieldsets')
+        );
+    }
+
+    /**
+     * Add a field set.
+     *
+     * @param  string  $fieldSetId
+     * @param  string  $name
+     * @param  string  $description
+     * @param  string  $entityTypeId
+     * @param  array  $fieldTypeIds
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldSet
+     */
+    public function addFieldSet(
+        string $fieldSetId,
+        array $name,
+        array $description,
+        string $entityTypeId,
+        array $fieldTypeIds
+    ): array {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/fieldsets'),
+            data: [
+                'fieldSetId' => $fieldSetId,
+                'name' => $name,
+                'description' => $description,
+                'entityTypeId' => $entityTypeId,
+                'fieldTypeIds' => $fieldTypeIds,
+            ]
+        );
+    }
+
+    /**
+     * Update a field set.
+     *
+     * @param  string  $fieldSetId
+     * @param  string  $name
+     * @param  string  $description
+     * @param  string  $entityTypeId
+     * @param  array  $fieldTypeIds
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldSet
+     */
+    public function updateFieldSet(
+        string $fieldSetId,
+        array $name,
+        array $description,
+        string $entityTypeId,
+        array $fieldTypeIds
+    ): array {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}"),
+            data: [
+                'fieldSetId' => $fieldSetId,
+                'name' => $name,
+                'description' => $description,
+                'entityTypeId' => $entityTypeId,
+                'fieldTypeIds' => $fieldTypeIds,
+            ]
+        );
+    }
+
+    /**
+     * Add a field type to a field set.
+     *
+     * @param  string  $fieldSetId
+     * @param  string  $fieldTypeId
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldTypeToFieldSet
+     */
+    public function addFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}/{$fieldTypeId}")
+        );
+    }
+
+    /**
+     * Remove a field type from a field set.
+     *
+     * @param  string  $fieldSetId
+     * @param  string  $fieldTypeId
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldTypeToFieldSet
+     */
+    public function deleteFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}/{$fieldTypeId}")
+        );
+    }
+
+    /**
+     * Delete a field set.
+     *
+     * @param  string  $fieldSetId
+     * @return null
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldSet
+     */
+    public function deleteFieldSet(string $fieldSetId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/fieldsets/{$fieldSetId}")
+        );
+    }
+
+    /**
      * Get all categories.
      *
      * @return array
@@ -101,7 +237,7 @@ class Model extends AbstractResource
         );
 
         return collect($response)
-            ->map(fn ($categoryModel) => new CategoryObject($categoryModel))
+            ->map(fn($categoryModel) => new CategoryObject($categoryModel))
             ->toArray();
     }
 
@@ -178,7 +314,7 @@ class Model extends AbstractResource
      * Delete a category.
      *
      * @param  string  $categoryId
-     * @return array
+     * @return null
      *
      * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCategory
