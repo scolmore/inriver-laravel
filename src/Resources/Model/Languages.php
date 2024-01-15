@@ -19,4 +19,20 @@ readonly class Languages
     {
         return $this->model->getAllLanguages();
     }
+
+    /**
+     * @throws InRiverException
+     */
+    public function create(string $languageISOCode): array
+    {
+        return $this->model->addLanguage($languageISOCode);
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function delete(string $languageISOCode): null
+    {
+        return $this->model->deleteLanguage($languageISOCode);
+    }
 }
