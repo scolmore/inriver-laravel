@@ -57,4 +57,29 @@ $entityType = InRiver()->model->entitytypes->get('EntityName');
 $fieldTypes = $entityType->fieldTypes();
 ```
 
+### Get information for a specific field type
+```php
+// Retrieve an existing entity type via the ID (string).
+$entityType = InRiver()->model->entitytypes->get('EntityName');
+
+$fieldType = $entityType->fieldType('FieldTypeId');
+```
+
+### Create a new field type
+```php
+// Retrieve an existing entity type via the ID (string).
+$entityType = InRiver()->model->entitytypes->get('EntityName');
+
+// Get a new field type object.
+$fieldType = $entityType->newFieldType();
+
+// Set the properties that need to be set.
+$fieldType->id = 'FieldTypeId';
+$fieldType->name->set('en', 'Field Type Name');
+$fieldType->dataType = 'String';
+$fieldType->index = 0;
+
+$fieldType->create();
+```
+
 

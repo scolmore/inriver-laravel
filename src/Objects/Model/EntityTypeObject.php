@@ -101,4 +101,27 @@ class EntityTypeObject
             entityTypeId: $this->id
         );
     }
+
+    /**
+     * @throws InRiverException
+     */
+    public function fieldType(string $fieldTypeId): EntityFieldTypeObject
+    {
+        $response = InRiver()->model->getFieldType(
+            entityTypeId: $this->id,
+            fieldTypeId: $fieldTypeId
+        );
+
+        $response['entityTypeId'] = $this->id;
+
+        return new EntityFieldTypeObject($response);
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function newFieldType(): EntityFieldTypeObject
+    {
+        return new EntityFieldTypeObject(['entityTypeId' => $this->id]);
+    }
 }

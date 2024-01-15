@@ -180,7 +180,7 @@ class Model extends AbstractResource
 
         return $this->inRiver()->request(
             method: 'POST',
-            endpoint: $this->endpoint('/fieldtypes'),
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}/fieldtypes"),
             data: $body
         );
     }
