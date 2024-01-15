@@ -232,12 +232,12 @@ class Model extends AbstractResource
      *
      * @param  string  $entityTypeId
      * @param  string  $fieldTypeId
-     * @return array
+     * @return null
      *
      * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldType
      */
-    public function deleteFieldType(string $entityTypeId, string $fieldTypeId): array
+    public function deleteFieldType(string $entityTypeId, string $fieldTypeId): null
     {
         $this->inRiver()->version = '1.0.1';
 

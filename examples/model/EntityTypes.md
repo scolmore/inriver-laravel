@@ -94,4 +94,13 @@ $fieldType->name->set('en', 'A New Name');
 $fieldType->update();
 ```
 
+### Delete a field type
+```php
+$productEntityType = InRiver()->model->entitytypes->get('TestEntity');
+
+$fieldType = $productEntityType->fieldType('FieldTypeId');
+
+$fieldType->delete();
+```
+
 

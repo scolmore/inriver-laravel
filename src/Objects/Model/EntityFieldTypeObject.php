@@ -120,4 +120,19 @@ class EntityFieldTypeObject
 
         return $this;
     }
+
+    /**
+     * @throws InRiverException
+     */
+    public function delete(): self
+    {
+        InRiver()->model->deleteFieldType(
+            entityTypeId: $this->entityTypeId,
+            fieldTypeId: $this->id
+        );
+
+        $this->initialize(['entityTypeId' => $this->entityTypeId]);
+
+        return $this;
+    }
 }
