@@ -15,17 +15,19 @@ class LanguagesObject
      */
     public function __construct(array|string $languages)
     {
-        if (is_string($languages)) {
+        if (is_string($languages) || isset($languages[0])) {
             $this->languages = collect(InRiver()->model->getAllLanguages())
                 ->keyBy('name')
-                ->map(fn($language) => '')
+                ->map(fn($language) => null)
                 ->toArray();
 
-            $this->languages[array_key_first($this->languages)] = $languages;
+            if (is_string($languages)) {
+                $this->languages[array_key_first($this->languages)] = $languages;
+            }
         } elseif (isset($languages[0]['name'])) {
             $this->languages = collect($languages)
                 ->keyBy('name')
-                ->map(fn($language) => '')
+                ->map(fn($language) => null)
                 ->toArray();
         } else {
             $this->languages = collect($languages)

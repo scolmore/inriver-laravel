@@ -30,9 +30,7 @@ class InRiver
 
     public function __construct()
     {
-        $url = config('inriver.inriver_url');
-
-        $this->url = "{$url}/api/v{$this->version}/";
+        $this->url = config('inriver.inriver_url');
         $this->apiKey = config('inriver.inriver_api_key');
 
         $this->setupResources();
@@ -43,6 +41,8 @@ class InRiver
      */
     public function request(string $method, string $endpoint, array $data = []): array|null
     {
+        $this->url = "{$this->url}/api/v{$this->version}/";
+
         $client = Http::timeout(30)
             ->withHeaders([
                 'X-inRiver-APIKey' => $this->apiKey,

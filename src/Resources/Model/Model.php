@@ -11,8 +11,7 @@ use Scolmore\InRiver\Resources\AbstractResource;
 
 class Model extends AbstractResource
 {
-    use EntityTypes;
-
+    public EntityTypes $entitytypes;
     public Languages $languages;
     public FieldSets $fieldsets;
     public Category $category;
@@ -28,9 +27,224 @@ class Model extends AbstractResource
 
     private function setup(): void
     {
+        $this->entitytypes = new EntityTypes($this);
         $this->languages = new Languages($this);
         $this->fieldsets = new FieldSets($this);
         $this->category = new Category($this);
+    }
+
+    /**
+     * Returns available entity types.
+     *
+     * @param  string  $entityTypeIds  optional, filter types using comma separated list.
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllEntityTypesV101
+     */
+    public function getAllEntityTypes(string $entityTypeIds = ''): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/entitytypes'),
+            data: [
+                'entityTypeIds' => $entityTypeIds,
+            ]
+        );
+    }
+
+    /**
+     * Adds an entity type.
+     *
+     * @param  string  $id
+     * @param  array  $name
+     * @param  bool  $isLinkEntityType
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddEntityType
+     */
+    public function addEntityType(string $id, array $name, bool $isLinkEntityType): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/entitytypes'),
+            data: [
+                'id' => $id,
+                'name' => $name,
+                'isLinkEntityType' => $isLinkEntityType,
+            ]
+        );
+    }
+
+    /**
+     * Gets a single entity type.
+     *
+     * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetEntityType
+     */
+    public function getEntityType(string $entityTypeId): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}")
+        );
+    }
+
+    /**
+     * Updates an entity type.
+     *
+     * @param  string  $entityTypeId
+     * @param  array  $name
+     * @param  bool  $isLinkEntityType
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateEntityType
+     */
+    public function updateEntityType(string $entityTypeId, array $name, bool $isLinkEntityType): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}"),
+            data: [
+                'id' => $entityTypeId,
+                'name' => $name,
+                'isLinkEntityType' => $isLinkEntityType,
+            ]
+        );
+    }
+
+    /**
+     * Deletes an entity type.
+     *
+     * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
+     * @return null
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteEntityType
+     */
+    public function deleteEntityType(string $entityTypeId): null
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}")
+        );
+    }
+
+    /**
+     * Get all field types for a particular entity type.
+     *
+     * @param  string  $entityTypeId
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldTypesForEntityType
+     */
+    public function getAllFieldTypesForEntityType(string $entityTypeId): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}/fieldtypes")
+        );
+    }
+
+    /**
+     * Create a new field type.
+     *
+     * @param  string  $entityTypeId
+     * @param  array  $body
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldType
+     */
+    public function addFieldType(string $entityTypeId, array $body): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/fieldtypes'),
+            data: $body
+        );
+    }
+
+    /**
+     * Get a single field type.
+     *
+     * @param  string  $entityTypeId
+     * @param  string  $fieldTypeId
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetFieldType
+     */
+    public function getFieldType(string $entityTypeId, string $fieldTypeId): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}/fieldtypes/{$fieldTypeId}")
+        );
+    }
+
+    /**
+     * Update an existing field type.
+     *
+     * @param  string  $entityTypeId
+     * @param  string  $fieldTypeId
+     * @param  array  $body
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldType
+     */
+    public function updateFieldType(string $entityTypeId, string $fieldTypeId, array $body): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}/fieldtypes/{$fieldTypeId}"),
+            data: $body
+        );
+    }
+
+    /**
+     * Delete a field type.
+     *
+     * @param  string  $entityTypeId
+     * @param  string  $fieldTypeId
+     * @return array
+     *
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldType
+     */
+    public function deleteFieldType(string $entityTypeId, string $fieldTypeId): array
+    {
+        $this->inRiver()->version = '1.0.1';
+
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/entitytypes/{$entityTypeId}/fieldtypes/{$fieldTypeId}")
+        );
     }
 
     /**
@@ -106,8 +320,8 @@ class Model extends AbstractResource
      * Add a field set.
      *
      * @param  string  $fieldSetId
-     * @param  string  $name
-     * @param  string  $description
+     * @param  array  $name
+     * @param  array  $description
      * @param  string  $entityTypeId
      * @param  array  $fieldTypeIds
      * @return array

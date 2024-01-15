@@ -35,7 +35,7 @@ $fieldSet->create();
 ```
 
 ### Updating a field set
-Please note that InRiver does not currently have an endpoint for getting a single field set, so we have to loop over the list and this does not include languages so updates will clear other languages for name and description.
+Please note that InRiver does not currently have an endpoint for getting a single field set, so we have to loop over the list and this does not include languages.
 ```php
 $fieldSet = InRiver()->model->fieldsets->get('FieldSetId');
 
