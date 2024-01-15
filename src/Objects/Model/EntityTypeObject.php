@@ -91,4 +91,14 @@ class EntityTypeObject
 
         return $this;
     }
+
+    /**
+     * @throws InRiverException
+     */
+    public function fieldTypes(): array
+    {
+        return InRiver()->model->getAllFieldTypesForEntityType(
+            entityTypeId: $this->id
+        );
+    }
 }

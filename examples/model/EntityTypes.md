@@ -49,4 +49,12 @@ $entityType = InRiver()->model->entitytypes->get('EntityName');
 $entityType->delete();
 ```
 
+### Get a list of all entity type fields types
+```php
+// Retrieve an existing entity type via the ID (string).
+$entityType = InRiver()->model->entitytypes->get('EntityName');
+
+$fieldTypes = $entityType->fieldTypes();
+```
+
 
