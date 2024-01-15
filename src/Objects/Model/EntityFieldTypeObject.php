@@ -98,8 +98,26 @@ class EntityFieldTypeObject
             body: $this->toArray()
         );
 
+        $this->initialize(['entityTypeId' => $this->entityTypeId] + $response);
+
+        return $this;
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function update(): self
+    {
+        $response = InRiver()->model->updateFieldType(
+            entityTypeId: $this->entityTypeId,
+            fieldTypeId: $this->id,
+            body: $this->toArray()
+        );
+
         $response['entityTypeId'] = $this->entityTypeId;
 
-        return new self($response);
+        $this->initialize(['entityTypeId' => $this->entityTypeId] + $response);
+
+        return $this;
     }
 }

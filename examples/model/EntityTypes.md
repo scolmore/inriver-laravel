@@ -76,10 +76,22 @@ $fieldType = $entityType->newFieldType();
 // Set the properties that need to be set.
 $fieldType->id = 'FieldTypeId';
 $fieldType->name->set('en', 'Field Type Name');
+$fieldType->description->set('en', 'Field Type Description');
 $fieldType->dataType = 'String';
-$fieldType->index = 0;
+$fieldType->index = 1;
 
 $fieldType->create();
+```
+
+### Update a field type
+```php
+$productEntityType = InRiver()->model->entitytypes->get('TestEntity');
+
+$fieldType = $productEntityType->fieldType('FieldTypeId');
+
+$fieldType->name->set('en', 'A New Name');
+
+$fieldType->update();
 ```
 
 
