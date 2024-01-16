@@ -15,6 +15,7 @@ class Model extends AbstractResource
     public Languages $languages;
     public FieldSets $fieldsets;
     public Category $category;
+    public SpecificationTemplates $specificationtemplates;
 
     protected string $endpoint = 'model';
 
@@ -31,6 +32,7 @@ class Model extends AbstractResource
         $this->languages = new Languages($this);
         $this->fieldsets = new FieldSets($this);
         $this->category = new Category($this);
+        $this->specificationtemplates = new SpecificationTemplates($this);
     }
 
     /**
@@ -538,6 +540,38 @@ class Model extends AbstractResource
         return $this->inRiver()->request(
             method: 'DELETE',
             endpoint: $this->endpoint("/category/{$categoryId}")
+        );
+    }
+
+    /**
+     * Returns all specification templates.
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllSpecificationTemplates
+     */
+    public function getAllSpecificationTemplates(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/specificationtemplates')
+        );
+    }
+
+    /**
+     * Return field types for specification template.
+     *
+     * @param  int  $templateId
+     * @return array
+     * @throws InRiverException
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetSpecificationTemplatesields
+     */
+    public function getSpecificationTemplateFields(int $templateId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/specificationtemplates/{$templateId}/fieldtypes")
         );
     }
 }
