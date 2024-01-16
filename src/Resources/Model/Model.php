@@ -650,6 +650,98 @@ class Model extends AbstractResource
     }
 
     /**
+     * Returns all values for a CVL.
+     *
+     * @param  string  $cvlId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCvlValues
+     */
+    public function getAllCvlValues(string $cvlId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/cvls/{$cvlId}/values")
+        );
+    }
+
+    /**
+     * Create CVL value.
+     *
+     * @param  string  $cvlId
+     * @param  array  $body
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/CreateCvlValue
+     */
+    public function createCvlValue(string $cvlId, array $body): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/cvls/{$cvlId}/values"),
+            data: $body
+        );
+    }
+
+    /**
+     * Get CVL value.
+     *
+     * @param  string  $cvlId
+     * @param  string  $key
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCvlValue
+     */
+    public function getCvlValue(string $cvlId, string $key): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/cvls/{$cvlId}/values/{$key}")
+        );
+    }
+
+    /**
+     * Update CVL value.
+     *
+     * @param  string  $cvlId
+     * @param  string  $key
+     * @param  array  $body
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCvlValue
+     */
+    public function updateCvlValue(string $cvlId, string $key, array $body): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/cvls/{$cvlId}/values/{$key}"),
+            data: $body
+        );
+    }
+
+    /**
+     * Delete CVL value.
+     *
+     * @param  string  $cvlId
+     * @param  string  $key
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCvlValue
+     */
+    public function deleteCvlValue(string $cvlId, string $key): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/cvls/{$cvlId}/values/{$key}")
+        );
+    }
+
+    /**
      * Returns all specification templates.
      *
      * @return array

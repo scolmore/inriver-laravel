@@ -73,4 +73,39 @@ class CvlObject
 
         return $this;
     }
+
+    /**
+     * @throws InRiverException
+     */
+    public function values(): array
+    {
+        $values = InRiver()->model->getAllCvlValues(
+            cvlId: $this->id
+        );
+
+        return collect($values)
+            ->map(fn (array $value) => new CvlValueObject($this, $value))
+            ->toArray();
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function newValue(): CvlValueObject
+    {
+        return new CvlValueObject($this, []);
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function value(string $key): CvlValueObject
+    {
+        $response = InRiver()->model->getCvlValue(
+            cvlId: $this->id,
+            key: $key
+        );
+
+        return new CvlValueObject($this, $response);
+    }
 }
