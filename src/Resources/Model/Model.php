@@ -16,6 +16,7 @@ class Model extends AbstractResource
     public FieldSets $fieldsets;
     public Category $category;
     public SpecificationTemplates $specificationtemplates;
+    public RestrictedFields $restrictedfields;
 
     protected string $endpoint = 'model';
 
@@ -33,6 +34,7 @@ class Model extends AbstractResource
         $this->fieldsets = new FieldSets($this);
         $this->category = new Category($this);
         $this->specificationtemplates = new SpecificationTemplates($this);
+        $this->restrictedfields = new RestrictedFields($this);
     }
 
     /**
@@ -572,6 +574,91 @@ class Model extends AbstractResource
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint("/specificationtemplates/{$templateId}/fieldtypes")
+        );
+    }
+
+    /**
+     * Get all restricted field permissions.
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllRestrictedFieldPermission
+     */
+    public function getAllRestrictedFieldPermission(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/restrictedfields')
+        );
+    }
+
+    /**
+     * Add a restricted field permission.
+     *
+     * @param  array  $body
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddRestrictedFieldPermission
+     */
+    public function addRestrictedFieldPermission(array $body): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/restrictedfields'),
+            data: $body
+        );
+    }
+
+    /**
+     * Get a restricted field permission.
+     *
+     * @param  int  $restrictedFieldId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetRestrictedFieldPermission
+     */
+    public function getRestrictedFieldPermission(int $restrictedFieldId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/restrictedfields/{$restrictedFieldId}")
+        );
+    }
+
+    /**
+     * Delete a specific restricted field permission.
+     *
+     * @param  int  $restrictedFieldId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteRestrictedFieldPermission
+     */
+    public function deleteRestrictedFieldPermission(int $restrictedFieldId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/restrictedfields/{$restrictedFieldId}")
+        );
+    }
+
+    /**
+     * Delete any restrictions related to a field type.
+     *
+     * @param  string  $fieldTypeId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteRestrictedFieldPermission
+     */
+    public function deleteRestrictedFieldPermissionByFieldType(string $fieldTypeId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint('/restrictedfields:byfieldtype')
         );
     }
 }
