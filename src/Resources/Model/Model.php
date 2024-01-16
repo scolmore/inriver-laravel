@@ -15,6 +15,7 @@ class Model extends AbstractResource
     public Languages $languages;
     public FieldSets $fieldsets;
     public Category $category;
+    public Cvls $cvls;
     public SpecificationTemplates $specificationtemplates;
     public RestrictedFields $restrictedfields;
 
@@ -33,6 +34,7 @@ class Model extends AbstractResource
         $this->languages = new Languages($this);
         $this->fieldsets = new FieldSets($this);
         $this->category = new Category($this);
+        $this->cvls = new Cvls($this);
         $this->specificationtemplates = new SpecificationTemplates($this);
         $this->restrictedfields = new RestrictedFields($this);
     }
@@ -357,8 +359,8 @@ class Model extends AbstractResource
      * Update a field set.
      *
      * @param  string  $fieldSetId
-     * @param  string  $name
-     * @param  string  $description
+     * @param  array  $name
+     * @param  array  $description
      * @param  string  $entityTypeId
      * @param  array  $fieldTypeIds
      * @return array
@@ -542,6 +544,108 @@ class Model extends AbstractResource
         return $this->inRiver()->request(
             method: 'DELETE',
             endpoint: $this->endpoint("/category/{$categoryId}")
+        );
+    }
+
+    /**
+     * Returns all CVL's.
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCvls
+     */
+    public function getAllCvls(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint('/cvls')
+        );
+    }
+
+    /**
+     * Add a CVL.
+     *
+     * @param  string  $id
+     * @param  ?string  $parentId
+     * @param  string  $dataType
+     * @param  bool  $customValueList
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCvl
+     */
+    public function addCvl(string $id, ?string $parentId, string $dataType, bool $customValueList): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint('/cvls'),
+            data: [
+                'id' => $id,
+                'parentId' => $parentId,
+                'dataType' => $dataType,
+                'customValueList' => $customValueList,
+            ]
+        );
+    }
+
+    /**
+     * Get a CVL.
+     *
+     * @param  string  $cvlId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCvl
+     */
+    public function getCvl(string $cvlId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/cvls/{$cvlId}")
+        );
+    }
+
+    /**
+     * Update a CVL.
+     *
+     * @param  string  $cvlId
+     * @param  string|null  $parentId
+     * @param  string  $dataType
+     * @param  bool  $customValueList
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCvl
+     */
+    public function updateCvl(string $cvlId, ?string $parentId, string $dataType, bool $customValueList): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/cvls/{$cvlId}"),
+            data: [
+                'id' => $cvlId,
+                'parentId' => $parentId,
+                'dataType' => $dataType,
+                'customValueList' => $customValueList,
+            ]
+        );
+    }
+
+    /**
+     * Delete a CVL.
+     *
+     * @param  string  $cvlId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCvl
+     */
+    public function deleteCvl(string $cvlId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/cvls/{$cvlId}")
         );
     }
 
