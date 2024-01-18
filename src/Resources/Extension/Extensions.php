@@ -487,4 +487,132 @@ class Extensions extends AbstractResource
             ]
         );
     }
+
+    /**
+     * Get all ConnectorStates.
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllConnectorStatesAsync
+     */
+    public function getAllConnectorStatesAsync(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/connectorstates")
+        );
+    }
+
+    /**
+     * Add a ConnectorState.
+     *
+     * @param  string  $connectorId
+     * @param  string  $data
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/AddConnectorStateAsync
+     */
+    public function addConnectorStateAsync(string $connectorId, string $data): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/connectorstates"),
+            data: [
+                'connectorId' => $connectorId,
+                'data' => $data,
+            ]
+        );
+    }
+
+    /**
+     * Delete all ConnectorStates.
+     *
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteAllConnectorStatesAsync
+     */
+    public function deleteAllConnectorStatesAsync(): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/connectorstates")
+        );
+    }
+
+    /**
+     * Get all ConnectorStates for Connector.
+     *
+     * @param  string  $connectorId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllConnectorStatesByConnectorIdAsync
+     */
+    public function getAllConnectorStatesByConnectorIdAsync(string $connectorId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/connectorstates/{$connectorId}")
+        );
+    }
+
+    /**
+     * Update a ConnectorState.
+     *
+     * @param  int  $id
+     * @param  string  $connectorId
+     * @param  string  $data
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/UpdateConnectorStateAsync
+     */
+    public function updateConnectorStateAsync(int $id, string $connectorId, string $data): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/connectorstates/{$id}"),
+            data: [
+                'connectorId' => $connectorId,
+                'data' => $data,
+            ]
+        );
+    }
+
+    /**
+     * Delete a ConnectorState.
+     *
+     * @param  int  $id
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteConnectorStateAsync
+     */
+    public function deleteConnectorStateAsync(int $id): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/connectorstates/{$id}")
+        );
+    }
+
+    /**
+     * Delete all ConnectorStates for Connector.
+     *
+     * @param  string  $connectorId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteConnectorStateForConnectorAsync
+     */
+    public function deleteConnectorStateForConnectorAsync(string $connectorId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/connectorstates/connector/{$connectorId}")
+        );
+    }
 }
