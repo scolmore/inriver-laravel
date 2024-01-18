@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\LinkRule;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
 
 class LinkRules extends AbstractResource
@@ -15,6 +16,7 @@ class LinkRules extends AbstractResource
      *
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/GetAllLinkRuleDefinitions
      */
     public function getAllLinkRuleDefinitions(): array
@@ -31,6 +33,7 @@ class LinkRules extends AbstractResource
      * @param  array  $linkRuleIds  List of link rule definition ids.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DeleteLinkRulesAsync
      */
     public function DeleteLinkRulesAsync(array $linkRuleIds): array
@@ -48,6 +51,7 @@ class LinkRules extends AbstractResource
      * @param  int  $entityId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/GetLinkRuleDefinitionsForEntity
      */
     public function getLinkRuleDefinitionsForEntity(int $entityId): array
@@ -61,9 +65,10 @@ class LinkRules extends AbstractResource
     /**
      * Disable specified link rule definitions.
      *
-     * @param  array  $linkRuleIds List of link rule definition ids.
+     * @param  array  $linkRuleIds  List of link rule definition ids.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DisableLinkRulesAsync
      */
     public function disableLinkRulesAsync(array $linkRuleIds): array
@@ -78,9 +83,10 @@ class LinkRules extends AbstractResource
     /**
      * Enable specified link rule definitions.
      *
-     * @param  array  $linkRuleIds List of link rule definition ids.
+     * @param  array  $linkRuleIds  List of link rule definition ids.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/EnableLinkRulesAsync
      */
     public function EnableLinkRulesAsync(array $linkRuleIds): array

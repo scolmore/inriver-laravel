@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Channel;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
 
 class Channels extends AbstractResource
@@ -13,14 +14,15 @@ class Channels extends AbstractResource
     /**
      * Get channel id's for entity id.
      *
-     * @param  int|null  $forEntityId optional.
-     * @param  bool  $includeChannels optional, defaults to true.
-     * @param  bool  $includePublications optional, defaults to false.
+     * @param  int|null  $forEntityId  optional.
+     * @param  bool  $includeChannels  optional, defaults to true.
+     * @param  bool  $includePublications  optional, defaults to false.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
      */
-    public function GetChannelsForEntityId(
+    public function getChannelsForEntityId(
         ?int $forEntityId,
         bool $includeChannels = true,
         bool $includePublications = false
@@ -42,6 +44,7 @@ class Channels extends AbstractResource
      * @param  int  $channelId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/EntityTypes
      */
     public function entityTypes(int $channelId): array
@@ -56,9 +59,10 @@ class Channels extends AbstractResource
      * Get a list of entities in a channel.
      *
      * @param  int  $channelId
-     * @param  string  $entityTypeId optional, filter by entity type id.
+     * @param  string  $entityTypeId  optional, filter by entity type id.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByLinkEntityType
      */
     public function getByLinkEntityType(int $channelId, string $entityTypeId = ''): array
@@ -77,10 +81,11 @@ class Channels extends AbstractResource
      *
      * @param  int  $channelId
      * @param  int  $entityId
-     * @param  string  $linkDirection optional, "inbound" or "outbound".
-     * @param  string  $linkTypeId optional, filter by link type.
+     * @param  string  $linkDirection  optional, "inbound" or "outbound".
+     * @param  string  $linkTypeId  optional, filter by link type.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetByEntityType
      */
     public function getByEntityType(
@@ -106,6 +111,7 @@ class Channels extends AbstractResource
      * @param  int  $entityId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelStructureEntities
      */
     public function getChannelStructureEntities(int $channelId, int $entityId): array
@@ -122,6 +128,7 @@ class Channels extends AbstractResource
      * @param  int  $channelId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodes
      */
     public function getChannelNodes(int $channelId): array
@@ -138,6 +145,7 @@ class Channels extends AbstractResource
      * @param  int  $channelId
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelNodeTree
      */
     public function getChannelNodeTree(int $channelId): array
@@ -152,9 +160,10 @@ class Channels extends AbstractResource
      * Channel path content.
      *
      * @param  string  $path
-     * @param  string  $entityTypeIds optional, filter types using comma separated list.
+     * @param  string  $entityTypeIds  optional, filter types using comma separated list.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/ChannelContent
      */
     public function channelContent(string $path, string $entityTypeIds = ''): array
@@ -173,6 +182,7 @@ class Channels extends AbstractResource
      *
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelMessagesAsync
      */
     public function getChannelMessagesAsync(): array
@@ -187,14 +197,18 @@ class Channels extends AbstractResource
      * Get a list of channel entities of the specified entity type.
      *
      * @param  string  $entityTypeId
-     * @param  bool  $orphaned True, get ids of entities not included in any channel. False, get ids of entities included in at least one channel.
-     * @param  bool|null  $linkRuleEnabled Null, get all entity ids. True, get ids of entities with configured link rules. False, get ids of entities without configured link rules or disabled link rules.
+     * @param  bool  $orphaned  True, get ids of entities not included in any channel. False, get ids of entities included in at least one channel.
+     * @param  bool|null  $linkRuleEnabled  Null, get all entity ids. True, get ids of entities with configured link rules. False, get ids of entities without configured link rules or disabled link rules.
      * @return array
      *
+     * @throws InRiverException
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelEntitiesAsync
      */
-    public function getChannelEntitiesAsync(string $entityTypeId, bool $orphaned = false, ?bool $linkRuleEnabled = null): array
-    {
+    public function getChannelEntitiesAsync(
+        string $entityTypeId,
+        bool $orphaned = false,
+        ?bool $linkRuleEnabled = null
+    ): array {
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint("/entityIds/{$entityTypeId}"),
