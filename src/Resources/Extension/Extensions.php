@@ -278,4 +278,158 @@ class Extensions extends AbstractResource
             endpoint: $this->endpoint("/{$extensionId}/filtertypes")
         );
     }
+
+    /**
+     * Get filter configurations.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllFilterConfigurations
+     */
+    public function getAllFilterConfigurations(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$extensionId}/filterconfigurations")
+        );
+    }
+
+    /**
+     * Update a filter configuration.
+     *
+     * @param  string  $extensionId
+     * @param  array  $body
+     * @return array
+     * @throws InRiverException
+     */
+    public function updateFilterConfiguration(string $extensionId, array $body): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$extensionId}/filterconfigurations"),
+            data: $body
+        );
+    }
+
+    /**
+     * Get a filter configuration.
+     *
+     * @param  string  $extensionId
+     * @param  string  $filterTypeName
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetFilterConfiguration
+     */
+    public function getFilterConfiguration(string $extensionId, string $filterTypeName): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$extensionId}/filterconfigurations/{$filterTypeName}")
+        );
+    }
+
+    /**
+     * Enable a disabled extension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/EnableExtension
+     */
+    public function enableExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:enable")
+        );
+    }
+
+    /**
+     * Disable an enabled extension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DisableExtension
+     */
+    public function disableExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:disable")
+        );
+    }
+
+    /**
+     * Resume a paused extension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/ResumeExtension
+     */
+    public function resumeExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:resume")
+        );
+    }
+
+    /**
+     * Pause an extension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/PauseExtension
+     */
+    public function pauseExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:pause")
+        );
+    }
+
+    /**
+     * Run an extension of type ScheduledExtension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/RunExtension
+     */
+    public function runExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:run")
+        );
+    }
+
+    /**
+     * Test an extension.
+     *
+     * @param  string  $extensionId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/TestExtension
+     */
+    public function testExtension(string $extensionId): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint("/{$extensionId}:test")
+        );
+    }
 }
