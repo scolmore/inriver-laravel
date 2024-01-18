@@ -10,6 +10,7 @@ use Scolmore\InRiver\Resources\Channel\Channels;
 use Scolmore\InRiver\Resources\Entity\Entities;
 use Scolmore\InRiver\Resources\Extension\ExtensionManager;
 use Scolmore\InRiver\Resources\Extension\Extensions;
+use Scolmore\InRiver\Resources\Extension\Packages;
 use Scolmore\InRiver\Resources\Link\Links;
 use Scolmore\InRiver\Resources\LinkRule\LinkRules;
 use Scolmore\InRiver\Resources\Media\Media;
@@ -25,6 +26,7 @@ class InRiver
     public Entities $entities;
     public Extensions $extensions;
     public ExtensionManager $extensionmanager;
+    public Packages $packages;
     public Links $links;
     public LinkRules $linkRules;
     public Media $media;
@@ -69,6 +71,7 @@ class InRiver
         $this->entities = new Entities($this);
         $this->extensions = new Extensions($this);
         $this->extensionmanager = new ExtensionManager($this);
+        $this->packages = new Packages($this);
         $this->links = new Links($this);
         $this->linkRules = new LinkRules($this);
         $this->media = new Media($this);
