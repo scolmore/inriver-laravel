@@ -15,6 +15,7 @@ use Scolmore\InRiver\Resources\Link\Links;
 use Scolmore\InRiver\Resources\LinkRule\LinkRules;
 use Scolmore\InRiver\Resources\Media\Media;
 use Scolmore\InRiver\Resources\Model\Model;
+use Scolmore\InRiver\Resources\Query\Query;
 
 class InRiver
 {
@@ -31,6 +32,7 @@ class InRiver
     public LinkRules $linkRules;
     public Media $media;
     public Model $model;
+    public Query $query;
 
     public function __construct()
     {
@@ -76,5 +78,6 @@ class InRiver
         $this->linkRules = new LinkRules($this);
         $this->media = new Media($this);
         $this->model = new Model($this);
+        $this->query = new Query($this);
     }
 }
