@@ -16,6 +16,7 @@ use Scolmore\InRiver\Resources\LinkRule\LinkRules;
 use Scolmore\InRiver\Resources\Media\Media;
 use Scolmore\InRiver\Resources\Model\Model;
 use Scolmore\InRiver\Resources\Query\Query;
+use Scolmore\InRiver\Resources\Syndicate\Syndicate;
 
 class InRiver
 {
@@ -33,6 +34,7 @@ class InRiver
     public Media $media;
     public Model $model;
     public Query $query;
+    public Syndicate $syndicate;
 
     public function __construct()
     {
@@ -79,5 +81,6 @@ class InRiver
         $this->media = new Media($this);
         $this->model = new Model($this);
         $this->query = new Query($this);
+        $this->syndicate = new Syndicate($this);
     }
 }
