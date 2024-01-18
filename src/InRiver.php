@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\Channel\Channels;
 use Scolmore\InRiver\Resources\Entity\Entities;
+use Scolmore\InRiver\Resources\Extension\ExtensionManager;
 use Scolmore\InRiver\Resources\Extension\Extensions;
 use Scolmore\InRiver\Resources\Link\Links;
 use Scolmore\InRiver\Resources\LinkRule\LinkRules;
@@ -23,6 +24,7 @@ class InRiver
     public Channels $channels;
     public Entities $entities;
     public Extensions $extensions;
+    public ExtensionManager $extensionmanager;
     public Links $links;
     public LinkRules $linkRules;
     public Media $media;
@@ -66,6 +68,7 @@ class InRiver
         $this->channels = new Channels($this);
         $this->entities = new Entities($this);
         $this->extensions = new Extensions($this);
+        $this->extensionmanager = new ExtensionManager($this);
         $this->links = new Links($this);
         $this->linkRules = new LinkRules($this);
         $this->media = new Media($this);
