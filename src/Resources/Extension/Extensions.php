@@ -432,4 +432,59 @@ class Extensions extends AbstractResource
             endpoint: $this->endpoint("/{$extensionId}:test")
         );
     }
+
+    /**
+     * Get extensions queue messages for a customer environment.
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetQueuedConnectMessagesAsync
+     */
+    public function getQueuedConnectMessagesAsync(): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/queue")
+        );
+    }
+
+    /**
+     * Delete all queued connect messages.
+     *
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteAllConnectMessagesAsync
+     */
+    public function deleteAllConnectMessagesAsync(): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/queue")
+        );
+    }
+
+    /**
+     * Delete queued connect messages with a specific extensionId in a set time frame between a start date and end date.
+     *
+     * @param  string  $extensionId
+     * @param  string  $startDateUtc
+     * @param  string  $endDateUtc
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteQueuedConnectMessagesAsync
+     */
+    public function deleteQueuedConnectMessagesAsync(string $extensionId, string $startDateUtc, string $endDateUtc): null
+    {
+        return $this->InRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/queue/{$extensionId}"),
+            data: [
+                'startDateUtc' => $startDateUtc,
+                'endDateUtc' => $endDateUtc,
+            ]
+        );
+    }
 }
