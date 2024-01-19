@@ -27,4 +27,113 @@ class WorkareaFolder extends AbstractResource
             endpoint: $this->endpoint("/{$workAreaFolderId}/entitylist")
         );
     }
+
+    /**
+     * Update workarea query.
+     *
+     * @param  string  $workareaFolderId
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/UpdateWorkareaQuery
+     */
+    public function updateWorkareaQuery(string $workareaFolderId): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$workareaFolderId}/query")
+        );
+    }
+
+    /**
+     * Get entity id's in a static workarea.
+     *
+     * @param  string  $workareaFolderId
+     * @return array
+     * @throws InRiverException
+     */
+    public function workareaFolderEntityIds(string $workareaFolderId): array
+    {
+        return $this->inRiver()->request(
+            method: 'GET',
+            endpoint: $this->endpoint("/{$workareaFolderId}/entityIds")
+        );
+    }
+
+    /**
+     * Set entity id's in a static workarea.
+     *
+     * @param  string  $workareaFolderId
+     * @param  array  $entityIds
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/SetWorkareaFolderEntityIds
+     */
+    public function setWorkareaFolderEntityIds(string $workareaFolderId, array $entityIds): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$workareaFolderId}/entityIds"),
+            data: $entityIds
+        );
+    }
+
+    /**
+     * Update workarea folder.
+     *
+     * @param  string  $workareaFolderId
+     * @param  string  $name
+     * @param  bool  $isQuery
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/UpdateWorkarea
+     */
+    public function updateWorkArea(string $workareaFolderId, string $name, bool $isQuery): array
+    {
+        return $this->inRiver()->request(
+            method: 'PUT',
+            endpoint: $this->endpoint("/{$workareaFolderId}"),
+            data: [
+                'name' => $name,
+                'isQuery' => $isQuery,
+            ]
+        );
+    }
+
+    /**
+     * Delete workarea folder.
+     *
+     * @param  string  $workareaFolderId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/DeleteWorkarea
+     */
+    public function deleteWorkarea(string $workareaFolderId): null
+    {
+        return $this->inRiver()->request(
+            method: 'DELETE',
+            endpoint: $this->endpoint("/{$workareaFolderId}")
+        );
+    }
+
+    /**
+     * Create a new workarea.
+     *
+     * @param  array  $body
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/CreateWorkarea
+     */
+    public function createWorkarea(array $body): array
+    {
+        return $this->inRiver()->request(
+            method: 'POST',
+            endpoint: $this->endpoint(':createnew'),
+            data: $body
+        );
+    }
 }
