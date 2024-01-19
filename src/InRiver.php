@@ -18,8 +18,9 @@ use Scolmore\InRiver\Resources\Model\Model;
 use Scolmore\InRiver\Resources\Query\Query;
 use Scolmore\InRiver\Resources\Syndicate\Syndicate;
 use Scolmore\InRiver\Resources\System\System;
+use Scolmore\InRiver\Resources\Workarea\WorkareaFolder;
 use Scolmore\InRiver\Resources\Workarea\WorkareaFolders;
-use Scolmore\InRiver\Resources\Workarea\WorkAreaFolderTree;
+use Scolmore\InRiver\Resources\Workarea\WorkareaFolderTree;
 
 class InRiver
 {
@@ -40,7 +41,8 @@ class InRiver
     public Syndicate $syndicate;
     public System $system;
     public WorkareaFolders $workareafolders;
-    public WorkAreaFolderTree $workareafoldertree;
+    public WorkareaFolderTree $workareafoldertree;
+    public WorkareaFolder $workareafolder;
 
     public function __construct()
     {
@@ -90,6 +92,7 @@ class InRiver
         $this->syndicate = new Syndicate($this);
         $this->system = new System($this);
         $this->workareafolders = new WorkareaFolders($this);
-        $this->workareafoldertree = new WorkAreaFolderTree($this);
+        $this->workareafoldertree = new WorkareaFolderTree($this);
+        $this->workareafolder = new WorkareaFolder($this);
     }
 }

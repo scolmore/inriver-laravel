@@ -7,7 +7,7 @@ namespace Scolmore\InRiver\Resources\Workarea;
 use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
 
-class WorkAreaFolderTree extends AbstractResource
+class WorkareaFolderTree extends AbstractResource
 {
     protected string $endpoint = 'workareafoldertree';
 
