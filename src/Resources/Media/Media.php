@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Media;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
 
 class Media extends AbstractResource
@@ -31,6 +32,7 @@ class Media extends AbstractResource
      * @param  int|null  $sourceEntityId
      * @param  string  $linkTypeId
      * @return array
+     * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/UploadBase64File
      */
@@ -62,6 +64,7 @@ class Media extends AbstractResource
      * @param  int|null  $sourceEntityId
      * @param  string  $linkTypeId
      * @return array
+     * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/UploadMediaFromUrl
      */
@@ -97,6 +100,7 @@ class Media extends AbstractResource
      * @param  int|null  $sourceEntityId
      * @param  string  $linkTypeId
      * @return array
+     * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/AddExternalUrl
      */

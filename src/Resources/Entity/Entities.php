@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Scolmore\InRiver\Resources\Entity;
 
+use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
 
 class Entities extends AbstractResource
 {
     protected string $endpoint = 'entities';
 
+    /**
+     * @throws InRiverException
+     */
     public function get(int $entityId): EntityDataObject
     {
         $response = $this->getEntityBundle($entityId);
@@ -25,6 +29,9 @@ class Entities extends AbstractResource
         return new EntityDataObject($data);
     }
 
+    /**
+     * @throws InRiverException
+     */
     public function list(array $entityIds): array
     {
         $body = [
@@ -42,11 +49,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns various types of entity data.
+     *
      * @param  array  $body
      * @return array
+     * @throws InRiverException
      *
-     * Returns various types of entity data.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FetchData
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FetchData
      */
     public function fetchData(array $body): array
     {
@@ -60,11 +69,12 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Insert or update entities and links.
      * @param  array  $body
      * @return array
+     * @throws InRiverException
      *
-     * Insert or update entities and links.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Upsert
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Upsert
      */
     public function upsert(array $body): array
     {
@@ -76,11 +86,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a read only entity summary.
+     *
      * @param  int  $entityId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a read only entity summary.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
      */
     public function getEntitySummary(int $entityId): array
     {
@@ -91,13 +103,15 @@ class Entities extends AbstractResource
     }
 
     /**
-     * @param  int  $entityId
-     * @return array
-     *
      * Deletes an entity.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
+     *
+     * @param  int  $entityId
+     * @return null
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
      */
-    public function deleteEntity(int $entityId): array
+    public function deleteEntity(int $entityId): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -106,11 +120,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Creates a new entity.
+     *
      * @param  array  $entity
      * @return array
+     * @throws InRiverException
      *
-     * Creates a new entity.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
      */
     public function createEntity(array $entity): array
     {
@@ -122,16 +138,18 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns an entity creation model.
+     *
      * @param  string  $entityTypeId
      * @param  string|null  $fieldSet
-     * @return EntityDataObject
+     * @return array
+     * @throws InRiverException
      *
-     * Returns an entity creation model.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
      */
-    public function getEmptyEntity(string $entityTypeId, ?string $fieldSet = null): EntityDataObject
+    public function getEmptyEntity(string $entityTypeId, ?string $fieldSet = null): array
     {
-        $response = $this->inRiver()->request(
+        return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint(':getempty'),
             data: [
@@ -139,16 +157,16 @@ class Entities extends AbstractResource
                 'fieldSetId' => $fieldSet,
             ]
         );
-
-        return new EntityDataObject($response);
     }
 
     /**
+     * Returns a dictionary of unique values and entity id's.
+     *
      * @param  array  $body
      * @return array
+     * @throws InRiverException
      *
-     * Returns a dictionary of unique values and entity id's.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
      */
     public function mapUniqueValues(array $body): array
     {
@@ -160,11 +178,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a completeness details.
+     *
      * @param  int  $entityId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a completeness details.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CompletenessDetails
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CompletenessDetails
      */
     public function completenessDetails(int $entityId): array
     {
@@ -175,12 +195,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a read only list of field values.
+     *
      * @param  int  $entityId
      * @param  string  $fieldTypeIds
      * @return array
+     * @throws InRiverException
      *
-     * Returns a read only list of field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
      */
     public function getFields(int $entityId, string $fieldTypeIds = ''): array
     {
@@ -194,12 +216,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a list of field values.
+     *
      * @param  int  $entityId
      * @param  string  $fieldTypeIds
      * @return array
+     * @throws InRiverException
      *
-     * Returns a list of field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
      */
     public function getFieldValues(int $entityId, string $fieldTypeIds = ''): array
     {
@@ -213,12 +237,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Update field values.
+     *
      * @param  int  $entityId
      * @param  array  $fieldValues
      * @return array
+     * @throws InRiverException
      *
-     * Update field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
      */
     public function setFieldValues(int $entityId, array $fieldValues): array
     {
@@ -230,12 +256,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Field value revisions.
+     *
      * @param  int  $entityId
      * @param  string  $fieldTypeId
      * @return array
+     * @throws InRiverException
      *
-     * Field value revisions.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FieldHistory
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FieldHistory
      */
     public function fieldHistory(int $entityId, string $fieldTypeId): array
     {
@@ -246,13 +274,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Set field set (set fieldSetId to null to remove field set).
+     *
      * @param  int  $entityId
      * @param  ?string  $fieldSetId
      * @param  bool  $wipeOtherFields
      * @return array
+     * @throws InRiverException
      *
-     * Set field set (set fieldSetId to null to remove field set).
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldSet
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldSet
      */
     public function setFieldSet(int $entityId, ?string $fieldSetId, bool $wipeOtherFields): array
     {
@@ -267,12 +297,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a read only list of specification field values.
+     *
      * @param  int  $entityId
      * @param  string  $specificationFieldTypeIds
      * @return array
+     * @throws InRiverException
      *
-     * Returns a read only list of specification field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
      */
     public function getSpecificationSummary(int $entityId, string $specificationFieldTypeIds = ''): array
     {
@@ -286,13 +318,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a list of specification field values.
+     *
      * @param  int  $entityId
      * @param  string  $specificationFieldTypeIds
      * @param  bool  $mandatoryOnly
      * @return array
+     * @throws InRiverException
      *
-     * Returns a list of specification field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
      */
     public function getSpecificationValues(
         int $entityId,
@@ -310,12 +344,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Update specification field values.
+     *
      * @param  int  $entityId
      * @param  array  $specificationValues
      * @return array
+     * @throws InRiverException
      *
-     * Update specification field values.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
      */
     public function updateSpecificationValues(int $entityId, array $specificationValues): array
     {
@@ -327,12 +363,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Set specification template.
+     *
      * @param  int  $entityId
      * @param  int  $specificationId
      * @return array
+     * @throws InRiverException
      *
-     * Set specification template.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
      */
     public function setSpecificationTemplate(int $entityId, int $specificationId): array
     {
@@ -346,12 +384,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Set entity segment.
+     *
      * @param  int  $entityId
      * @param  int  $segmentId
      * @return array
+     * @throws InRiverException
      *
-     * Set entity segment.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
      */
     public function setSegment(int $entityId, int $segmentId): array
     {
@@ -365,13 +405,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a list of links.
+     *
      * @param  int  $entityId
      * @param  string  $linkDirection
      * @param  string  $linkTypeId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a list of links.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
      */
     public function getLinksForEntity(int $entityId, string $linkDirection = '', string $linkTypeId = ''): array
     {
@@ -386,14 +428,16 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a bundle of the entity and all linked entities.
+     *
      * @param  int  $entityId
      * @param  string  $fieldTypeIds
      * @param  string  $linkDirection
      * @param  string  $linkTypeId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a bundle of the entity and all linked entities.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
      */
     public function getEntityBundle(
         int $entityId,
@@ -413,11 +457,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a read only list of media resources linked to the entity.
+     *
      * @param  int  $entityId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a read only list of media resources linked to the entity.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
      */
     public function getAllMedia(int $entityId): array
     {
@@ -428,11 +474,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Returns a read only detailed list of media resources linked to the entity.
+     *
      * @param  int  $entityId
      * @return array
+     * @throws InRiverException
      *
-     * Returns a read only detailed list of media resources linked to the entity.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
      */
     public function getMediaDetails(int $entityId): array
     {
@@ -443,13 +491,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Add Media.
+     *
      * @param  int  $entityId
      * @param  string  $fileName
      * @param  string  $data
      * @return array
+     * @throws InRiverException
      *
-     * Add Media.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
      */
     public function uploadBase64File(int $entityId, string $fileName, string $data): array
     {
@@ -464,13 +514,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Add Media from URL.
+     *
      * @param  int  $entityId
      * @param  string  $url
      * @param  string  $overrideUrlFileName
      * @return array
+     * @throws InRiverException
      *
-     * Add Media from URL.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
      */
     public function uploadMediaFromUrl(int $entityId, string $url, string $overrideUrlFileName): array
     {
@@ -485,13 +537,15 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Add external media URL.
+     *
      * @param  int  $entityId
      * @param  string  $url
      * @param  string  $overrideUrlFileName
      * @return array
+     * @throws InRiverException
      *
-     * Add external media URL.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
      */
     public function addExternalUrl(int $entityId, string $url, string $overrideUrlFileName): array
     {
@@ -506,11 +560,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Entity comments.
+     *
      * @param  int  $entityId
      * @return array
+     * @throws InRiverException
      *
-     * Entity comments.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
      */
     public function comments(int $entityId): array
     {
@@ -521,12 +577,14 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Post entity comment.
+     *
      * @param  int  $entityId
      * @param  string  $text
      * @return array
+     * @throws InRiverException
      *
-     * Post entity comment.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
      */
     public function createComment(int $entityId, string $text): array
     {
@@ -540,14 +598,16 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Delete entity comment.
+     *
      * @param  int  $entityId
      * @param  int  $commentId
-     * @return array
+     * @return null
+     * @throws InRiverException
      *
-     * Delete entity comment.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
      */
-    public function deleteComment(int $entityId, int $commentId): array
+    public function deleteComment(int $entityId, int $commentId): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -556,10 +616,12 @@ class Entities extends AbstractResource
     }
 
     /**
-     * @return array
-     *
      * Get list of starred entities.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
      */
     public function starredEntities(): array
     {
@@ -570,11 +632,13 @@ class Entities extends AbstractResource
     }
 
     /**
+     * Update list of starred entities.
+     *
      * @param  array  $entityIds
      * @return array
+     * @throws InRiverException
      *
-     * Update list of starred entities.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
      */
     public function updateStarredEntities(array $entityIds): array
     {
@@ -586,10 +650,12 @@ class Entities extends AbstractResource
     }
 
     /**
-     * @return array
-     *
      * Get all segments.
-     * Source: https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments
+     *
+     * @return array
+     * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments
      */
     public function getAllSegments(): array
     {
