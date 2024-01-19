@@ -2,10 +2,42 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+InRiver Laravel is a package that allows you to easily integrate with the inRiver PIM API.
+
+## Usage
+
+Out of the box we have all the endpoints available to you as they are on the documentation.
+
+For example, to get channel id's for an entity id, the documentation shows the following:
+
+https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
+[image](assets/channel-api.png)
+
+To use this in the package, you would do the following:
+```php
+$channels = InRiver()->channels->getChannelsForEntityId('Product');
+
+// As per the documentation, you can also pass the other parameters.
+$channels = InRiver()->channels->getChannelsForEntityId(
+    forEntityId: 'Product', 
+    includeChannels: true,
+    includePublications: true
+);
+```
+So the URL endpoint is channels and the function from the URL is GetChannelsForEntityId, so that is the function you call.
+
+As well as this, we also provide some other methods for your convenience. These can be found below.
+
+### Examples
+- [Links](examples/links/link.md)
+- [Models/Categories](examples/model/Category.md)
+- [Models/Cvls](examples/model/Cvls.md)
+- [Models/EntityTypes](examples/model/EntityTypes.md)
+- [Models/FieldSets](examples/model/FieldSets.md)
+- [Models/Languages](examples/model/Languages.md)
+- [Models/RestrictedFields](examples/model/RestrictedFields.md)
+- [Models/SpecificationTemplates](examples/model/SpecificationTemplates.md)
 
 ## Installation
 
@@ -14,8 +46,6 @@ Via Composer
 ```bash
 composer require scolmore/inriver
 ```
-
-## Usage
 
 ## Change log
 
