@@ -14,7 +14,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         });
     }
 
-    public function fakeResponse(array|null $response, int $code = 200): void
+    public function fakeResponse(?array $response, int $code = 200): void
     {
         Http::fake([
             '*' => Http::response($response, $code),
