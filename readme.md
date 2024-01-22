@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/inriver.png" />
+</p>
+
 # InRiver
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
@@ -12,7 +16,8 @@ Out of the box we have all the endpoints available to you as they are on the doc
 For example, to get channel id's for an entity id, the documentation shows the following:
 
 https://apieuw.productmarketingcloud.com/swagger/index.html#/Channel/GetChannelsForEntityId
-[image](assets/channel-api.png)
+
+![Channel API](assets/channel-api.png)]
 
 To use this in the package, you would do the following:
 ```php
