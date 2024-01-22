@@ -94,5 +94,3 @@ test('channel entities by specific entity type are returned', function () {
 
     $this->assertCount(2, $structureTree);
 });
-
-

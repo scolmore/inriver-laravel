@@ -18,5 +18,5 @@ return [
         'createdDate' => 'string',
         'modifiedDate' => 'string',
         'isPublished' => true,
-    ]
+    ],
 ];
