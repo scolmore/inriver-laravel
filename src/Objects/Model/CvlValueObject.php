@@ -9,11 +9,17 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class CvlValueObject
 {
     private string $cvlId;
+
     private string $type;
+
     public ?string $key;
+
     public string|LanguagesObject $value;
+
     public int $index;
+
     public ?string $parentKey;
+
     public bool $deactivated;
 
     /**

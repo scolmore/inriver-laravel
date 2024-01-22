@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Scolmore\InRiver\Resources\Entity;
 
 use Scolmore\InRiver\Exceptions\InRiverException;
-use Scolmore\InRiver\Resources\AbstractResource;
 use Scolmore\InRiver\Objects\Entity\EntityObject;
+use Scolmore\InRiver\Resources\AbstractResource;
 
 class Entities extends AbstractResource
 {
@@ -66,8 +66,6 @@ class Entities extends AbstractResource
     /**
      * Returns various types of entity data.
      *
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FetchData
@@ -85,8 +83,7 @@ class Entities extends AbstractResource
 
     /**
      * Insert or update entities and links.
-     * @param  array  $body
-     * @return array
+     *
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Upsert
@@ -103,8 +100,6 @@ class Entities extends AbstractResource
     /**
      * Returns a read only entity summary.
      *
-     * @param  int  $entityId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntitySummary
@@ -120,8 +115,6 @@ class Entities extends AbstractResource
     /**
      * Deletes an entity.
      *
-     * @param  int  $entityId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteEntity
@@ -137,8 +130,6 @@ class Entities extends AbstractResource
     /**
      * Creates a new entity.
      *
-     * @param  array  $entity
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateEntity
@@ -155,10 +146,6 @@ class Entities extends AbstractResource
     /**
      * Returns an entity creation model.
      *
-     * @param  string  $entityTypeId
-     * @param  string|null  $fieldSetId
-     * @param  bool  $allFields
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
@@ -179,8 +166,6 @@ class Entities extends AbstractResource
     /**
      * Returns a dictionary of unique values and entity id's.
      *
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/MapUniqueValues
@@ -197,8 +182,6 @@ class Entities extends AbstractResource
     /**
      * Returns a completeness details.
      *
-     * @param  int  $entityId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CompletenessDetails
@@ -214,9 +197,6 @@ class Entities extends AbstractResource
     /**
      * Returns a read only list of field values.
      *
-     * @param  int  $entityId
-     * @param  string  $fieldTypeIds
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFields
@@ -235,9 +215,6 @@ class Entities extends AbstractResource
     /**
      * Returns a list of field values.
      *
-     * @param  int  $entityId
-     * @param  string  $fieldTypeIds
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetFieldValues
@@ -256,9 +233,6 @@ class Entities extends AbstractResource
     /**
      * Update field values.
      *
-     * @param  int  $entityId
-     * @param  array  $fieldValues
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldValues
@@ -275,9 +249,6 @@ class Entities extends AbstractResource
     /**
      * Field value revisions.
      *
-     * @param  int  $entityId
-     * @param  string  $fieldTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/FieldHistory
@@ -293,10 +264,8 @@ class Entities extends AbstractResource
     /**
      * Set field set (set fieldSetId to null to remove field set).
      *
-     * @param  int  $entityId
      * @param  ?string  $fieldSetId
-     * @param  bool  $wipeOtherFields
-     * @return array
+     *
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetFieldSet
@@ -316,9 +285,6 @@ class Entities extends AbstractResource
     /**
      * Returns a read only list of specification field values.
      *
-     * @param  int  $entityId
-     * @param  string  $specificationFieldTypeIds
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationSummary
@@ -337,10 +303,6 @@ class Entities extends AbstractResource
     /**
      * Returns a list of specification field values.
      *
-     * @param  int  $entityId
-     * @param  string  $specificationFieldTypeIds
-     * @param  bool  $mandatoryOnly
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetSpecificationValues
@@ -363,9 +325,6 @@ class Entities extends AbstractResource
     /**
      * Update specification field values.
      *
-     * @param  int  $entityId
-     * @param  array  $specificationValues
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateSpecificationValues
@@ -382,9 +341,6 @@ class Entities extends AbstractResource
     /**
      * Set specification template.
      *
-     * @param  int  $entityId
-     * @param  int  $specificationId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSpecificationTemplate
@@ -403,9 +359,6 @@ class Entities extends AbstractResource
     /**
      * Set entity segment.
      *
-     * @param  int  $entityId
-     * @param  int  $segmentId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/SetSegment
@@ -424,10 +377,6 @@ class Entities extends AbstractResource
     /**
      * Returns a list of links.
      *
-     * @param  int  $entityId
-     * @param  string  $linkDirection
-     * @param  string  $linkTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetLinksForEntity
@@ -447,11 +396,6 @@ class Entities extends AbstractResource
     /**
      * Returns a bundle of the entity and all linked entities.
      *
-     * @param  int  $entityId
-     * @param  string  $fieldTypeIds
-     * @param  string  $linkDirection
-     * @param  string  $linkTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEntityBundle
@@ -476,8 +420,6 @@ class Entities extends AbstractResource
     /**
      * Returns a read only list of media resources linked to the entity.
      *
-     * @param  int  $entityId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllMedia
@@ -493,8 +435,6 @@ class Entities extends AbstractResource
     /**
      * Returns a read only detailed list of media resources linked to the entity.
      *
-     * @param  int  $entityId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetMediaDetails
@@ -510,10 +450,6 @@ class Entities extends AbstractResource
     /**
      * Add Media.
      *
-     * @param  int  $entityId
-     * @param  string  $fileName
-     * @param  string  $data
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadBase64File
@@ -533,10 +469,6 @@ class Entities extends AbstractResource
     /**
      * Add Media from URL.
      *
-     * @param  int  $entityId
-     * @param  string  $url
-     * @param  string  $overrideUrlFileName
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UploadMediaFromUrl
@@ -556,10 +488,6 @@ class Entities extends AbstractResource
     /**
      * Add external media URL.
      *
-     * @param  int  $entityId
-     * @param  string  $url
-     * @param  string  $overrideUrlFileName
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/AddExternalUrl
@@ -579,8 +507,6 @@ class Entities extends AbstractResource
     /**
      * Entity comments.
      *
-     * @param  int  $entityId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/Comments
@@ -596,9 +522,6 @@ class Entities extends AbstractResource
     /**
      * Post entity comment.
      *
-     * @param  int  $entityId
-     * @param  string  $text
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/CreateComment
@@ -617,9 +540,6 @@ class Entities extends AbstractResource
     /**
      * Delete entity comment.
      *
-     * @param  int  $entityId
-     * @param  int  $commentId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/DeleteComment
@@ -635,7 +555,6 @@ class Entities extends AbstractResource
     /**
      * Get list of starred entities.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/StarredEntities
@@ -651,8 +570,6 @@ class Entities extends AbstractResource
     /**
      * Update list of starred entities.
      *
-     * @param  array  $entityIds
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/UpdateStarredEntities
@@ -669,7 +586,6 @@ class Entities extends AbstractResource
     /**
      * Get all segments.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetAllSegments

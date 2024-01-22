@@ -14,7 +14,6 @@ class Packages extends AbstractResource
     /**
      * Lists all packages that have been added.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllPackages
@@ -30,8 +29,6 @@ class Packages extends AbstractResource
     /**
      * Get a package.
      *
-     * @param  int  $packageId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetPackage
@@ -47,8 +44,6 @@ class Packages extends AbstractResource
     /**
      * Delete a package.
      *
-     * @param  int  $packageId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeletePackage
@@ -64,8 +59,6 @@ class Packages extends AbstractResource
     /**
      * Get a package content.
      *
-     * @param  int  $packageId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetPackageContent
@@ -81,9 +74,6 @@ class Packages extends AbstractResource
     /**
      * Upload base64 encoded file data of the package.
      *
-     * @param  string  $fileName
-     * @param  string  $data
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/UploadPackage
@@ -103,10 +93,6 @@ class Packages extends AbstractResource
     /**
      * Exchange base64 encoded file data of the package to a new version.
      *
-     * @param  int  $packageId
-     * @param  string  $fileName
-     * @param  string  $data
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/UpdatePackage

@@ -25,23 +25,39 @@ use Scolmore\InRiver\Resources\Workarea\WorkareaFolderTree;
 class InRiver
 {
     public string $version = '1.0.0';
+
     public ?string $url;
+
     private ?string $apiKey;
 
     public Channels $channels;
+
     public Entities $entities;
+
     public Extensions $extensions;
+
     public ExtensionManager $extensionmanager;
+
     public Packages $packages;
+
     public Links $links;
+
     public LinkRules $linkRules;
+
     public Media $media;
+
     public Model $model;
+
     public Query $query;
+
     public Syndicate $syndicate;
+
     public System $system;
+
     public WorkareaFolders $workareafolders;
+
     public WorkareaFolderTree $workareafoldertree;
+
     public WorkareaFolder $workareafolder;
 
     public function __construct()
@@ -55,7 +71,7 @@ class InRiver
     /**
      * @throws InRiverException
      */
-    public function request(string $method, string $endpoint, array $data = []): array|null
+    public function request(string $method, string $endpoint, array $data = []): ?array
     {
         $this->url = "{$this->url}/api/v{$this->version}/";
 

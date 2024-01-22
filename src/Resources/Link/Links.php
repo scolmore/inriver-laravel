@@ -30,10 +30,9 @@ class Links extends AbstractResource
     /**
      * Returns a link.
      *
-     * @param  int  $linkId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Link/GetLink
      */
     public function getLink(int $linkId): array
@@ -47,10 +46,9 @@ class Links extends AbstractResource
     /**
      * Delete link.
      *
-     * @param  int  $linkId
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Link/DeleteLink
      */
     public function deleteLink(int $linkId): null
@@ -64,14 +62,10 @@ class Links extends AbstractResource
     /**
      * Create a new link.
      *
-     * @param  string  $linkTypeId
-     * @param  int  $sourceEntityId
-     * @param  int  $targetEntityId
      * @param  int|null  $index  Set to 0 to add the link to the first position. Set to null to add the link to the last position. Specifying the index will reorganize all link indices.
-     * @param  bool  $isActive
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Link/CreateLink
      */
     public function createLink(
@@ -97,19 +91,16 @@ class Links extends AbstractResource
     /**
      * Update sort order of links.
      *
-     * @param  int  $id
-     * @param  bool  $isActive
-     * @param  int  $index
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Link/UpdateLink
      */
     public function updateLink(int $id, bool $isActive, int $index): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
-            endpoint: $this->endpoint("/sortorder"),
+            endpoint: $this->endpoint('/sortorder'),
             data: [
                 'id' => $id,
                 'isActive' => $isActive,

@@ -44,8 +44,6 @@ class Query extends AbstractResource
     /**
      * Search for entity id's.
      *
-     * @param  array  $query
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Query/Query
@@ -59,5 +57,3 @@ class Query extends AbstractResource
         );
     }
 }
-
-

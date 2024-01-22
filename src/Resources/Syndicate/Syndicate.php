@@ -14,7 +14,6 @@ class Syndicate extends AbstractResource
     /**
      * Get all syndication's.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Syndicate/Syndications
@@ -30,8 +29,6 @@ class Syndicate extends AbstractResource
     /**
      * Run Syndicate.
      *
-     * @param  int  $syndicationId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Syndicate/RunSyndicate

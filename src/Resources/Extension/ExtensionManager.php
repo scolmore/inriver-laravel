@@ -14,7 +14,6 @@ class ExtensionManager extends AbstractResource
     /**
      * Restart all extensions.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/RestartServiceAsync

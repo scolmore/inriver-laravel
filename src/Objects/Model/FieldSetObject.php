@@ -9,9 +9,13 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class FieldSetObject
 {
     public ?string $fieldSetId;
+
     public LanguagesObject $name;
+
     public LanguagesObject $description;
+
     public ?string $entityTypeId;
+
     public array $fieldTypeIds;
 
     /**
@@ -49,7 +53,7 @@ class FieldSetObject
     {
         $response = InRiver()->model->addFieldSet(
             fieldSetId: $this->fieldSetId,
-            name: array_filter($this->name->toArray(), static fn($value) => $value !== null),
+            name: array_filter($this->name->toArray(), static fn ($value) => $value !== null),
             description: $this->description->toArray(),
             entityTypeId: $this->entityTypeId,
             fieldTypeIds: $this->fieldTypeIds
@@ -65,7 +69,7 @@ class FieldSetObject
     {
         $response = InRiver()->model->updateFieldSet(
             fieldSetId: $this->fieldSetId,
-            name: array_filter($this->name->toArray(), static fn($value) => $value !== null),
+            name: array_filter($this->name->toArray(), static fn ($value) => $value !== null),
             description: $this->description->toArray(),
             entityTypeId: $this->entityTypeId,
             fieldTypeIds: $this->fieldTypeIds

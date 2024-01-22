@@ -9,8 +9,11 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class CvlObject
 {
     public ?string $id;
+
     public ?string $parentId;
+
     public ?string $dataType;
+
     public bool $customValueList;
 
     public function __construct(array $cvlModel)

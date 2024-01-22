@@ -14,9 +14,9 @@ class LinkRules extends AbstractResource
     /**
      * Get all link rule definitions.
      *
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/GetAllLinkRuleDefinitions
      */
     public function getAllLinkRuleDefinitions(): array
@@ -31,9 +31,9 @@ class LinkRules extends AbstractResource
      * Delete specified link rule definitions.
      *
      * @param  array  $linkRuleIds  List of link rule definition ids.
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DeleteLinkRulesAsync
      */
     public function DeleteLinkRulesAsync(array $linkRuleIds): array
@@ -48,10 +48,9 @@ class LinkRules extends AbstractResource
     /**
      * Get link rule definitions for entity.
      *
-     * @param  int  $entityId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/GetLinkRuleDefinitionsForEntity
      */
     public function getLinkRuleDefinitionsForEntity(int $entityId): array
@@ -66,16 +65,16 @@ class LinkRules extends AbstractResource
      * Disable specified link rule definitions.
      *
      * @param  array  $linkRuleIds  List of link rule definition ids.
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DisableLinkRulesAsync
      */
     public function disableLinkRulesAsync(array $linkRuleIds): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
-            endpoint: $this->endpoint("/disable"),
+            endpoint: $this->endpoint('/disable'),
             data: $linkRuleIds
         );
     }
@@ -84,16 +83,16 @@ class LinkRules extends AbstractResource
      * Enable specified link rule definitions.
      *
      * @param  array  $linkRuleIds  List of link rule definition ids.
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/EnableLinkRulesAsync
      */
     public function EnableLinkRulesAsync(array $linkRuleIds): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
-            endpoint: $this->endpoint("/enable"),
+            endpoint: $this->endpoint('/enable'),
             data: $linkRuleIds
         );
     }

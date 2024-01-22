@@ -9,10 +9,15 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class RestrictedFieldObject
 {
     public ?int $id;
+
     public ?string $entityTypeId;
+
     public ?string $fieldTypeId;
+
     public ?string $categoryId;
+
     public ?string $restrictionType;
+
     public int $roleId;
 
     public function __construct(?array $restrictedFieldModel)

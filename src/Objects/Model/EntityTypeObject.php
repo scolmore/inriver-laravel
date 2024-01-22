@@ -9,13 +9,21 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class EntityTypeObject
 {
     public ?string $id;
+
     public LanguagesObject $name;
+
     public array $fieldTypes;
+
     public array $inboundLinkTypes;
+
     public array $outboundLinkTypes;
+
     public bool $isLinkEntityType;
+
     public array $fieldSetIds;
+
     protected string $displayNameFieldTypeId;
+
     protected string $displayDescriptionFieldTypeId;
 
     /**
@@ -57,7 +65,7 @@ class EntityTypeObject
     {
         $response = InRiver()->model->addEntityType(
             id: $this->id,
-            name: array_filter($this->name->toArray(), static fn($value) => $value !== null),
+            name: array_filter($this->name->toArray(), static fn ($value) => $value !== null),
             isLinkEntityType: $this->isLinkEntityType
         );
 
@@ -71,7 +79,7 @@ class EntityTypeObject
     {
         $response = InRiver()->model->updateEntityType(
             entityTypeId: $this->id,
-            name: array_filter($this->name->toArray(), static fn($value) => $value !== null),
+            name: array_filter($this->name->toArray(), static fn ($value) => $value !== null),
             isLinkEntityType: $this->isLinkEntityType
         );
 

@@ -11,7 +11,8 @@ readonly class FieldSets
 {
     public function __construct(
         private Model $model
-    ) {}
+    ) {
+    }
 
     /**
      * @throws InRiverException

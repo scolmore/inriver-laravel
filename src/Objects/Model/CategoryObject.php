@@ -9,7 +9,9 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class CategoryObject
 {
     public ?string $id;
+
     public LanguagesObject $name;
+
     public ?int $index;
 
     /**

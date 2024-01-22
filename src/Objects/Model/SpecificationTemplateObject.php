@@ -10,22 +10,39 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 readonly class SpecificationTemplateObject
 {
     public int $id;
+
     public ?string $displayName;
+
     public ?string $displayDescription;
+
     public ?string $version;
+
     public ?string $createdBy;
+
     public ?Carbon $createdDate;
+
     public ?string $formattedCreatedDate;
+
     public ?string $modifiedBy;
+
     public ?Carbon $modifiedDate;
+
     public ?string $formattedModifiedDate;
+
     public ?string $resourceUrl;
+
     public ?string $entityTypeId;
+
     public ?string $entityTypeDisplayName;
+
     public ?int $completeness;
+
     public ?string $fieldSetId;
+
     public ?string $fieldSetName;
+
     public int $segmentId;
+
     public ?string $segmentName;
 
     public function __construct(array $specificationTemplateModel)

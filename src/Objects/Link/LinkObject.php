@@ -9,10 +9,15 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class LinkObject
 {
     public ?int $id;
+
     public bool $isActive;
+
     public ?string $linkTypeId;
+
     public ?int $sourceEntityId;
+
     public ?int $targetEntityId;
+
     public ?int $index;
 
     public function __construct(array $linkModel)

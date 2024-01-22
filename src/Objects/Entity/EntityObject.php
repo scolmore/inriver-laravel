@@ -10,29 +10,47 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class EntityObject
 {
     private ?int $id;
+
     public string $displayName;
+
     public string $displayDescription;
+
     public ?string $version;
+
     public ?string $lockedBy;
+
     public ?string $createdBy;
+
     public ?string $createdDate;
+
     public ?string $formattedCreatedDate;
+
     public ?string $modifiedBy;
+
     public ?string $modifiedDate;
+
     public ?string $formattedModifiedDate;
+
     public ?string $resourceUrl;
 
     public ?string $entityTypeId;
+
     public ?string $entityTypeDisplayName;
+
     public ?string $fieldSetId;
+
     public ?string $fieldSetName;
+
     public array $fieldValues;
+
     public int $completeness;
 
     public int $segmentId;
+
     public ?string $segmentName;
 
     public array $specification;
+
     public array $links;
 
     public function __construct(array $data)

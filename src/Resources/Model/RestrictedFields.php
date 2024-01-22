@@ -11,7 +11,8 @@ readonly class RestrictedFields
 {
     public function __construct(
         private Model $model
-    ) {}
+    ) {
+    }
 
     /**
      * @throws InRiverException

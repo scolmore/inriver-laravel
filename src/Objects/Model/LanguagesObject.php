@@ -18,7 +18,7 @@ class LanguagesObject
         if (is_string($languages) || isset($languages[0])) {
             $this->languages = collect(InRiver()->model->getAllLanguages())
                 ->keyBy('name')
-                ->map(fn($language) => null)
+                ->map(fn ($language) => null)
                 ->toArray();
 
             if (is_string($languages)) {
@@ -27,11 +27,11 @@ class LanguagesObject
         } elseif (isset($languages[0]['name'])) {
             $this->languages = collect($languages)
                 ->keyBy('name')
-                ->map(fn($language) => null)
+                ->map(fn ($language) => null)
                 ->toArray();
         } else {
             $this->languages = collect($languages)
-                ->map(fn($language) => $language)
+                ->map(fn ($language) => $language)
                 ->toArray();
         }
     }

@@ -11,7 +11,8 @@ readonly class SpecificationTemplates
 {
     public function __construct(
         private Model $model
-    ) {}
+    ) {
+    }
 
     /**
      * @throws InRiverException

@@ -9,25 +9,45 @@ use Scolmore\InRiver\Exceptions\InRiverException;
 class EntityFieldTypeObject
 {
     public string $entityTypeId;
+
     public ?string $id;
+
     public LanguagesObject $name;
+
     public ?string $localizedName;
+
     public LanguagesObject $description;
+
     public ?string $localizedDescription;
+
     public ?string $dataType;
+
     public bool $isMultiValue;
+
     public bool $isHidden;
+
     public bool $isReadOnly;
+
     public bool $isMandatory;
+
     public bool $isUnique;
+
     public bool $trackChanges;
+
     public ?string $defaultValue;
+
     public bool $isExcludedFromDefaultView;
+
     public ?array $includedInFieldSets;
+
     public ?string $categoryId;
+
     public int $index;
+
     public ?string $cvlId;
+
     public ?string $parentCvlId;
+
     public ?array $settings;
 
     /**

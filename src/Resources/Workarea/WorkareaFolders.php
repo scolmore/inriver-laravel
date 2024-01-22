@@ -14,10 +14,6 @@ class WorkareaFolders extends AbstractResource
     /**
      * Get workarea folders.
      *
-     * @param  bool  $includeCreatedByMe
-     * @param  bool  $includeShared
-     * @param  string  $forUsername
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/WorkareaFolders
@@ -38,4 +34,3 @@ class WorkareaFolders extends AbstractResource
         );
     }
 }
-

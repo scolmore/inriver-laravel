@@ -27,11 +27,6 @@ class Media extends AbstractResource
      * Add media.
      * Upload base64 encoded file data. A resource entity will be created. If the resourceLink object is omitted a resource entity will be created without a link. If resourceLink.linkTypeId is omitted inRiver will automatically find the most suitable link type.
      *
-     * @param  string  $fileName
-     * @param  string  $data
-     * @param  int|null  $sourceEntityId
-     * @param  string  $linkTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/UploadBase64File
@@ -59,11 +54,6 @@ class Media extends AbstractResource
      * Add Media.
      * Note: If overrideUrlFileName is omitted, the filename will equal the one supplied in the url. Set overrideUrlFileName to specify a file name. If the resourceLink object is omitted a resource entity will be created without a link. If resourceLink.linkTypeId is omitted inRiver will automatically find the most suitable link type.
      *
-     * @param  string  $url
-     * @param  string  $overrideUrlFileName
-     * @param  int|null  $sourceEntityId
-     * @param  string  $linkTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/UploadMediaFromUrl
@@ -95,11 +85,6 @@ class Media extends AbstractResource
      * https://yourexternalresourceservice.com/imagename.jpg/Thumbnail
      * https://yourexternalresourceservice.com/imagename.jpg/SmallThumbnail
      *
-     * @param  string  $url
-     * @param  string  $overrideUrlFileName
-     * @param  int|null  $sourceEntityId
-     * @param  string  $linkTypeId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Media/AddExternalUrl

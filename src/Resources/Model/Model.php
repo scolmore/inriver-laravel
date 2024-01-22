@@ -12,11 +12,17 @@ use Scolmore\InRiver\Resources\AbstractResource;
 class Model extends AbstractResource
 {
     public EntityTypes $entitytypes;
+
     public Languages $languages;
+
     public FieldSets $fieldsets;
+
     public Category $category;
+
     public Cvls $cvls;
+
     public SpecificationTemplates $specificationtemplates;
+
     public RestrictedFields $restrictedfields;
 
     protected string $endpoint = 'model';
@@ -43,9 +49,9 @@ class Model extends AbstractResource
      * Returns available entity types.
      *
      * @param  string  $entityTypeIds  optional, filter types using comma separated list.
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllEntityTypesV101
      */
     public function getAllEntityTypes(string $entityTypeIds = ''): array
@@ -64,12 +70,9 @@ class Model extends AbstractResource
     /**
      * Adds an entity type.
      *
-     * @param  string  $id
-     * @param  array  $name
-     * @param  bool  $isLinkEntityType
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddEntityType
      */
     public function addEntityType(string $id, array $name, bool $isLinkEntityType): array
@@ -91,9 +94,9 @@ class Model extends AbstractResource
      * Gets a single entity type.
      *
      * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetEntityType
      */
     public function getEntityType(string $entityTypeId): array
@@ -109,12 +112,9 @@ class Model extends AbstractResource
     /**
      * Updates an entity type.
      *
-     * @param  string  $entityTypeId
-     * @param  array  $name
-     * @param  bool  $isLinkEntityType
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateEntityType
      */
     public function updateEntityType(string $entityTypeId, array $name, bool $isLinkEntityType): array
@@ -136,9 +136,9 @@ class Model extends AbstractResource
      * Deletes an entity type.
      *
      * @param  string  $entityTypeId  ID of the EntityType, such as Product or Item.
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteEntityType
      */
     public function deleteEntityType(string $entityTypeId): null
@@ -154,10 +154,9 @@ class Model extends AbstractResource
     /**
      * Get all field types for a particular entity type.
      *
-     * @param  string  $entityTypeId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldTypesForEntityType
      */
     public function getAllFieldTypesForEntityType(string $entityTypeId): array
@@ -173,11 +172,9 @@ class Model extends AbstractResource
     /**
      * Create a new field type.
      *
-     * @param  string  $entityTypeId
-     * @param  array  $body
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldType
      */
     public function addFieldType(string $entityTypeId, array $body): array
@@ -194,11 +191,9 @@ class Model extends AbstractResource
     /**
      * Get a single field type.
      *
-     * @param  string  $entityTypeId
-     * @param  string  $fieldTypeId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetFieldType
      */
     public function getFieldType(string $entityTypeId, string $fieldTypeId): array
@@ -214,12 +209,9 @@ class Model extends AbstractResource
     /**
      * Update an existing field type.
      *
-     * @param  string  $entityTypeId
-     * @param  string  $fieldTypeId
-     * @param  array  $body
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldType
      */
     public function updateFieldType(string $entityTypeId, string $fieldTypeId, array $body): array
@@ -236,11 +228,9 @@ class Model extends AbstractResource
     /**
      * Delete a field type.
      *
-     * @param  string  $entityTypeId
-     * @param  string  $fieldTypeId
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldType
      */
     public function deleteFieldType(string $entityTypeId, string $fieldTypeId): null
@@ -256,9 +246,9 @@ class Model extends AbstractResource
     /**
      * Return available languages.
      *
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllLanguages
      */
     public function getAllLanguages(): array
@@ -272,10 +262,9 @@ class Model extends AbstractResource
     /**
      * Add a language.
      *
-     * @param  string  $languageISOCode
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddLanguage
      */
     public function addLanguage(string $languageISOCode): array
@@ -292,10 +281,9 @@ class Model extends AbstractResource
     /**
      * Remove a language.
      *
-     * @param  string  $languageISOCode
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteLanguage
      */
     public function deleteLanguage(string $languageISOCode): null
@@ -309,9 +297,9 @@ class Model extends AbstractResource
     /**
      * Returns available field sets.
      *
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllFieldSets
      */
     public function getAllFieldSets(): array
@@ -325,14 +313,9 @@ class Model extends AbstractResource
     /**
      * Add a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  array  $name
-     * @param  array  $description
-     * @param  string  $entityTypeId
-     * @param  array  $fieldTypeIds
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldSet
      */
     public function addFieldSet(
@@ -358,14 +341,9 @@ class Model extends AbstractResource
     /**
      * Update a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  array  $name
-     * @param  array  $description
-     * @param  string  $entityTypeId
-     * @param  array  $fieldTypeIds
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldSet
      */
     public function updateFieldSet(
@@ -391,11 +369,9 @@ class Model extends AbstractResource
     /**
      * Add a field type to a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldTypeToFieldSet
      */
     public function addFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
@@ -409,11 +385,9 @@ class Model extends AbstractResource
     /**
      * Remove a field type from a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldTypeToFieldSet
      */
     public function deleteFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
@@ -427,10 +401,9 @@ class Model extends AbstractResource
     /**
      * Delete a field set.
      *
-     * @param  string  $fieldSetId
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldSet
      */
     public function deleteFieldSet(string $fieldSetId): null
@@ -444,9 +417,9 @@ class Model extends AbstractResource
     /**
      * Get all categories.
      *
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCategories
      */
     public function getAllCategories(): array
@@ -457,19 +430,16 @@ class Model extends AbstractResource
         );
 
         return collect($response)
-            ->map(fn($categoryModel) => new CategoryObject($categoryModel))
+            ->map(fn ($categoryModel) => new CategoryObject($categoryModel))
             ->toArray();
     }
 
     /**
      * Add a category.
      *
-     * @param  string  $id
-     * @param  array  $name
-     * @param  int  $index
-     * @return CategoryObject
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCategory
      */
     public function addCategory(string $id, array $name, int $index = 0): CategoryObject
@@ -490,10 +460,9 @@ class Model extends AbstractResource
     /**
      * Get a category.
      *
-     * @param  string  $categoryId
-     * @return CategoryObject
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCategory
      */
     public function getCategory(string $categoryId): CategoryObject
@@ -509,12 +478,9 @@ class Model extends AbstractResource
     /**
      * Update a category.
      *
-     * @param  string  $categoryId
-     * @param  array  $name
-     * @param  int  $index
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCategory
      */
     public function updateCategory(string $categoryId, array $name, int $index = 0): array
@@ -533,10 +499,9 @@ class Model extends AbstractResource
     /**
      * Delete a category.
      *
-     * @param  string  $categoryId
-     * @return null
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCategory
      */
     public function deleteCategory(string $categoryId): null
@@ -550,7 +515,6 @@ class Model extends AbstractResource
     /**
      * Returns all CVL's.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCvls
@@ -566,11 +530,8 @@ class Model extends AbstractResource
     /**
      * Add a CVL.
      *
-     * @param  string  $id
      * @param  ?string  $parentId
-     * @param  string  $dataType
-     * @param  bool  $customValueList
-     * @return array
+     *
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCvl
@@ -592,8 +553,6 @@ class Model extends AbstractResource
     /**
      * Get a CVL.
      *
-     * @param  string  $cvlId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCvl
@@ -609,11 +568,6 @@ class Model extends AbstractResource
     /**
      * Update a CVL.
      *
-     * @param  string  $cvlId
-     * @param  string|null  $parentId
-     * @param  string  $dataType
-     * @param  bool  $customValueList
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCvl
@@ -635,8 +589,6 @@ class Model extends AbstractResource
     /**
      * Delete a CVL.
      *
-     * @param  string  $cvlId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCvl
@@ -652,8 +604,6 @@ class Model extends AbstractResource
     /**
      * Returns all values for a CVL.
      *
-     * @param  string  $cvlId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllCvlValues
@@ -669,9 +619,6 @@ class Model extends AbstractResource
     /**
      * Create CVL value.
      *
-     * @param  string  $cvlId
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/CreateCvlValue
@@ -688,9 +635,6 @@ class Model extends AbstractResource
     /**
      * Get CVL value.
      *
-     * @param  string  $cvlId
-     * @param  string  $key
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCvlValue
@@ -706,10 +650,6 @@ class Model extends AbstractResource
     /**
      * Update CVL value.
      *
-     * @param  string  $cvlId
-     * @param  string  $key
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateCvlValue
@@ -726,9 +666,6 @@ class Model extends AbstractResource
     /**
      * Delete CVL value.
      *
-     * @param  string  $cvlId
-     * @param  string  $key
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteCvlValue
@@ -744,7 +681,6 @@ class Model extends AbstractResource
     /**
      * Returns all specification templates.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllSpecificationTemplates
@@ -760,9 +696,8 @@ class Model extends AbstractResource
     /**
      * Return field types for specification template.
      *
-     * @param  int  $templateId
-     * @return array
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetSpecificationTemplatesields
      */
     public function getSpecificationTemplateFields(int $templateId): array
@@ -776,7 +711,6 @@ class Model extends AbstractResource
     /**
      * Get all restricted field permissions.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetAllRestrictedFieldPermission
@@ -792,8 +726,6 @@ class Model extends AbstractResource
     /**
      * Add a restricted field permission.
      *
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddRestrictedFieldPermission
@@ -810,8 +742,6 @@ class Model extends AbstractResource
     /**
      * Get a restricted field permission.
      *
-     * @param  int  $restrictedFieldId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetRestrictedFieldPermission
@@ -827,8 +757,6 @@ class Model extends AbstractResource
     /**
      * Delete a specific restricted field permission.
      *
-     * @param  int  $restrictedFieldId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteRestrictedFieldPermission
@@ -844,8 +772,6 @@ class Model extends AbstractResource
     /**
      * Delete any restrictions related to a field type.
      *
-     * @param  string  $fieldTypeId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteRestrictedFieldPermission

@@ -14,9 +14,9 @@ class Extensions extends AbstractResource
     /**
      * Return a list of all extensions that have been added to the environment.
      *
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllExtensions
      */
     public function getAllExtensions(): array
@@ -30,15 +30,9 @@ class Extensions extends AbstractResource
     /**
      * Add extension.
      *
-     * @param  string  $extensionId
-     * @param  string  $extensionType
-     * @param  string  $assemblyName
-     * @param  int  $packageId
-     * @param  string  $assemblyType
-     * @param  bool  $isEnabled
-     * @return array
      *
      * @throws InRiverException
+     *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/AddExtension
      */
     public function addExtension(
@@ -66,8 +60,6 @@ class Extensions extends AbstractResource
     /**
      * Get information on a specific extension by its extension ID.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetExtension
@@ -83,8 +75,6 @@ class Extensions extends AbstractResource
     /**
      * Delete an extension by its extension ID.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteExtension
@@ -100,9 +90,6 @@ class Extensions extends AbstractResource
     /**
      * Set an apikey on an inbound extension of extensionType.
      *
-     * @param  string  $extensionId
-     * @param  string  $apiKey
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/SetExtensionApiKet
@@ -121,8 +108,6 @@ class Extensions extends AbstractResource
     /**
      * Get all of the settings that have been added to an extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetExtensionSettings
@@ -138,10 +123,6 @@ class Extensions extends AbstractResource
     /**
      * Add or update one extension
      *
-     * @param  string  $extensionId
-     * @param  string  $key
-     * @param  string  $value
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/AddOrUpdateExtensionSetting
@@ -161,8 +142,6 @@ class Extensions extends AbstractResource
     /**
      * Get extension statistics.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetExtensionEventStats
@@ -178,9 +157,6 @@ class Extensions extends AbstractResource
     /**
      * Delete one extension setting by its key.
      *
-     * @param  string  $extensionId
-     * @param  string  $key
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteExtensionSetting
@@ -196,9 +172,6 @@ class Extensions extends AbstractResource
     /**
      * Get extension setting.
      *
-     * @param  string  $extensionId
-     * @param  string  $key
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetExtensionSetting
@@ -214,8 +187,6 @@ class Extensions extends AbstractResource
     /**
      * Apply default extension settings.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/ApplyDefaultExtensionSettings
@@ -231,8 +202,6 @@ class Extensions extends AbstractResource
     /**
      * Triggers a reload of all settings to be accessible from Context.Settings in the extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/ReloadSettingsForExtension
@@ -248,8 +217,6 @@ class Extensions extends AbstractResource
     /**
      * Get the current status for if the extension is enabled/disabled.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetExtensionStatus
@@ -265,8 +232,6 @@ class Extensions extends AbstractResource
     /**
      * Get applicable filter types.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllFilterTypes
@@ -282,8 +247,6 @@ class Extensions extends AbstractResource
     /**
      * Get filter configurations.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllFilterConfigurations
@@ -299,9 +262,6 @@ class Extensions extends AbstractResource
     /**
      * Update a filter configuration.
      *
-     * @param  string  $extensionId
-     * @param  array  $body
-     * @return array
      * @throws InRiverException
      */
     public function updateFilterConfiguration(string $extensionId, array $body): array
@@ -316,9 +276,6 @@ class Extensions extends AbstractResource
     /**
      * Get a filter configuration.
      *
-     * @param  string  $extensionId
-     * @param  string  $filterTypeName
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetFilterConfiguration
@@ -334,8 +291,6 @@ class Extensions extends AbstractResource
     /**
      * Enable a disabled extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/EnableExtension
@@ -351,8 +306,6 @@ class Extensions extends AbstractResource
     /**
      * Disable an enabled extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DisableExtension
@@ -368,8 +321,6 @@ class Extensions extends AbstractResource
     /**
      * Resume a paused extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/ResumeExtension
@@ -385,8 +336,6 @@ class Extensions extends AbstractResource
     /**
      * Pause an extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/PauseExtension
@@ -402,8 +351,6 @@ class Extensions extends AbstractResource
     /**
      * Run an extension of type ScheduledExtension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/RunExtension
@@ -419,8 +366,6 @@ class Extensions extends AbstractResource
     /**
      * Test an extension.
      *
-     * @param  string  $extensionId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/TestExtension
@@ -436,7 +381,6 @@ class Extensions extends AbstractResource
     /**
      * Get extensions queue messages for a customer environment.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetQueuedConnectMessagesAsync
@@ -445,14 +389,13 @@ class Extensions extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'GET',
-            endpoint: $this->endpoint("/queue")
+            endpoint: $this->endpoint('/queue')
         );
     }
 
     /**
      * Delete all queued connect messages.
      *
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteAllConnectMessagesAsync
@@ -461,17 +404,13 @@ class Extensions extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'DELETE',
-            endpoint: $this->endpoint("/queue")
+            endpoint: $this->endpoint('/queue')
         );
     }
 
     /**
      * Delete queued connect messages with a specific extensionId in a set time frame between a start date and end date.
      *
-     * @param  string  $extensionId
-     * @param  string  $startDateUtc
-     * @param  string  $endDateUtc
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteQueuedConnectMessagesAsync
@@ -491,7 +430,6 @@ class Extensions extends AbstractResource
     /**
      * Get all ConnectorStates.
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllConnectorStatesAsync
@@ -500,16 +438,13 @@ class Extensions extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'GET',
-            endpoint: $this->endpoint("/connectorstates")
+            endpoint: $this->endpoint('/connectorstates')
         );
     }
 
     /**
      * Add a ConnectorState.
      *
-     * @param  string  $connectorId
-     * @param  string  $data
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/AddConnectorStateAsync
@@ -518,7 +453,7 @@ class Extensions extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'POST',
-            endpoint: $this->endpoint("/connectorstates"),
+            endpoint: $this->endpoint('/connectorstates'),
             data: [
                 'connectorId' => $connectorId,
                 'data' => $data,
@@ -529,7 +464,6 @@ class Extensions extends AbstractResource
     /**
      * Delete all ConnectorStates.
      *
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteAllConnectorStatesAsync
@@ -538,15 +472,13 @@ class Extensions extends AbstractResource
     {
         return $this->inRiver()->request(
             method: 'DELETE',
-            endpoint: $this->endpoint("/connectorstates")
+            endpoint: $this->endpoint('/connectorstates')
         );
     }
 
     /**
      * Get all ConnectorStates for Connector.
      *
-     * @param  string  $connectorId
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/GetAllConnectorStatesByConnectorIdAsync
@@ -562,10 +494,6 @@ class Extensions extends AbstractResource
     /**
      * Update a ConnectorState.
      *
-     * @param  int  $id
-     * @param  string  $connectorId
-     * @param  string  $data
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/UpdateConnectorStateAsync
@@ -585,8 +513,6 @@ class Extensions extends AbstractResource
     /**
      * Delete a ConnectorState.
      *
-     * @param  int  $id
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteConnectorStateAsync
@@ -602,8 +528,6 @@ class Extensions extends AbstractResource
     /**
      * Delete all ConnectorStates for Connector.
      *
-     * @param  string  $connectorId
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteConnectorStateForConnectorAsync
