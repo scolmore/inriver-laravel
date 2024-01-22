@@ -30,6 +30,7 @@ So the URL endpoint is channels and the function from the URL is GetChannelsForE
 As well as this, we also provide some other methods for your convenience. These can be found below.
 
 ### Examples
+- [Entity](examples/entities/entity.md)
 - [Links](examples/links/link.md)
 - [Models/Categories](examples/model/Category.md)
 - [Models/Cvls](examples/model/Cvls.md)
@@ -44,7 +45,7 @@ As well as this, we also provide some other methods for your convenience. These 
 Via Composer
 
 ```bash
-composer require scolmore/inriver
+composer require scolmore/inriver-laravel
 ```
 
 ## Change log
