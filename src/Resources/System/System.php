@@ -14,6 +14,7 @@ class System extends AbstractResource
     /**
      * Returns available image configurations.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetAllImageConfigurations
@@ -29,6 +30,7 @@ class System extends AbstractResource
     /**
      * Return full details of available image configurations.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetImageConfigurationDetails
@@ -44,6 +46,7 @@ class System extends AbstractResource
     /**
      * Get a list of server settings.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetServerSettings
@@ -59,6 +62,8 @@ class System extends AbstractResource
     /**
      * Add/Update server settings.
      *
+     * @param  array  $body
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/UpdateServerSetting
@@ -75,6 +80,7 @@ class System extends AbstractResource
     /**
      * Get list of user roles and permissions.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/Roles
@@ -90,6 +96,7 @@ class System extends AbstractResource
     /**
      * Get list of segments.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/Segments
@@ -105,6 +112,9 @@ class System extends AbstractResource
     /**
      * Modify user access for segment.
      *
+     * @param  int  $segmentId
+     * @param  array  $body
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/SetUserRolesForSegment
@@ -121,8 +131,11 @@ class System extends AbstractResource
     /**
      * Assign a role to a user and segment.
      *
+     * @param  int  $segmentId
+     * @param  string  $username
      * @param  string  $roleName  The roleName value expects a single role name, such as "Editor" or "Reader". Requires administrator role.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/AddUserRoleForSegment
@@ -142,8 +155,11 @@ class System extends AbstractResource
     /**
      * Remove a role from a user and segment.
      *
+     * @param  int  $segmentId
+     * @param  string  $username
      * @param  string  $roleName  The roleName value expects a single role name, such as "Editor" or "Reader". Requires administrator role.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/RemoveUserRoleForSegment
@@ -163,6 +179,7 @@ class System extends AbstractResource
     /**
      * Get list of users.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetUsers
@@ -178,6 +195,9 @@ class System extends AbstractResource
     /**
      * Provision user.
      *
+     * @param  array  $body
+     *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/ProvisionUser
@@ -194,6 +214,9 @@ class System extends AbstractResource
     /**
      * Get user.
      *
+     * @param  string  $username
+     *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetUser
@@ -209,6 +232,10 @@ class System extends AbstractResource
     /**
      * Update user.
      *
+     * @param  string  $username
+     * @param  array  $body
+     *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/UpdateUser
@@ -225,6 +252,9 @@ class System extends AbstractResource
     /**
      * Delete user.
      *
+     * @param  string  $username
+     *
+     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/DeleteUser
@@ -240,6 +270,7 @@ class System extends AbstractResource
     /**
      * Return the current environment context linked to the REST API key.
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/System/GetEnvironmentContext
