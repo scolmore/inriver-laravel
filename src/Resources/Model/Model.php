@@ -313,68 +313,52 @@ class Model extends AbstractResource
     /**
      * Add a field set.
      *
+     * @param  array  $body
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldSet
      */
-    public function addFieldSet(
-        string $fieldSetId,
-        array $name,
-        array $description,
-        string $entityTypeId,
-        array $fieldTypeIds
-    ): array {
+    public function addFieldSet(array $body): array {
         return $this->inRiver()->request(
             method: 'POST',
             endpoint: $this->endpoint('/fieldsets'),
-            data: [
-                'fieldSetId' => $fieldSetId,
-                'name' => $name,
-                'description' => $description,
-                'entityTypeId' => $entityTypeId,
-                'fieldTypeIds' => $fieldTypeIds,
-            ]
+            data: $body
         );
     }
 
     /**
      * Update a field set.
      *
+     * @param  string  $fieldSetId
+     * @param  array  $body
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldSet
      */
-    public function updateFieldSet(
-        string $fieldSetId,
-        array $name,
-        array $description,
-        string $entityTypeId,
-        array $fieldTypeIds
-    ): array {
+    public function updateFieldSet(string $fieldSetId, array $body): array {
         return $this->inRiver()->request(
             method: 'PUT',
             endpoint: $this->endpoint("/fieldsets/{$fieldSetId}"),
-            data: [
-                'fieldSetId' => $fieldSetId,
-                'name' => $name,
-                'description' => $description,
-                'entityTypeId' => $entityTypeId,
-                'fieldTypeIds' => $fieldTypeIds,
-            ]
+            data: $body
         );
     }
 
     /**
      * Add a field type to a field set.
      *
+     * @param  string  $fieldSetId
+     * @param  string  $fieldTypeId
      *
+     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldTypeToFieldSet
      */
-    public function addFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    public function addFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): null
     {
         return $this->inRiver()->request(
             method: 'PUT',
@@ -385,12 +369,15 @@ class Model extends AbstractResource
     /**
      * Remove a field type from a field set.
      *
+     * @param  string  $fieldSetId
+     * @param  string  $fieldTypeId
      *
+     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldTypeToFieldSet
      */
-    public function deleteFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): array
+    public function deleteFieldTypeToFieldSet(string $fieldSetId, string $fieldTypeId): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -424,37 +411,29 @@ class Model extends AbstractResource
      */
     public function getAllCategories(): array
     {
-        $response = $this->inRiver()->request(
+        return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint('/category')
         );
-
-        return collect($response)
-            ->map(fn ($categoryModel) => new CategoryObject($categoryModel))
-            ->toArray();
     }
 
     /**
      * Add a category.
      *
+     * @param  array  $body
      *
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCategory
      */
-    public function addCategory(string $id, array $name, int $index = 0): CategoryObject
+    public function addCategory(array $body): array
     {
-        $response = $this->inRiver()->request(
+        return $this->inRiver()->request(
             method: 'POST',
             endpoint: $this->endpoint('/category'),
-            data: [
-                'id' => $id,
-                'name' => $name,
-                'index' => $index,
-            ]
+            data: $body
         );
-
-        return new CategoryObject($response);
     }
 
     /**
@@ -465,14 +444,12 @@ class Model extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/GetCategory
      */
-    public function getCategory(string $categoryId): CategoryObject
+    public function getCategory(string $categoryId): array
     {
-        $response = $this->inRiver()->request(
+        return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint("/category/{$categoryId}")
         );
-
-        return new CategoryObject($response);
     }
 
     /**

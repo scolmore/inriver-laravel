@@ -27,7 +27,11 @@ readonly class Category
      */
     public function list(): array
     {
-        return $this->model->getAllCategories();
+         $categories = $this->model->getAllCategories();
+
+        return collect($categories)
+            ->map(fn ($categoryModel) => new CategoryObject($categoryModel))
+            ->toArray();
     }
 
     /**
@@ -35,6 +39,6 @@ readonly class Category
      */
     public function get(string $id): CategoryObject
     {
-        return $this->model->getCategory($id);
+        return new CategoryObject($this->model->getCategory($id));
     }
 }

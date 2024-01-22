@@ -40,13 +40,15 @@ class CategoryObject
      */
     public function create(): self
     {
-        $response = InRiver()->model->addCategory(
-            id: $this->id,
-            name: $this->name->toArray(),
-            index: $this->index
-        );
+        $response = InRiver()->model->addCategory([
+            'id' => $this->id,
+            'name' => $this->name->toArray(),
+            'index' => $this->index,
+        ]);
 
-        return new self((array) $response);
+        $this->initialize($response);
+
+        return new self($response);
     }
 
     /**
