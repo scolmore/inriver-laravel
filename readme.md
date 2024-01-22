@@ -5,6 +5,8 @@
 # InRiver
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
+[![GitHub Tests Action Status][ico-tests]][link-tests]
+[![GitHub Code Style Action Status][ico-style]][link-style]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 InRiver Laravel is a package that allows you to easily integrate with the inRiver PIM API.
@@ -82,12 +84,12 @@ MIT. Please see the [license file](license.md) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/scolmore/inriver.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/scolmore/inriver.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/scolmore/inriver/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
+[ico-tests]: https://img.shields.io/github/actions/workflow/status/scolmore/inriver-laravel/run-tests.yml?label=tests&style=flat-square
+[ico-style]: https://img.shields.io/github/actions/workflow/status/scolmore/inriver-laravel/code-style.yml?label=code%20style&style=flat-square
 
-[link-packagist]: https://packagist.org/packages/scolmore/inriver
-[link-downloads]: https://packagist.org/packages/scolmore/inriver
-[link-travis]: https://travis-ci.org/scolmore/inriver
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/scolmore
+[link-packagist]: https://packagist.org/packages/scolmore/inriver-laravel
+[link-downloads]: https://packagist.org/packages/scolmore/inriver-laravel
+[link-style]: https://github.com/scolmore/inriver-laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain
+[link-tests]: https://github.com/scolmore/inriver-laravel/actions?query=workflow%3ATests+branch%3Amain
+[link-author]: https://github.com/samloft
 [link-contributors]: ../../contributors
