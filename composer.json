@@ -10,7 +10,10 @@
         }
     ],
     "homepage": "https://github.com/scolmore/inriver-laravel",
-    "keywords": ["Laravel", "InRiver"],
+    "keywords": [
+        "Laravel",
+        "InRiver"
+    ],
     "require": {
         "php": "^8.2",
         "illuminate/support": "~10"
@@ -25,7 +28,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Scolmore\\InRiver\\Tests\\": "tests"
+            "Scolmore\\InRiver\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "extra": {
@@ -40,11 +46,27 @@
     },
     "require-dev": {
         "pestphp/pest": "^2.32",
-        "laravel/pint": "^1.13"
+        "laravel/pint": "^1.13",
+        "orchestra/testbench": "^8.21"
     },
     "scripts": {
         "test": "vendor/bin/pest",
-        "pint": "vendor/bin/pint"
+        "pint": "vendor/bin/pint",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/pint"
+        ]
     },
     "config": {
         "allow-plugins": {

@@ -89,7 +89,7 @@ MIT. Please see the [license file](license.md) for more information.
 
 [link-packagist]: https://packagist.org/packages/scolmore/inriver-laravel
 [link-downloads]: https://packagist.org/packages/scolmore/inriver-laravel
-[link-style]: https://github.com/scolmore/inriver-laravel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain
-[link-tests]: https://github.com/scolmore/inriver-laravel/actions?query=workflow%3ATests+branch%3Amain
+[link-style]: https://github.com/scolmore/inriver-laravel/actions?query=workflow&%22Check+&+fix+styling%22+branch=master
+[link-tests]: https://github.com/scolmore/inriver-laravel/actions?query=workflow&%22tests%22+branch=master
 [link-author]: https://github.com/samloft
 [link-contributors]: ../../contributors

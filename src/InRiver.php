@@ -60,10 +60,29 @@ class InRiver
 
     public WorkareaFolder $workareafolder;
 
+    /**
+     * @throws InRiverException
+     */
     public function __construct()
     {
         $this->url = config('inriver.inriver_url');
         $this->apiKey = config('inriver.inriver_api_key');
+
+        if (is_null($this->url)) {
+            throw new InRiverException([
+                'status' => 500,
+                'code' => 'INRIVER_URL_NOT_SET',
+                'message' => 'The inRiver URL has not been set.',
+            ]);
+        }
+
+        if (is_null($this->apiKey)) {
+            throw new InRiverException([
+                'status' => 500,
+                'code' => 'INRIVER_API_KEY_NOT_SET',
+                'message' => 'The inRiver API key has not been set.',
+            ]);
+        }
 
         $this->setupResources();
     }
