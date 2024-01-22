@@ -14,6 +14,8 @@ class WorkareaFolder extends AbstractResource
     /**
      * Returns a list of entities in a workarea folder.
      *
+     * @param  string  $workAreaFolderId
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/WorkareaQueryResult
@@ -29,22 +31,30 @@ class WorkareaFolder extends AbstractResource
     /**
      * Update workarea query.
      *
+     * @param  string  $workareaFolderId
+     * @param  array  $query
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/UpdateWorkareaQuery
      */
-    public function updateWorkareaQuery(string $workareaFolderId): array
+    public function updateWorkareaQuery(string $workareaFolderId, array $query): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
-            endpoint: $this->endpoint("/{$workareaFolderId}/query")
+            endpoint: $this->endpoint("/{$workareaFolderId}/query"),
+            data: $query
         );
     }
 
     /**
      * Get entity id's in a static workarea.
      *
+     * @param  string  $workareaFolderId
+     * @return array
      * @throws InRiverException
+     *
+     * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/WorkareaFolderEntityIds
      */
     public function workareaFolderEntityIds(string $workareaFolderId): array
     {
@@ -57,6 +67,9 @@ class WorkareaFolder extends AbstractResource
     /**
      * Set entity id's in a static workarea.
      *
+     * @param  string  $workareaFolderId
+     * @param  array  $entityIds
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/SetWorkareaFolderEntityIds
@@ -73,18 +86,22 @@ class WorkareaFolder extends AbstractResource
     /**
      * Update workarea folder.
      *
+     * @param  string  $workareaFolderId
+     * @param  string  $name
+     * @param  int  $index
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/UpdateWorkarea
      */
-    public function updateWorkArea(string $workareaFolderId, string $name, bool $isQuery): array
+    public function updateWorkarea(string $workareaFolderId, string $name, int $index): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
             endpoint: $this->endpoint("/{$workareaFolderId}"),
             data: [
                 'name' => $name,
-                'isQuery' => $isQuery,
+                'index' => $index,
             ]
         );
     }
@@ -92,6 +109,8 @@ class WorkareaFolder extends AbstractResource
     /**
      * Delete workarea folder.
      *
+     * @param  string  $workareaFolderId
+     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/DeleteWorkarea
@@ -107,6 +126,8 @@ class WorkareaFolder extends AbstractResource
     /**
      * Create a new workarea.
      *
+     * @param  array  $body
+     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Workarea/CreateWorkarea

@@ -29,7 +29,7 @@ it('throws an exception if no URL is provided', function () {
     new InRiver();
 })->throws(InRiverException::class);
 
-test('throws an exception if error is returned from the API', function () {
+it('throws an exception if error is returned from the API', function () {
     $this->fakeResponse(['error' => 'test'], 400);
 
     InRiver()->channels->getChannelMessagesAsync();
