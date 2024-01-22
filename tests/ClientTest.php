@@ -26,7 +26,11 @@ it('throws an exception if no API key is provided', function () {
 it('throws an exception if no URL is provided', function () {
     config()->set('inriver.inriver_url', null);
 
-    $this->expectException(InRiverException::class);
-
     new InRiver();
-});
+})->throws(InRiverException::class);
+
+test('throws an exception if error is returned from the API', function () {
+    $this->fakeResponse(['error' => 'test'], 400);
+
+    InRiver()->channels->getChannelMessagesAsync();
+})->throws(InRiverException::class);
