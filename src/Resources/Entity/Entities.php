@@ -6,6 +6,7 @@ namespace Scolmore\InRiver\Resources\Entity;
 
 use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\Resources\AbstractResource;
+use Scolmore\InRiver\Objects\Entity\EntityObject;
 
 class Entities extends AbstractResource
 {
@@ -14,7 +15,21 @@ class Entities extends AbstractResource
     /**
      * @throws InRiverException
      */
-    public function get(int $entityId): EntityDataObject
+    public function new(string $entityTypeId, ?string $fieldSetId = null, bool $allFields = false): EntityObject
+    {
+        return new EntityObject(
+            $this->getEmptyEntity(
+                entityTypeId: $entityTypeId,
+                fieldSetId: $fieldSetId,
+                allFields: $allFields
+            )
+        );
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function get(int $entityId): EntityObject
     {
         $response = $this->getEntityBundle($entityId);
 
@@ -26,7 +41,7 @@ class Entities extends AbstractResource
             'outbound' => $response['outbound'],
         ];
 
-        return new EntityDataObject($data);
+        return new EntityObject($data);
     }
 
     /**
@@ -141,20 +156,22 @@ class Entities extends AbstractResource
      * Returns an entity creation model.
      *
      * @param  string  $entityTypeId
-     * @param  string|null  $fieldSet
+     * @param  string|null  $fieldSetId
+     * @param  bool  $allFields
      * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Entity/GetEmptyEntity
      */
-    public function getEmptyEntity(string $entityTypeId, ?string $fieldSet = null): array
+    public function getEmptyEntity(string $entityTypeId, ?string $fieldSetId = null, bool $allFields = false): array
     {
         return $this->inRiver()->request(
             method: 'GET',
             endpoint: $this->endpoint(':getempty'),
             data: [
                 'entityTypeId' => $entityTypeId,
-                'fieldSetId' => $fieldSet,
+                'fieldSetId' => $fieldSetId,
+                'allFields' => $allFields ? 'true' : 'false',
             ]
         );
     }

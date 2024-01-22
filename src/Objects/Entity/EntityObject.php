@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Scolmore\InRiver\Resources\Entity;
+namespace Scolmore\InRiver\Objects\Entity;
 
 use Scolmore\InRiver\Exceptions\FieldDoesNotExistException;
-use Scolmore\InRiver\InRiver;
+use Scolmore\InRiver\Exceptions\InRiverException;
 
-class EntityDataObject
+class EntityObject
 {
-    public ?int $id;
+    private ?int $id;
     public string $displayName;
     public string $displayDescription;
     public ?string $version;
@@ -22,7 +22,7 @@ class EntityDataObject
     public ?string $formattedModifiedDate;
     public ?string $resourceUrl;
 
-    public string $entityTypeId;
+    public ?string $entityTypeId;
     public ?string $entityTypeDisplayName;
     public ?string $fieldSetId;
     public ?string $fieldSetName;
@@ -36,6 +36,11 @@ class EntityDataObject
     public array $links;
 
     public function __construct(array $data)
+    {
+        $this->initialize($data);
+    }
+
+    private function initialize($data): void
     {
         $this->id = $data['id'] ?? null;
         $this->displayName = $data['displayName'] ?? '';
@@ -51,9 +56,9 @@ class EntityDataObject
         $this->resourceUrl = $data['resourceUrl'] ?? null;
         $this->completeness = $data['completeness'] ?? 0;
 
-        $this->entityTypeId = $data['entityTypeId'];
+        $this->entityTypeId = $data['entityTypeId'] ?? null;
         $this->entityTypeDisplayName = $data['entityTypeDisplayName'] ?? null;
-        $this->fieldSetId = $data['fieldSetId'];
+        $this->fieldSetId = $data['fieldSetId'] ?? null;
         $this->fieldSetName = $data['fieldSetName'] ?? null;
 
         $this->fieldValues = $data['fieldValues'] ?? [];
@@ -64,6 +69,26 @@ class EntityDataObject
         $this->specification = $data['specification'] ?? [];
 
         $this->links = $data['links'] ?? [];
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function toArray(): array
+    {
+        $array = [
+            'entityTypeId' => $this->entityTypeId,
+            'fieldSetId' => $this->fieldSetId,
+            'fieldValues' => $this->fieldValues,
+        ];
+
+        if ($this->segmentId) {
+            $array['segmentId'] = $this->segmentId;
+        }
+
+        return $array;
     }
 
     /**
@@ -96,50 +121,38 @@ class EntityDataObject
         throw new FieldDoesNotExistException($fieldTypeId);
     }
 
-    public function save(): void
+    /**
+     * @throws InRiverException
+     */
+    public function create(): self
     {
-        if ($this->id) {
-            $this->update();
-        } else {
-            $this->create();
-        }
-    }
+        $response = InRiver()->entities->createEntity($this->toArray());
 
-    public function delete(): ?self
-    {
-        $inriver = new InRiver();
-
-        $inriver->entities->deleteEntity($this->id);
-
-        return null;
-    }
-
-    protected function create(): EntityDataObject
-    {
-        $inriver = new InRiver();
-
-        $body = [
-            'entityTypeId' => $this->entityTypeId,
-            'fieldSetId' => $this->fieldSetId,
-            'fieldValues' => $this->fieldValues,
-        ];
-
-        $response = $inriver->entities->createEntity($body);
-
-        foreach ($response as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
+        $this->initialize($response);
 
         return $this;
     }
 
-    protected function update(): self
+    /**
+     * @throws InRiverException
+     */
+    public function update(): self
     {
-        $inriver = new InRiver();
+        $response = InRiver()->entities->setFieldValues($this->id, $this->fieldValues);
 
-        $inriver->entities->setFieldValues($this->id, $this->fieldValues);
+        $this->initialize($response);
+
+        return $this;
+    }
+
+    /**
+     * @throws InRiverException
+     */
+    public function delete(): self
+    {
+        InRiver()->entities->deleteEntity($this->id);
+
+        $this->initialize([]);
 
         return $this;
     }
