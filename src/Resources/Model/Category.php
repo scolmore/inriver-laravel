@@ -27,7 +27,7 @@ readonly class Category
      */
     public function list(): array
     {
-         $categories = $this->model->getAllCategories();
+        $categories = $this->model->getAllCategories();
 
         return collect($categories)
             ->map(fn ($categoryModel) => new CategoryObject($categoryModel))

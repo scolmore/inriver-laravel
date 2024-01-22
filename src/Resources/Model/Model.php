@@ -6,7 +6,6 @@ namespace Scolmore\InRiver\Resources\Model;
 
 use Scolmore\InRiver\Exceptions\InRiverException;
 use Scolmore\InRiver\InRiver;
-use Scolmore\InRiver\Objects\Model\CategoryObject;
 use Scolmore\InRiver\Resources\AbstractResource;
 
 class Model extends AbstractResource
@@ -313,14 +312,13 @@ class Model extends AbstractResource
     /**
      * Add a field set.
      *
-     * @param  array  $body
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldSet
      */
-    public function addFieldSet(array $body): array {
+    public function addFieldSet(array $body): array
+    {
         return $this->inRiver()->request(
             method: 'POST',
             endpoint: $this->endpoint('/fieldsets'),
@@ -331,15 +329,13 @@ class Model extends AbstractResource
     /**
      * Update a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  array  $body
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/UpdateFieldSet
      */
-    public function updateFieldSet(string $fieldSetId, array $body): array {
+    public function updateFieldSet(string $fieldSetId, array $body): array
+    {
         return $this->inRiver()->request(
             method: 'PUT',
             endpoint: $this->endpoint("/fieldsets/{$fieldSetId}"),
@@ -350,10 +346,7 @@ class Model extends AbstractResource
     /**
      * Add a field type to a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
      *
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddFieldTypeToFieldSet
@@ -369,10 +362,7 @@ class Model extends AbstractResource
     /**
      * Remove a field type from a field set.
      *
-     * @param  string  $fieldSetId
-     * @param  string  $fieldTypeId
      *
-     * @return null
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/DeleteFieldTypeToFieldSet
@@ -420,9 +410,7 @@ class Model extends AbstractResource
     /**
      * Add a category.
      *
-     * @param  array  $body
      *
-     * @return array
      * @throws InRiverException
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Model/AddCategory

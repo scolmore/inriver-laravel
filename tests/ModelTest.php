@@ -505,12 +505,12 @@ test('a category can be created from a category object', function () {
 
 test('a category can be updated from a category object', function () {
     $this->fakeResponse($data = [
-            'id' => 'Test',
-            'name' => [
-                'en' => 'Test',
-            ],
-            'index' => 1,
-        ], 200);
+        'id' => 'Test',
+        'name' => [
+            'en' => 'Test',
+        ],
+        'index' => 1,
+    ], 200);
 
     $category = InRiver()->model->category->get('Test');
 
