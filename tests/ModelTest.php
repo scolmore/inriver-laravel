@@ -981,15 +981,25 @@ test('a single specification template object gets returned', function () {
     $this->assertEquals($specification, new SpecificationTemplateObject($data[0]));
 });
 
-test('all restricted fields are returned', function () {
+test('all fields are returned', function () {
     $this->fakeResponse([
         [
-            'id' => 0,
-            'entityTypeId' => 'string',
-            'fieldTypeId' => 'string',
-            'categoryId' => 'string',
-            'restrictionType' => 'Readonly',
-            'roleId' => 0,
+            "id" => "string",
+            "name" => [
+                "additionalProp1" => "string",
+                "additionalProp2" => "string",
+                "additionalProp3" => "string",
+            ],
+            "dataType" => "string",
+            "categoryId" => "string",
+            "defaultValue" => "string",
+            "format" => "string",
+            "unit" => "string",
+            "isDisabled" => true,
+            "isMultiValue" => true,
+            "isMandatory" => true,
+            "index" => 0,
+            "cvlId" => "string",
         ],
     ], 200);
 
@@ -1018,4 +1028,59 @@ test('all restricted fields are returned', function () {
     $fieldTypes = $specificationTemplate->fieldTypes();
 
     $this->assertCount(1, $fieldTypes);
+});
+
+test('all restricted field permissions are returned', function () {
+    $this->fakeResponse([
+        [
+            'id' => 0,
+            'entityTypeId' => 'string',
+            'fieldTypeId' => 'string',
+            'categoryId' => 'string',
+            'restrictionType' => 'Readonly',
+            'roleId' => 0,
+        ]
+    ], 200);
+
+    $restrictedFields = InRiver()->model->getAllRestrictedFieldPermission();
+
+    $this->assertCount(1, $restrictedFields);
+});
+
+test('a restricted field can be added', function () {
+    $this->fakeResponse($data = [
+        'id' => 0,
+        'entityTypeId' => 'string',
+        'fieldTypeId' => 'string',
+        'categoryId' => 'string',
+        'restrictionType' => 'Readonly',
+        'roleId' => 0,
+    ], 200);
+
+    $restrictedField = InRiver()->model->addRestrictedFieldPermission($data);
+
+    $this->assertEquals(0, $restrictedField['id']);
+});
+
+test('a single restricted field can be returned', function () {
+    $this->fakeResponse([
+        'id' => 0,
+        'entityTypeId' => 'string',
+        'fieldTypeId' => 'string',
+        'categoryId' => 'string',
+        'restrictionType' => 'Readonly',
+        'roleId' => 0,
+    ], 200);
+
+    $restrictedField = InRiver()->model->getRestrictedFieldPermission(0);
+
+    $this->assertEquals(0, $restrictedField['id']);
+});
+
+test('a field restriction can be deleted by id', function () {
+    $this->fakeResponse(null, 204);
+
+    $restrictedField = InRiver()->model->deleteRestrictedFieldPermission(0);
+
+    $this->assertEquals(null, $restrictedField);
 });
