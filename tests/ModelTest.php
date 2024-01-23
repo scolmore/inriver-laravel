@@ -302,6 +302,38 @@ test('a language can be deleted', function () {
     $this->assertEquals(null, $language);
 });
 
+test('languages can be list as a language object', function () {
+    $this->fakeResponse([
+        [
+            'name' => 'string',
+            'displayName' => 'string',
+        ],
+    ], 200);
+
+    $languages = InRiver()->model->languages->list();
+
+    $this->assertCount(1, $languages);
+});
+
+test('a language can be created', function () {
+    $this->fakeResponse([
+        'name' => 'string',
+        'displayName' => 'string',
+    ], 200);
+
+    $language = InRiver()->model->languages->create('string');
+
+    $this->assertEquals($language['name'], 'string');
+});
+
+test('a language can be deleted from the languages function', function () {
+    $this->fakeResponse(null, 204);
+
+    $language = InRiver()->model->languages->delete('string');
+
+    $this->assertEquals(null, $language);
+});
+
 test('available field sets are returned', function () {
     $this->fakeResponse([
         [
@@ -547,6 +579,23 @@ test('a category can be deleted from a category object', function () {
     $category->delete();
 
     $this->assertEquals($category, new CategoryObject([]));
+});
+
+test('all categories can be listed as category objects', function () {
+    $this->fakeResponse($data = [
+        [
+            'id' => 'Test',
+            'name' => [
+                'en' => 'Test',
+            ],
+            'index' => 1,
+        ],
+    ], 200);
+
+    $categories = InRiver()->model->category->list();
+
+    $this->assertCount(1, $categories);
+    $this->assertEquals($categories[0], new CategoryObject($data[0]));
 });
 
 test('a list of CVLs get returned', function () {
