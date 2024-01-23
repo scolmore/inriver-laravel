@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Objects\Model\CategoryObject;
 use Scolmore\InRiver\Objects\Model\CvlObject;
 use Scolmore\InRiver\Objects\Model\CvlValueObject;
+use Scolmore\InRiver\Objects\Model\SpecificationTemplateObject;
 
 test('entity types are returned', function () {
     $this->fakeResponse([
@@ -860,4 +861,161 @@ test('a value object can be deleted from a CVL object', function () {
     $cvlValue->delete();
 
     $this->assertEquals($cvlValue, new CvlValueObject($cvl, []));
+});
+
+test('all specification templates are returned', function () {
+    $this->fakeResponse([
+        [
+            "id" => 123,
+            "displayName" => "string",
+            "displayDescription" => "string",
+            "version" => "string",
+            "lockedBy" => "string",
+            "createdBy" => "string",
+            "createdDate" => "string",
+            "formattedCreatedDate" => "string",
+            "modifiedBy" => "string",
+            "modifiedDate" => "string",
+            "formattedModifiedDate" => "string",
+            "resourceUrl" => "string",
+            "entityTypeId" => "string",
+            "entityTypeDisplayName" => "string",
+            "completeness" => 0,
+            "fieldSetId" => "string",
+            "fieldSetName" => "string",
+            "segmentId" => 0,
+            "segmentName" => "string",
+        ],
+    ], 200);
+
+    $specificationTemplates = InRiver()->model->getAllSpecificationTemplates();
+
+    $this->assertCount(1, $specificationTemplates);
+});
+
+test('field types for a specification template can be returned', function () {
+    $this->fakeResponse([
+        [
+            "id" => "string",
+            "name" => [
+                "additionalProp1" => "string",
+                "additionalProp2" => "string",
+                "additionalProp3" => "string",
+            ],
+            "dataType" => "string",
+            "categoryId" => "string",
+            "defaultValue" => "string",
+            "format" => "string",
+            "unit" => "string",
+            "isDisabled" => true,
+            "isMultiValue" => true,
+            "isMandatory" => true,
+            "index" => 0,
+            "cvlId" => "string",
+        ],
+    ], 200);
+
+    $fieldTypes = InRiver()->model->getSpecificationTemplateFields(123);
+
+    $this->assertCount(1, $fieldTypes);
+});
+
+test('an array with specification objects is listed', function () {
+    $this->fakeResponse($data = [
+        [
+            "id" => 123,
+            "displayName" => "string",
+            "displayDescription" => "string",
+            "version" => "string",
+            "lockedBy" => "string",
+            "createdBy" => "string",
+            "createdDate" => now()->toDateTimeString(),
+            "formattedCreatedDate" => "string",
+            "modifiedBy" => "string",
+            "modifiedDate" => now()->toDateTimeString(),
+            "formattedModifiedDate" => "string",
+            "resourceUrl" => "string",
+            "entityTypeId" => "string",
+            "entityTypeDisplayName" => "string",
+            "completeness" => 0,
+            "fieldSetId" => "string",
+            "fieldSetName" => "string",
+            "segmentId" => 0,
+            "segmentName" => "string",
+        ],
+    ], 200);
+
+    $specifications = InRiver()->model->specificationtemplates->list();
+
+    $this->assertCount(1, $specifications);
+    $this->assertEquals($specifications[0], new SpecificationTemplateObject($data[0]));
+});
+
+test('a single specification template object gets returned', function () {
+    $this->fakeResponse($data = [
+        [
+            "id" => 123,
+            "displayName" => "string",
+            "displayDescription" => "string",
+            "version" => "string",
+            "lockedBy" => "string",
+            "createdBy" => "string",
+            "createdDate" => now()->toDateTimeString(),
+            "formattedCreatedDate" => "string",
+            "modifiedBy" => "string",
+            "modifiedDate" => now()->toDateTimeString(),
+            "formattedModifiedDate" => "string",
+            "resourceUrl" => "string",
+            "entityTypeId" => "string",
+            "entityTypeDisplayName" => "string",
+            "completeness" => 0,
+            "fieldSetId" => "string",
+            "fieldSetName" => "string",
+            "segmentId" => 0,
+            "segmentName" => "string",
+        ],
+    ], 200);
+
+    $specification = InRiver()->model->specificationtemplates->get(123);
+
+    $this->assertEquals($specification, new SpecificationTemplateObject($data[0]));
+});
+
+test('all restricted fields are returned', function () {
+    $this->fakeResponse([
+        [
+            'id' => 0,
+            'entityTypeId' => 'string',
+            'fieldTypeId' => 'string',
+            'categoryId' => 'string',
+            'restrictionType' => 'Readonly',
+            'roleId' => 0,
+        ],
+    ], 200);
+
+    $specificationTemplate = new SpecificationTemplateObject([
+        "id" => 123,
+        "displayName" => "string",
+        "displayDescription" => "string",
+        "version" => "string",
+        "lockedBy" => "string",
+        "createdBy" => "string",
+        "createdDate" => now()->toDateTimeString(),
+        "formattedCreatedDate" => "string",
+        "modifiedBy" => "string",
+        "modifiedDate" => now()->toDateTimeString(),
+        "formattedModifiedDate" => "string",
+        "resourceUrl" => "string",
+        "entityTypeId" => "string",
+        "entityTypeDisplayName" => "string",
+        "completeness" => 0,
+        "fieldSetId" => "string",
+        "fieldSetName" => "string",
+        "segmentId" => 0,
+        "segmentName" => "string",
+    ]);
+
+    $fieldTypes = $specificationTemplate->fieldTypes();
+
+    $this->assertCount(1, $fieldTypes);
 });
