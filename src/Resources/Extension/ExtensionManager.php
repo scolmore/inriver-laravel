@@ -18,7 +18,7 @@ class ExtensionManager extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/RestartServiceAsync
      */
-    public function restartServiceAsync(): array
+    public function restartServiceAsync(): null
     {
         return $this->inRiver()->request(
             method: 'POST',

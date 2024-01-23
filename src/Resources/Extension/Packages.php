@@ -48,7 +48,7 @@ class Packages extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeletePackage
      */
-    public function deletePackage(int $packageId): array
+    public function deletePackage(int $packageId): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',

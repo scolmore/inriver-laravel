@@ -79,7 +79,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteExtension
      */
-    public function deleteExtension(string $extensionId): array
+    public function deleteExtension(string $extensionId): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -94,7 +94,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/SetExtensionApiKet
      */
-    public function setExtensionApiKey(string $extensionId, string $apiKey): array
+    public function setExtensionApiKey(string $extensionId, string $apiKey): null
     {
         return $this->inRiver()->request(
             method: 'POST',
@@ -127,15 +127,12 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/AddOrUpdateExtensionSetting
      */
-    public function addOrUpdateExtensionSetting(string $extensionId, string $key, string $value): array
+    public function addOrUpdateExtensionSetting(string $extensionId, array $settings): array
     {
         return $this->inRiver()->request(
             method: 'PUT',
             endpoint: $this->endpoint("/{$extensionId}/settings"),
-            data: [
-                'key' => $key,
-                'value' => $value,
-            ]
+            data: $settings
         );
     }
 
@@ -161,7 +158,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteExtensionSetting
      */
-    public function deleteExtensionSetting(string $extensionId, string $key): array
+    public function deleteExtensionSetting(string $extensionId, string $key): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -206,7 +203,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/ReloadSettingsForExtension
      */
-    public function reloadSettingsForExtension(string $extensionId): array
+    public function reloadSettingsForExtension(string $extensionId): null
     {
         return $this->inRiver()->request(
             method: 'POST',
@@ -355,7 +352,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/RunExtension
      */
-    public function runExtension(string $extensionId): array
+    public function runExtension(string $extensionId): null
     {
         return $this->inRiver()->request(
             method: 'POST',
@@ -370,7 +367,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/TestExtension
      */
-    public function testExtension(string $extensionId): array
+    public function testExtension(string $extensionId): null
     {
         return $this->inRiver()->request(
             method: 'POST',
@@ -415,7 +412,7 @@ class Extensions extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/Extension/DeleteQueuedConnectMessagesAsync
      */
-    public function deleteQueuedConnectMessagesAsync(string $extensionId, string $startDateUtc, string $endDateUtc): null
+    public function deleteQueuedConnectMessagesAsync(string $extensionId, string $startDateUtc = '', string $endDateUtc = ''): null
     {
         return $this->InRiver()->request(
             method: 'DELETE',
