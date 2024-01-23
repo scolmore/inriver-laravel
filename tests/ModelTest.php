@@ -1015,22 +1015,22 @@ test('a single specification template object gets returned', function () {
 test('all fields are returned', function () {
     $this->fakeResponse([
         [
-            "id" => "string",
-            "name" => [
-                "additionalProp1" => "string",
-                "additionalProp2" => "string",
-                "additionalProp3" => "string",
+            'id' => 'string',
+            'name' => [
+                'additionalProp1' => 'string',
+                'additionalProp2' => 'string',
+                'additionalProp3' => 'string',
             ],
-            "dataType" => "string",
-            "categoryId" => "string",
-            "defaultValue" => "string",
-            "format" => "string",
-            "unit" => "string",
-            "isDisabled" => true,
-            "isMultiValue" => true,
-            "isMandatory" => true,
-            "index" => 0,
-            "cvlId" => "string",
+            'dataType' => 'string',
+            'categoryId' => 'string',
+            'defaultValue' => 'string',
+            'format' => 'string',
+            'unit' => 'string',
+            'isDisabled' => true,
+            'isMultiValue' => true,
+            'isMandatory' => true,
+            'index' => 0,
+            'cvlId' => 'string',
         ],
     ], 200);
 
@@ -1070,7 +1070,7 @@ test('all restricted field permissions are returned', function () {
             'categoryId' => 'string',
             'restrictionType' => 'Readonly',
             'roleId' => 0,
-        ]
+        ],
     ], 200);
 
     $restrictedFields = InRiver()->model->getAllRestrictedFieldPermission();
