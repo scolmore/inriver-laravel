@@ -16,7 +16,7 @@ $link->targetEntityId = 43;
 // Set index to 0 to add the link to first position. Set index to null to add the link to last position. Specifying the index will reorganize all link indices.
 $link->index = null;
 
-$link->save();
+$link->create();
 ```
 
 ### Update a link
