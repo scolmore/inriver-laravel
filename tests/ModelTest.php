@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Objects\Model\CategoryObject;
+use Scolmore\InRiver\Objects\Model\CvlObject;
+use Scolmore\InRiver\Objects\Model\CvlValueObject;
 
 test('entity types are returned', function () {
     $this->fakeResponse([
@@ -544,4 +546,318 @@ test('a category can be deleted from a category object', function () {
     $category->delete();
 
     $this->assertEquals($category, new CategoryObject([]));
+});
+
+test('a list of CVLs get returned', function () {
+    $this->fakeResponse([
+        [
+            'id' => 'string',
+            'parentId' => 'string',
+            'dataType' => 'string',
+        ],
+        [
+            'id' => 'string1',
+            'parentId' => 'string1',
+            'dataType' => 'string',
+        ],
+    ]);
+
+    $cvls = InRiver()->model->getAllCVLs();
+
+    $this->assertCount(2, $cvls);
+});
+
+test('a CVL can be added', function () {
+    $this->fakeResponse([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvl = InRiver()->model->addCVL('string', 'string', 'string', false);
+
+    $this->assertEquals('string', $cvl['id']);
+});
+
+test('a single CVL can be returned', function () {
+    $this->fakeResponse([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+    ]);
+
+    $cvl = InRiver()->model->getCVL('string');
+
+    $this->assertEquals('string', $cvl['id']);
+});
+
+test('a CVL can be updated', function () {
+    $this->fakeResponse([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvl = InRiver()->model->updateCVL('string', 'string', 'string', false);
+
+    $this->assertEquals('string', $cvl['id']);
+});
+
+test('a CVL can be deleted', function () {
+    $this->fakeResponse(null, 204);
+
+    $cvl = InRiver()->model->deleteCVL('string');
+
+    $this->assertEquals(null, $cvl);
+});
+
+test('values for a CVL get returned', function () {
+    $this->fakeResponse([
+        [
+            'key' => 'string',
+            'value' => 'string',
+            'index' => 0,
+            'parentKey' => 'string',
+            'deactivated' => true,
+        ],
+    ]);
+
+    $cvlValues = InRiver()->model->getAllCvlValues('string');
+
+    $this->assertCount(1, $cvlValues);
+});
+
+test('a new CVL value can be added', function () {
+    $this->fakeResponse($data = [
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvlValue = InRiver()->model->createCvlValue('string', $data);
+
+    $this->assertEquals('string', $cvlValue['key']);
+});
+
+test('a single CVL value can be returned', function () {
+    $this->fakeResponse([
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvlValue = InRiver()->model->getCvlValue('string', 'string');
+
+    $this->assertEquals('string', $cvlValue['key']);
+});
+
+test('a CVL value can be updated', function () {
+    $this->fakeResponse($data = [
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvlValue = InRiver()->model->updateCvlValue('string', 'string', $data);
+
+    $this->assertEquals('string', $cvlValue['key']);
+});
+
+test('a CVL value can be deleted', function () {
+    $this->fakeResponse(null, 204);
+
+    $cvlValue = InRiver()->model->deleteCvlValue('string', 'string');
+
+    $this->assertEquals(null, $cvlValue);
+});
+
+test('all CVL are listed', function () {
+    $this->fakeResponse($data = [
+        [
+            'id' => 'string',
+            'parentId' => 'string',
+            'dataType' => 'string',
+        ],
+    ]);
+
+    $cvl = InRiver()->model->cvls->list();
+
+    $this->assertCount(1, $cvl);
+});
+
+test('a new CVL object can be generated', function () {
+    $cvl = InRiver()->model->cvls->new();
+
+    $this->assertEquals($cvl, new CvlObject([]));
+});
+
+test('a new CVL can be created from a CVL object', function () {
+    $this->fakeResponse($data = [
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvl = InRiver()->model->cvls->new();
+
+    $cvl->id = 'string';
+    $cvl->parentId = 'string';
+    $cvl->dataType = 'string';
+    $cvl->customValueList = false;
+
+    $cvl->create();
+
+    $this->assertEquals($cvl, new CvlObject($data));
+});
+
+test('a single CVL object gets returned', function () {
+    $this->fakeResponse($data = [
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+    ]);
+
+    $cvl = InRiver()->model->cvls->get('string');
+
+    $this->assertEquals($cvl, new CvlObject($data));
+});
+
+test('a CVL can be updated from a CVL object', function () {
+    $this->fakeResponse($data = [
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvl = InRiver()->model->cvls->get('string');
+
+    $cvl->id = 'string';
+    $cvl->parentId = 'string';
+    $cvl->dataType = 'string';
+    $cvl->customValueList = false;
+
+    $cvl->update();
+
+    $this->assertEquals($cvl, new CvlObject($data));
+});
+
+test('a CVL can be deleted from a CVL object', function () {
+    $this->fakeResponse(null, 204);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvl->delete();
+
+    $this->assertEquals($cvl, new CvlObject([]));
+});
+
+test('all CVL values can be listed from a CVL object', function () {
+    $this->fakeResponse([
+        [
+            'key' => 'string',
+            'value' => 'string',
+            'index' => 0,
+            'parentKey' => 'string',
+            'deactivated' => true,
+        ],
+    ]);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'string',
+        'customValueList' => false,
+    ]);
+
+    $cvlValues = $cvl->values();
+
+    $this->assertCount(1, $cvlValues);
+});
+
+test('a single value can be returned from a CVL object', function () {
+    $this->fakeResponse([
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'String',
+        'customValueList' => false,
+    ]);
+
+    $cvlValue = $cvl->value('string');
+
+    $this->assertEquals('string', $cvlValue->key);
+});
+
+test('a new value can be created from a CVL object', function () {
+    $this->fakeResponse($data = [
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'String',
+        'customValueList' => false,
+    ]);
+
+    $cvlValue = $cvl->newValue();
+
+    $cvlValue->key = 'string';
+    $cvlValue->value = 'String';
+    $cvlValue->index = 0;
+    $cvlValue->parentKey = 'string';
+    $cvlValue->deactivated = true;
+
+    $cvlValue->create();
+
+    $this->assertEquals($cvlValue, new CvlValueObject($cvl, $data));
+});
+
+test('a value object can be deleted from a CVL object', function () {
+    $this->fakeResponse(null, 204);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'String',
+        'customValueList' => false,
+    ]);
+
+    $cvlValue = new CvlValueObject($cvl, [
+        'key' => 'string',
+        'value' => 'String',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvlValue->delete();
+
+    $this->assertEquals($cvlValue, new CvlValueObject($cvl, []));
 });
