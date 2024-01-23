@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
 use Scolmore\InRiver\Objects\Link\LinkObject;
 
 test('a link can be returned', function () {
