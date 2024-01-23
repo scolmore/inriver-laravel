@@ -863,6 +863,37 @@ test('a value object can be deleted from a CVL object', function () {
     $this->assertEquals($cvlValue, new CvlValueObject($cvl, []));
 });
 
+test('a value object can be updated from a CVL value object', function () {
+    $this->fakeResponse($data = [
+        'key' => 'string',
+        'value' => 'string',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvl = new CvlObject([
+        'id' => 'string',
+        'parentId' => 'string',
+        'dataType' => 'String',
+        'customValueList' => false,
+    ]);
+
+    $cvlValue = new CvlValueObject($cvl, [
+        'key' => 'string',
+        'value' => 'String',
+        'index' => 0,
+        'parentKey' => 'string',
+        'deactivated' => true,
+    ]);
+
+    $cvlValue->value = 'string';
+
+    $cvlValue->update();
+
+    $this->assertEquals($cvlValue, new CvlValueObject($cvl, $data));
+});
+
 test('all specification templates are returned', function () {
     $this->fakeResponse([
         [
