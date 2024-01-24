@@ -7,15 +7,15 @@ test('all link rules get returned', function () {
 
     $linkRules = InRiver()->linkRules->getAllLinkRuleDefinitions();
 
-    $this->assertCount(1, $linkRules);
+    expect($linkRules)->toBeArray()->toHaveCount(1);
 });
 
 test('a link rule can be deleted', function () {
     $this->fakeResponse(null, 200);
 
-    $linkRule = InRiver()->linkRules->DeleteLinkRulesAsync([1]);
+    $linkRules = InRiver()->linkRules->deleteLinkRulesAsync([1]);
 
-    $this->assertNull($linkRule);
+    expect($linkRules)->toBeNull();
 });
 
 test('a link rule definition can be returned for an entity', function () {
@@ -25,7 +25,7 @@ test('a link rule definition can be returned for an entity', function () {
 
     $linkRuleDefinition = InRiver()->linkRules->getLinkRuleDefinitionsForEntity(1);
 
-    $this->assertCount(1, $linkRuleDefinition);
+    expect($linkRuleDefinition)->toBeArray()->toHaveCount(1);
 });
 
 test('link rules can be disabled', function () {
@@ -33,7 +33,7 @@ test('link rules can be disabled', function () {
 
     $linkRule = InRiver()->linkRules->disableLinkRulesAsync([1]);
 
-    $this->assertNull($linkRule);
+    expect($linkRule)->toBeNull();
 });
 
 test('link rules can be enabled', function () {
@@ -41,5 +41,5 @@ test('link rules can be enabled', function () {
 
     $linkRule = InRiver()->linkRules->enableLinkRulesAsync([1]);
 
-    $this->assertNull($linkRule);
+    expect($linkRule)->toBeNull();
 });

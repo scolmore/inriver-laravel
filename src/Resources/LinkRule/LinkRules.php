@@ -36,7 +36,7 @@ class LinkRules extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DeleteLinkRulesAsync
      */
-    public function DeleteLinkRulesAsync(array $linkRuleIds): null
+    public function deleteLinkRulesAsync(array $linkRuleIds): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
