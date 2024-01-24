@@ -6,20 +6,20 @@ test('various entity data can be returned', function () {
     $this->fakeResponse($responseBody, 200);
 
     $entity = InRiver()->entities->fetchData([
-        "entityIds" => [
+        'entityIds' => [
             0,
         ],
-        "objects" => "string",
-        "fieldTypeIds" => "string",
-        "inbound" => [
-            "linkTypeIds" => "string",
-            "objects" => "string",
-            "linkEntityObjects" => "string",
+        'objects' => 'string',
+        'fieldTypeIds' => 'string',
+        'inbound' => [
+            'linkTypeIds' => 'string',
+            'objects' => 'string',
+            'linkEntityObjects' => 'string',
         ],
-        "outbound" => [
-            "linkTypeIds" => "string",
-            "objects" => "string",
-            "linkEntityObjects" => "string",
+        'outbound' => [
+            'linkTypeIds' => 'string',
+            'objects' => 'string',
+            'linkEntityObjects' => 'string',
         ],
     ]);
 
@@ -45,37 +45,37 @@ test('an upsert can be performed on entities', function () {
 
     $body = [
         [
-            "entityTypeId" => "string",
-            "keyFieldTypeIds" => [
-                "string",
+            'entityTypeId' => 'string',
+            'keyFieldTypeIds' => [
+                'string',
             ],
-            "fieldValues" => [
+            'fieldValues' => [
                 [
-                    "string",
+                    'string',
                 ],
             ],
-            "fieldSetOptions" => [
-                "fieldSetId" => "string",
-                "wipeOtherFields" => true,
+            'fieldSetOptions' => [
+                'fieldSetId' => 'string',
+                'wipeOtherFields' => true,
             ],
-            "specificationData" => [
-                "specification" => "string",
-                "specificationValues" => [
+            'specificationData' => [
+                'specification' => 'string',
+                'specificationValues' => [
                     [
-                        "string",
+                        'string',
                     ],
                 ],
             ],
-            "segment" => "string",
-            "links" => [
+            'segment' => 'string',
+            'links' => [
                 [
-                    "linkTypeId" => "string",
-                    "entities" => [
-                        "string",
+                    'linkTypeId' => 'string',
+                    'entities' => [
+                        'string',
                     ],
-                    "linkInsertAction" => "string",
-                    "linkUpdateAction" => "string",
-                    "staleLinkAction" => "string",
+                    'linkInsertAction' => 'string',
+                    'linkUpdateAction' => 'string',
+                    'staleLinkAction' => 'string',
                 ],
             ],
         ],
@@ -401,7 +401,7 @@ test('media can be added to an entity', function () {
         'entityId' => 1,
     ], 200);
 
-    $media = InRiver()->entities->uploadBase64File(1, 'string', 'base64encoded',);
+    $media = InRiver()->entities->uploadBase64File(1, 'string', 'base64encoded');
 
     expect($media)->toBeArray()->and($media['fieldId'])->toEqual(0);
 });
@@ -513,4 +513,3 @@ test('a list of segments can be returned', function () {
     expect($segments)->toBeArray()->toHaveCount(1)
         ->and($segments[0]['id'])->toEqual(0);
 });
-
