@@ -36,7 +36,7 @@ class LinkRules extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DeleteLinkRulesAsync
      */
-    public function DeleteLinkRulesAsync(array $linkRuleIds): array
+    public function DeleteLinkRulesAsync(array $linkRuleIds): null
     {
         return $this->inRiver()->request(
             method: 'DELETE',
@@ -70,7 +70,7 @@ class LinkRules extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/DisableLinkRulesAsync
      */
-    public function disableLinkRulesAsync(array $linkRuleIds): array
+    public function disableLinkRulesAsync(array $linkRuleIds): null
     {
         return $this->inRiver()->request(
             method: 'PUT',
@@ -88,7 +88,7 @@ class LinkRules extends AbstractResource
      *
      * @see https://apieuw.productmarketingcloud.com/swagger/index.html#/LinkRule/EnableLinkRulesAsync
      */
-    public function EnableLinkRulesAsync(array $linkRuleIds): array
+    public function EnableLinkRulesAsync(array $linkRuleIds): null
     {
         return $this->inRiver()->request(
             method: 'PUT',
