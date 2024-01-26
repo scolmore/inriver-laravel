@@ -529,7 +529,7 @@ test('a new entity object can be created', function () {
     expect($entity)->toBeInstanceOf(EntityObject::class);
 });
 
-test('an entity object fails when trying to set a field that does not exist', function() {
+test('an entity object fails when trying to set a field that does not exist', function () {
     $this->fakeResponse([
         'id' => 0,
         'displayName' => 'string',
