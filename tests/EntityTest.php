@@ -1,5 +1,8 @@
 <?php
 
+use Scolmore\InRiver\Exceptions\FieldDoesNotExistException;
+use Scolmore\InRiver\Objects\Entity\EntityObject;
+
 test('various entity data can be returned', function () {
     $responseBody = require __DIR__.'/responses/Entity/Entities.php';
 
@@ -513,3 +516,27 @@ test('a list of segments can be returned', function () {
     expect($segments)->toBeArray()->toHaveCount(1)
         ->and($segments[0]['id'])->toEqual(0);
 });
+
+test('a new entity object can be created', function () {
+    $this->fakeResponse([
+        'id' => 0,
+        'displayName' => 'string',
+        'displayDescription' => 'string',
+    ], 200);
+
+    $entity = InRiver()->entities->new('Item');
+
+    expect($entity)->toBeInstanceOf(EntityObject::class);
+});
+
+test('an entity object fails when trying to set a field that does not exist', function() {
+    $this->fakeResponse([
+        'id' => 0,
+        'displayName' => 'string',
+        'displayDescription' => 'string',
+    ], 200);
+
+    $entity = InRiver()->entities->new('Item');
+
+    $entity->setField('FieldDoesNotExist', 'value');
+})->expectException(FieldDoesNotExistException::class);
