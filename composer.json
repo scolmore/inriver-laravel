@@ -1,5 +1,5 @@
 {
-    "name": "scolmore/inriver",
+    "name": "scolmore/inriver-laravel",
     "description": "A Laravel package for interacting with the inRiver PIM API",
     "license": "MIT",
     "authors": [
