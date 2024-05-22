@@ -94,7 +94,7 @@ class InRiver
     {
         $this->url = "{$this->url}/api/v{$this->version}/";
 
-        $client = Http::timeout(30)
+        $client = Http::timeout(config('inriver.inriver_timeout'))
             ->withHeaders([
                 'X-inRiver-APIKey' => $this->apiKey,
             ]);
